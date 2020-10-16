@@ -31,7 +31,7 @@ public class LoginController {
     public void openLogin() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXML_Files/loginScreen.fxml"));
         loginStage.setTitle("Mule Trough Login");
-        loginStage.setScene(new Scene(root, 300, 220));
+        loginStage.setScene(new Scene(root, 797, 700));
         loginStage.show();
     }
 
