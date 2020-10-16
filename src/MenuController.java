@@ -44,7 +44,7 @@ public class MenuController {
     public CachedRowSet readFoodsTable() throws Exception{
         String query = "select * from restaurant.foods;";
         try {
-            CachedRowSet cachedRowSet = sqlCommands.readRestaurantDataBase(query);
+            CachedRowSet cachedRowSet = sqlCommands.readDataBase(2,query);
             return cachedRowSet;
         } catch (Exception e) {
             System.err.print("ERROR!\nFunction: readFoodsTable\nDescription: Issue reading FoodsTable");
