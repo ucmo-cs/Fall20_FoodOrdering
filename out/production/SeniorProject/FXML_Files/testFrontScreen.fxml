@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane styleClass="centerPane">
+         <children>
+            <Button layoutX="145.0" layoutY="211.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
+               <graphic>
+                  <ImageView fitHeight="89.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" scaleX="1.15" scaleY="1.65" styleClass="foodBtn">
+                     <image>
+                        <Image url="@../images/tacoBell.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button id="foodBtn" layoutX="325.0" layoutY="211.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
+               <graphic>
+                  <ImageView fitHeight="121.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" scaleX="1.17" scaleY="1.13" styleClass="foodBtn">
+                     <image>
+                        <Image url="@../images/einsteinBros.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="218.0" layoutY="411.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
+               <graphic>
+                  <ImageView fitHeight="108.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" scaleX="1.15" scaleY="2.4" styleClass="foodBtn">
+                     <image>
+                        <Image url="@../images/chickFilA.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="507.0" layoutY="211.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
+               <graphic>
+                  <ImageView fitHeight="79.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" scaleX="2.35" scaleY="1.7" styleClass="foodBtn">
+                     <image>
+                        <Image url="@../images/starbucks2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="434.0" layoutY="411.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
+               <graphic>
+                  <ImageView fitHeight="126.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" scaleX="1.16" scaleY="1.11" styleClass="foodBtn">
+                     <image>
+                        <Image url="@../images/spinPizza.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="17.0" layoutY="54.0" text="Welclome to UCM dinning Order " textFill="#f80707">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+            <Label layoutX="319.0" layoutY="173.0" text="Order Now" textFill="#f80707">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

@@ -15,7 +15,7 @@ public class LoginController {
 
     // Classes
     SQLCommands sqlCommands=new SQLCommands();
-    MenuController menuController=new MenuController();
+    MainStageController mainStageController=new MainStageController();
 
     // Variables
     public Stage loginStage = new Stage();
@@ -30,8 +30,10 @@ public class LoginController {
 
     public void openLogin() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXML_Files/loginScreen.fxml"));
+        Scene scene =new Scene(root,1000,700);
+        scene.getStylesheets().add(getClass().getResource("FXML_Files/CSS/login.css").toExternalForm());
         loginStage.setTitle("Mule Trough Login");
-        loginStage.setScene(new Scene(root, 300, 220));
+        loginStage.setScene(scene);
         loginStage.show();
     }
 
@@ -48,13 +50,12 @@ public class LoginController {
     }
 
     public void attemptLogin() throws Exception {
-        // Create Variables
-
         // Check to ensure that textfields have data.
         if(textFieldUsername.getText().isEmpty()){ textFieldUsername.setText("Username Required"); }
         else if (textFieldPassword.getText().isEmpty()) { textFieldPassword.setText("Password Required"); }
         else {
 
+            // Create Variables
             String username = textFieldUsername.getText();
             String claimedPassword = textFieldPassword.getText();
             String id = null, fname = null, lname = null, truePassword = null;
@@ -77,9 +78,10 @@ public class LoginController {
                     lname = accountData.getString("last_name");
                     truePassword = accountData.getString("password");
                 }
+                // If the passwords match and the user is valid
                 if (claimedPassword.equals(truePassword)) {
                     setUser(id, fname, lname, employee);
-                    menuController.openMainScreen();
+                    mainStageController.openTestPane();
                     closeLogin();
                 } else {
                     labelMessage.setTextFill(Color.RED);
@@ -90,7 +92,7 @@ public class LoginController {
     }// Ends attemptLogin
 
     public void attemptloginTest() throws Exception {
-        menuController.openMainScreen();
+        mainStageController.openMainStage();
         closeLogin();
     }
 
