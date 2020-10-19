@@ -63,7 +63,6 @@ public class LoginController {
 
             // Acquire user data
             String query = "select * from student.student_information where id = '" + username + "';";
-
             CachedRowSet accountData = sqlCommands.readDataBase(1, query);
 
             // Determine if user info was in CachedRow
@@ -78,7 +77,7 @@ public class LoginController {
                     lname = accountData.getString("last_name");
                     truePassword = accountData.getString("password");
                 }
-                // If the passwords match and the user is valid
+                // If the passwords match and the user information is valid
                 if (claimedPassword.equals(truePassword)) {
                     setUser(id, fname, lname, employee);
                     mainStageController.openTestPane();
@@ -92,7 +91,7 @@ public class LoginController {
     }// Ends attemptLogin
 
     public void attemptloginTest() throws Exception {
-        mainStageController.openMainStage();
+        mainStageController.openTestPane();
         closeLogin();
     }
 

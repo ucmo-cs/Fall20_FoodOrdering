@@ -16,7 +16,7 @@
          <children>
             <TextField fx:id="textFieldUsername" layoutX="280.0" layoutY="279.0" prefHeight="44.0" prefWidth="236.0" promptText="Username" styleClass="usernameField" />
             <PasswordField fx:id="textFieldPassword" layoutX="280.0" layoutY="358.0" prefHeight="44.0" prefWidth="236.0" promptText="Password" styleClass="passwordField" />
-            <Button fx:id="buttonLogin" layoutX="281.0" layoutY="427.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
+            <Button fx:id="buttonLogin" layoutX="281.0" layoutY="427.0" mnemonicParsing="false" onAction="#attemptloginTest" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
             <Label layoutX="279.0" layoutY="224.0" prefHeight="40.0" prefWidth="239.0" styleClass="titlelbl" text="Log in to ______" textFill="#d3caca">
                <font>
                   <Font size="28.0" />
