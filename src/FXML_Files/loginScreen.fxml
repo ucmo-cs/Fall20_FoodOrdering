@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<<<<<<< Updated upstream
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -38,6 +39,15 @@
     </left>
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane" BorderPane.alignment="CENTER">
+=======
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
+>>>>>>> Stashed changes
          <children>
             <TextField layoutX="280.0" layoutY="279.0" prefHeight="44.0" prefWidth="236.0" promptText="Username" styleClass="usernameField" />
             <PasswordField layoutX="280.0" layoutY="358.0" prefHeight="44.0" prefWidth="236.0" promptText="Password" styleClass="passwordField" />
@@ -54,6 +64,11 @@
             </ImageView>
          </children>
       </Pane>
+<<<<<<< Updated upstream
    </center>
 
 </BorderPane>
+=======
+   </children>
+</Pane>
+>>>>>>> Stashed changes

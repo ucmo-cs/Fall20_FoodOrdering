@@ -9,43 +9,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<<<<<<< Updated upstream
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<!-- This adds a stylesheet in FXML, but not working properly?:
-   <stylesheets>
-      <URL value="@test.css" />
-   </stylesheets>
--->
-
-<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <left>
-        <VBox prefHeight="700.0" prefWidth="203.0" styleClass="sidebar" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fitHeight="142.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/muleFinal.png" />
-                    </image>
-                </ImageView>
-                <Pane prefHeight="550.0" prefWidth="197.0">
-                    <children>
-                        <Button layoutX="4.0" layoutY="308.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="190.0" styleClass="sidebarBtn" text="Map" />
-                        <Button id="einstein" layoutX="4.0" layoutY="156.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="190.0" styleClass="sidebarBtn" text="My Cart" />
-                        <Button layoutX="4.0" layoutY="493.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="190.0" styleClass="sidebarBtn" text="Info/Logout" />
-                        <Button layoutX="4.0" layoutY="7.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="190.0" styleClass="sidebarBtn" text="Home" />
-                    </children>
-                </Pane>
-            </children>
-        </VBox>
-    </left>
-   <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="315.0" layoutY="650.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Checkout" />
-=======
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -55,25 +18,12 @@
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
          <children>
             <Button fx:id="buttonCheckout" layoutX="315.0" layoutY="650.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Checkout" />
->>>>>>> Stashed changes
             <Label layoutX="37.0" layoutY="53.0" prefHeight="42.0" prefWidth="513.0" styleClass="titlelbl" text="Welcome to Chick-fil-A Menu" textFill="#d3caca">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
             <TabPane layoutX="14.0" layoutY="131.0" prefHeight="552.0" prefWidth="291.0" tabClosingPolicy="UNAVAILABLE">
-<<<<<<< Updated upstream
-              <tabs>
-                <Tab text="    Main   ">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <TableView prefHeight="527.0" prefWidth="295.0">
-                                 <columns>
-                                    <TableColumn prefWidth="134.0" text="       Name       " />
-                                    <TableColumn minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn prefWidth="64.0" text="Available" />
-=======
                <tabs>
                   <Tab fx:id="tabMain" text="    Main   ">
                      <content>
@@ -84,24 +34,10 @@
                                     <TableColumn fx:id="columnMainName" prefWidth="134.0" text="       Name       " />
                                     <TableColumn fx:id="columnMainPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
                                     <TableColumn fx:id="columnMainAvailable" prefWidth="64.0" text="Available" />
->>>>>>> Stashed changes
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
-<<<<<<< Updated upstream
-                  </content>
-                </Tab>
-                <Tab text="   Dessert   ">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="220.0">
-                           <children>
-                              <TableView prefHeight="527.0" prefWidth="295.0">
-                                 <columns>
-                                    <TableColumn prefWidth="134.0" text="       Name       " />
-                                    <TableColumn minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn prefWidth="64.0" text="Available" />
-=======
                      </content>
                   </Tab>
                   <Tab fx:id="tabDessert" text="   Dessert   ">
@@ -113,61 +49,36 @@
                                     <TableColumn fx:id="columnDessertName" prefWidth="134.0" text="       Name       " />
                                     <TableColumn fx:id="columnDessertPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
                                     <TableColumn fx:id="columnDessertAvailable" prefWidth="64.0" text="Available" />
->>>>>>> Stashed changes
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
-<<<<<<< Updated upstream
-                  </content>
-                </Tab>
-                  <Tab text="   Drinks   ">
-=======
                      </content>
                   </Tab>
                   <Tab fx:id="tabDrinks" text="   Drinks   ">
->>>>>>> Stashed changes
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TableView layoutY="-2.0" prefHeight="527.0" prefWidth="295.0">
-<<<<<<< Updated upstream
-                                <columns>
-                                  <TableColumn prefWidth="134.0" text="       Name       " />
-                                  <TableColumn minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn prefWidth="64.0" text="Available" />
-                                </columns>
-=======
                                  <columns>
                                     <TableColumn fx:id="columnDrinksName" prefWidth="134.0" text="       Name       " />
                                     <TableColumn fx:id="columnDrinksPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
                                     <TableColumn fx:id="columnDrinksAvailable" prefWidth="64.0" text="Available" />
                                  </columns>
->>>>>>> Stashed changes
                               </TableView>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-<<<<<<< Updated upstream
-                  <Tab text="   Side   ">
-=======
                   <Tab fx:id="tabSide" text="   Side   ">
->>>>>>> Stashed changes
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TableView layoutY="-2.0" prefHeight="527.0" prefWidth="295.0">
                                  <columns>
-<<<<<<< Updated upstream
-                                    <TableColumn prefWidth="134.0" text="       Name       " />
-                                    <TableColumn minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn prefWidth="64.0" text="Available" />
-=======
                                     <TableColumn fx:id="columnSideName" prefWidth="134.0" text="       Name       " />
                                     <TableColumn fx:id="columnSidePrice" minWidth="0.0" prefWidth="79.0" text="Price" />
                                     <TableColumn fx:id="columnSideAvailable" prefWidth="64.0" text="Available" />
->>>>>>> Stashed changes
                                  </columns>
                               </TableView>
                            </children>
@@ -176,11 +87,7 @@
                   </Tab>
                </tabs>
             </TabPane>
-<<<<<<< Updated upstream
-            <Button layoutX="315.0" layoutY="610.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Add To Cart" />
-=======
             <Button fx:id="buttonAddCart" layoutX="315.0" layoutY="610.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Add To Cart" />
->>>>>>> Stashed changes
             <ImageView fitHeight="230.0" fitWidth="290.0" layoutX="405.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/spinPizza.jpg" />
@@ -193,11 +100,5 @@
             </ImageView>
          </children>
       </Pane>
-<<<<<<< Updated upstream
-   </center>
-
-</BorderPane>
-=======
    </children>
 </Pane>
->>>>>>> Stashed changes
