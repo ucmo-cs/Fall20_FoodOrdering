@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StarBucksController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
          <children>
@@ -25,30 +25,30 @@
             </Label>
             <TabPane layoutX="14.0" layoutY="131.0" prefHeight="552.0" prefWidth="291.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
-                  <Tab text="       Drinks       ">
+                  <Tab fx:id="tabDrinks" text="       Drinks       ">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TableView prefHeight="527.0" prefWidth="295.0">
                                  <columns>
-                                    <TableColumn prefWidth="134.0" text="       Name       " />
-                                    <TableColumn minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn prefWidth="64.0" text="Available" />
+                                    <TableColumn fx:id="columnDrinksName" prefWidth="134.0" text="       Name       " />
+                                    <TableColumn fx:id="columnDrinksPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
+                                    <TableColumn fx:id="columnDrinksAvailable" prefWidth="64.0" text="Available" />
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="      Bakery      ">
+                  <Tab fx:id="tabBakery" text="      Bakery      ">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="220.0">
                            <children>
                               <TableView prefHeight="527.0" prefWidth="295.0">
                                  <columns>
-                                    <TableColumn prefWidth="134.0" text="       Name       " />
-                                    <TableColumn minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn prefWidth="64.0" text="Available" />
+                                    <TableColumn fx:id="columnBakeryName" prefWidth="134.0" text="       Name       " />
+                                    <TableColumn fx:id="columnBakeryPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
+                                    <TableColumn fx:id="columnBakeryAvailable" prefWidth="64.0" text="Available" />
                                  </columns>
                               </TableView>
                            </children>

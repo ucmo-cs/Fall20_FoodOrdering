@@ -15,7 +15,7 @@ public class LoginController {
 
     // Classes
     SQLCommands sqlCommands=new SQLCommands();
-    MainStageController mainStageController=new MainStageController();
+    MainStageController mainStageController = MainStageController.getInstance();
 
     // Variables
     public Stage loginStage = new Stage();
@@ -27,15 +27,6 @@ public class LoginController {
     @FXML public Label labelMessage;
     @FXML public RadioButton radButtonStudent;
     @FXML public RadioButton radButtonEmployee;
-
-    public void openLogin() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML_Files/loginScreen.fxml"));
-        Scene scene =new Scene(root,1000,700);
-        scene.getStylesheets().add(getClass().getResource("FXML_Files/CSS/login.css").toExternalForm());
-        loginStage.setTitle("Mule Trough Login");
-        loginStage.setScene(scene);
-        loginStage.show();
-    }
 
     public void closeLogin(){
         Stage stage=(loginStage);
