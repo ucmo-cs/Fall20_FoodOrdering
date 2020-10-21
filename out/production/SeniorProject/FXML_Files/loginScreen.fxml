@@ -6,35 +6,43 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< Updated upstream
-<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
-    <children>
-        <Label fx:id="labelMessage" layoutX="91.0" layoutY="61.0" text="Welcome! Please login" />
-        <Label layoutX="75.0" layoutY="24.0" text="Mule Trough Login">
-            <font>
-                <Font name="System Bold" size="17.0" />
-            </font>
-        </Label>
-        <Label layoutX="30.0" layoutY="121.0" text="Password:" />
-        <TextField fx:id="textFieldUsername" layoutX="93.0" layoutY="88.0" />
-        <TextField fx:id="textFieldPassword" layoutX="93.0" layoutY="117.0" />
-        <Label layoutX="27.0" layoutY="92.0" text="Username:" />
-        <Button fx:id="buttonLogin" layoutX="129.0" layoutY="153.0" mnemonicParsing="false" onAction="#attemptLogin" text="Login" />
-    </children>
-</AnchorPane>
-=======
+<!-- This adds a stylesheet in FXML, but not working properly?:
+   <stylesheets>
+      <URL value="@test.css" />
+   </stylesheets>
+-->
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
-   <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+    <left>
+        <VBox prefHeight="700.0" prefWidth="203.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="142.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/muleFinal.png" />
+                    </image>
+                </ImageView>
+                <Pane prefHeight="550.0" prefWidth="197.0">
+                    <children>
+                        <Button layoutX="4.0" layoutY="308.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="190.0" styleClass="sidebarBtn" text="Map" />
+                        <Button id="einstein" layoutX="4.0" layoutY="156.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="190.0" styleClass="sidebarBtn" text="My Cart" />
+                        <Button layoutX="4.0" layoutY="7.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="190.0" styleClass="sidebarBtn" text="Home" />
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </left>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="textFieldUsername" layoutX="280.0" layoutY="279.0" prefHeight="44.0" prefWidth="236.0" promptText="Username" styleClass="usernameField" />
             <PasswordField fx:id="textFieldPassword" layoutX="280.0" layoutY="358.0" prefHeight="44.0" prefWidth="236.0" promptText="Password" styleClass="passwordField" />
             <Button fx:id="buttonLogin" layoutX="281.0" layoutY="427.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
-            <Label layoutX="279.0" layoutY="224.0" prefHeight="40.0" prefWidth="239.0" styleClass="titlelbl" text="Log in to ______" textFill="#d3caca">
+            <Label layoutX="279.0" layoutY="209.0" prefHeight="40.0" prefWidth="239.0" styleClass="titlelbl" text="Log in to ______" textFill="#d3caca">
                <font>
                   <Font size="28.0" />
                </font>
@@ -44,8 +52,9 @@
                   <Image url="@../images/ucm.png" />
                </image>
             </ImageView>
+            <Label fx:id="labelMessage" layoutX="384.0" layoutY="249.0" />
          </children>
       </Pane>
-   </children>
-</Pane>
->>>>>>> Stashed changes
+   </center>
+
+</BorderPane>

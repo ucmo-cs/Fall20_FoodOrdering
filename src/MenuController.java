@@ -1,3 +1,5 @@
+// No longer to be used.
+// All references to this controller should be removed before final program release
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,7 +46,7 @@ public class MenuController {
     public CachedRowSet readFoodsTable() throws Exception{
         String query = "select * from restaurant.foods;";
         try {
-            CachedRowSet cachedRowSet = sqlCommands.readDataBase(2,query);
+            CachedRowSet cachedRowSet = sqlCommands.readDataBase(1,query);
             return cachedRowSet;
         } catch (Exception e) {
             System.err.print("ERROR!\nFunction: readFoodsTable\nDescription: Issue reading FoodsTable");
