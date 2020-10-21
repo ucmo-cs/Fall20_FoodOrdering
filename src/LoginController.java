@@ -15,11 +15,8 @@ public class LoginController {
 
     // Classes
     SQLCommands sqlCommands=new SQLCommands();
-<<<<<<< Updated upstream
     MenuController menuController=new MenuController();
-=======
     MainStageController mainStageController = MainStageController.getInstance();
->>>>>>> Stashed changes
 
     // Variables
     public Stage loginStage = new Stage();
@@ -32,16 +29,6 @@ public class LoginController {
     @FXML public RadioButton radButtonStudent;
     @FXML public RadioButton radButtonEmployee;
 
-<<<<<<< Updated upstream
-    public void openLogin() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML_Files/loginScreen.fxml"));
-        loginStage.setTitle("Mule Trough Login");
-        loginStage.setScene(new Scene(root, 797, 700));
-        loginStage.show();
-    }
-
-=======
->>>>>>> Stashed changes
     public void closeLogin(){
         Stage stage=(loginStage);
         stage.close();
