@@ -9,6 +9,7 @@ public class SQLCommands {
 
     private final String urlRestaurant="jdbc:mysql://stoves-dev.duckdns.org:50931/restaurant?serverTimezone=CST";
     private final String urlStudent="jdbc:mysql://stoves-dev.duckdns.org:50931/student?serverTimezone=CST";
+    private final String urlLogin="jdbc:mysql://stoves-dev.duckdns.org:50931/login?serverTimezone=CST";
     private final String dbDriver="com.mysql.jdbc.Driver";
     private final String username="table_editor";
     private final String password="!sleekPanda!";
@@ -23,6 +24,7 @@ public class SQLCommands {
                     break;
             case 2: url=urlStudent;
                     break;
+            case 3: url=urlLogin;
             default: url="Invalid URL";
                     break;
         }
@@ -51,6 +53,9 @@ public class SQLCommands {
     }
 
     public CachedRowSet readRestaurantDataBase(String query) throws Exception {
+
+        System.out.println("===========\n"+query+"\n");
+
         try{
             CachedRowSet cachedRowset=setConnection(1);
             cachedRowset.setCommand(query);
@@ -78,6 +83,21 @@ public class SQLCommands {
             close();
         }
     }
+    public CachedRowSet readLoginDatabase(String query) throws Exception
+    {
+        try
+        {
+            CachedRowSet cachedRowset=setConnection(3);
+            cachedRowset.setCommand(query);
+            cachedRowset.execute();
+
+            return cachedRowset;
+        }catch (Exception e){
+            throw e;
+        }finally {
+            close();
+        }
+    }
 
     public void close(){
         try{
@@ -89,6 +109,21 @@ public class SQLCommands {
             }
         } catch (Exception e){
 
+        }
+    }
+    public CachedRowSet testLoginDB() throws Exception
+    {
+        try
+        {
+            CachedRowSet cachedRowset=setConnection(3);
+            cachedRowset.setCommand("SELECT * FROM login.student;");
+            cachedRowset.execute();
+
+            return cachedRowset;
+        }catch (Exception e){
+            throw e;
+        }finally {
+            close();
         }
     }
 }

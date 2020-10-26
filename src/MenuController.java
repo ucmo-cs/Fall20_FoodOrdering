@@ -1,3 +1,5 @@
+import Models.FoodMenuItem;
+import Models.RestaurantModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+
+import Queries.RestaurantQueries;
 
 import javax.sql.rowset.CachedRowSet;
 
@@ -39,6 +43,25 @@ public class MenuController {
         mainStage.setScene(new Scene(root, 900, 600));
 
         mainStage.show();
+
+        int restaurantChoice = 2;
+
+        String query = RestaurantQueries.getFoodsByID(String.valueOf(restaurantChoice));
+        CachedRowSet result = sqlCommands.readRestaurantDataBase(query);
+
+        RestaurantModel tbellMenu = new RestaurantModel();
+        while(result.next())
+        {
+            FoodMenuItem item = new FoodMenuItem(
+                    result.getString(1),
+                    result.getString(2),
+                    result.getString(3),
+                    result.getString(4),
+                    result.getString(5),
+                    result.getString(6));
+            tbellMenu.appendFood(item);
+        }
+        System.out.println("done");
     }
 
     public CachedRowSet readFoodsTable() throws Exception{
