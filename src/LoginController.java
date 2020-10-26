@@ -15,7 +15,6 @@ public class LoginController {
 
     // Classes
     SQLCommands sqlCommands=new SQLCommands();
-    MenuController menuController=new MenuController();
     MainStageController mainStageController = MainStageController.getInstance();
 
     // Variables
@@ -42,13 +41,12 @@ public class LoginController {
     }
 
     public void attemptLogin() throws Exception {
-        // Create Variables
-
         // Check to ensure that textfields have data.
         if(textFieldUsername.getText().isEmpty()){ textFieldUsername.setText("Username Required"); }
         else if (textFieldPassword.getText().isEmpty()) { textFieldPassword.setText("Password Required"); }
         else {
 
+            // Create Variables
             String username = textFieldUsername.getText();
             String claimedPassword = textFieldPassword.getText();
             String id = null, fname = null, lname = null, truePassword = null;
@@ -56,7 +54,6 @@ public class LoginController {
 
             // Acquire user data
             String query = "select * from student.student_information where id = '" + username + "';";
-
             CachedRowSet accountData = sqlCommands.readDataBase(1, query);
 
             // Determine if user info was in CachedRow
@@ -71,9 +68,10 @@ public class LoginController {
                     lname = accountData.getString("last_name");
                     truePassword = accountData.getString("password");
                 }
+                // If the passwords match and the user information is valid
                 if (claimedPassword.equals(truePassword)) {
                     setUser(id, fname, lname, employee);
-                    menuController.openMainScreen();
+                    mainStageController.openTestPane();
                     closeLogin();
                 } else {
                     labelMessage.setTextFill(Color.RED);
@@ -84,7 +82,7 @@ public class LoginController {
     }// Ends attemptLogin
 
     public void attemptloginTest() throws Exception {
-        menuController.openMainScreen();
+        mainStageController.openTestPane();
         closeLogin();
     }
 
