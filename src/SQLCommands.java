@@ -3,9 +3,13 @@ import javax.sql.rowset.RowSetProvider;
 import java.sql.*;
 
 public class SQLCommands {
+    private Connection connection;
+    private PreparedStatement preparedStatement;
+    private CachedRowSet cachedRowSet;
 
-    private Connection connection=null;
-    private PreparedStatement statement=null;
+    public void createConnection(ConnectionValues connectionValues) throws SQLException {
+        connection=DriverManager.getConnection(connectionValues.urlString,connectionValues.userName,connectionValues.password);
+    }
 
     private final String urlRestaurant="jdbc:mysql://stoves-dev.duckdns.org:50931/restaurant?serverTimezone=CST";
     private final String urlStudent="jdbc:mysql://stoves-dev.duckdns.org:50931/student?serverTimezone=CST";
@@ -13,6 +17,13 @@ public class SQLCommands {
     private final String dbDriver="com.mysql.jdbc.Driver";
     private final String username="table_editor";
     private final String password="!sleekPanda!";
+    public void createCachedRowSet(ConnectionValues connectionValues, String query) throws SQLException {
+        cachedRowSet= RowSetProvider.newFactory().createCachedRowSet();
+        cachedRowSet.setUsername(connectionValues.userName);
+        cachedRowSet.setPassword(connectionValues.password);
+        cachedRowSet.setUrl(connectionValues.urlString);
+        cachedRowSet.setCommand(query);
+    }
 
     // NOTICE!
     // setConnection and readRestaurantDataBase are still in development.
@@ -32,98 +43,25 @@ public class SQLCommands {
         cachedRowset.setUrl(url);
         cachedRowset.setUsername(username);
         cachedRowset.setPassword(password);
-
-        return cachedRowset;
+    public void createPreparedStatement(CachedRowSet cachedRowSet) throws SQLException {
+        preparedStatement=connection.prepareStatement(cachedRowSet.getCommand());
     }
-    public CachedRowSet readDataBase(int dbID, String query) throws Exception {
-        int db=dbID;
-        try {
-            CachedRowSet cachedRowset=setConnection(db);
-            cachedRowset.setCommand(query);
-            statement=connection.prepareStatement(cachedRowset.getCommand());
-            statement.execute();
 
-            return cachedRowset;
+    public CachedRowSet readDataBase(int dbID, String query) throws Exception {
+        ConnectionValues connectionValues=new ConnectionValues(dbID);
+        createConnection(connectionValues);
+        createCachedRowSet(connectionValues,query);
+        createPreparedStatement(cachedRowSet);
+
+        try {
+            cachedRowSet.execute();
+            return cachedRowSet;
         }catch (Exception e){
             System.err.print("ERROR!\nFunction: readDataBase\nClass: SQLCommands\n");
-            throw e;
+            System.err.print(e);
         }finally {
-            close();
+            connection.close();
         }
-    }
-
-    public CachedRowSet readRestaurantDataBase(String query) throws Exception {
-
-        System.out.println("===========\n"+query+"\n");
-
-        try{
-            CachedRowSet cachedRowset=setConnection(1);
-            cachedRowset.setCommand(query);
-            cachedRowset.execute();
-
-            return cachedRowset;
-        }catch (Exception e){
-            throw e;
-        }finally {
-            close();
-        }
-    }
-
-    public CachedRowSet readStudentDatabase(String query) throws Exception {
-        try{
-
-            CachedRowSet cachedRowset=setConnection(2);
-            cachedRowset.setCommand(query);
-            cachedRowset.execute();
-
-            return cachedRowset;
-        }catch (Exception e){
-            throw e;
-        }finally {
-            close();
-        }
-    }
-    public CachedRowSet readLoginDatabase(String query) throws Exception
-    {
-        try
-        {
-            CachedRowSet cachedRowset=setConnection(3);
-            cachedRowset.setCommand(query);
-            cachedRowset.execute();
-
-            return cachedRowset;
-        }catch (Exception e){
-            throw e;
-        }finally {
-            close();
-        }
-    }
-
-    public void close(){
-        try{
-            if(statement!=null){
-                statement.close();
-            }
-            if(connection!=null){
-                connection.close();
-            }
-        } catch (Exception e){
-
-        }
-    }
-    public CachedRowSet testLoginDB() throws Exception
-    {
-        try
-        {
-            CachedRowSet cachedRowset=setConnection(3);
-            cachedRowset.setCommand("SELECT * FROM login.student;");
-            cachedRowset.execute();
-
-            return cachedRowset;
-        }catch (Exception e){
-            throw e;
-        }finally {
-            close();
-        }
+        return cachedRowSet;
     }
 }

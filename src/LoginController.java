@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -20,6 +21,7 @@ public class LoginController {
     // Classes
     SQLCommands sqlCommands=new SQLCommands();
     MenuController menuController=new MenuController();
+    MainStageController mainStageController = MainStageController.getInstance();
 
     // Variables
     public Stage loginStage = new Stage();
@@ -29,13 +31,8 @@ public class LoginController {
     @FXML public TextField textFieldPassword;
     @FXML public Button buttonLogin;
     @FXML public Label labelMessage;
-
-    public void openLogin() throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXML_Files/loginScreen.fxml"));
-        loginStage.setTitle("Mule Trough Login");
-        loginStage.setScene(new Scene(root, 300, 200));
-        loginStage.show();
-    }
+    @FXML public RadioButton radButtonStudent;
+    @FXML public RadioButton radButtonEmployee;
 
     public void closeLogin(){
         Stage stage=(loginStage);
@@ -51,10 +48,16 @@ public class LoginController {
 
     public void attemptLogin() throws Exception {
         // Create Variables
-        String username=textFieldUsername.getText();
-        String claimedPassword=textFieldPassword.getText();
-        String id=null,fname=null,lname=null,truePassword=null;
-        Boolean employee=false;
+
+        // Check to ensure that textfields have data.
+        if(textFieldUsername.getText().isEmpty()){ textFieldUsername.setText("Username Required"); }
+        else if (textFieldPassword.getText().isEmpty()) { textFieldPassword.setText("Password Required"); }
+        else {
+
+            String username = textFieldUsername.getText();
+            String claimedPassword = textFieldPassword.getText();
+            String id = null, fname = null, lname = null, truePassword = null;
+            Boolean employee = false;
 
         if(!userExists(username))
         {
@@ -102,7 +105,7 @@ public class LoginController {
 
     //Possibly unneeded?
     public void attemptloginTest() throws Exception {
-        //menuController.openMainScreen();
+        menuController.openMainScreen();
         closeLogin();
     }
 }
