@@ -47,7 +47,7 @@ public class MenuController {
         int restaurantChoice = 2;
 
         String query = RestaurantQueries.getFoodsByID(String.valueOf(restaurantChoice));
-        CachedRowSet result = sqlCommands.readRestaurantDataBase(query);
+        CachedRowSet result = sqlCommands.readDataBase(1, query);
 
         RestaurantModel tbellMenu = new RestaurantModel();
         while(result.next())
