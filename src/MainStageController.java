@@ -25,8 +25,8 @@ public class MainStageController {
     public void openMainStage()throws Exception {
         root = FXMLLoader.load(getClass().getResource("FXML_Files/MainStage.fxml"));
         Scene scene=new Scene(root,1000,700);
-//        scene.getStylesheets().add(getClass().getResource("FXML_Files/CSS/test.css").toExternalForm());
-//        scene.getStylesheets().add(getClass().getResource("FXML_Files/CSS/login.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("FXML_Files/test.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("FXML_Files/login.css").toExternalForm());
         mainStage.setTitle("Test Stage");
         mainStage.setScene(scene);
         mainStage.show();
