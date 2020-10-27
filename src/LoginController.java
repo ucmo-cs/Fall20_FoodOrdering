@@ -25,8 +25,6 @@ public class LoginController {
     @FXML public TextField textFieldPassword;
     @FXML public Button buttonLogin;
     @FXML public Label labelMessage;
-    @FXML public RadioButton radButtonStudent;
-    @FXML public RadioButton radButtonEmployee;
 
     public void closeLogin(){
         Stage stage=(loginStage);
@@ -40,12 +38,47 @@ public class LoginController {
         user.setEmployee(employee);
     }
 
+    public void displayMessage(String message){
+        labelMessage.setVisible(true);
+        labelMessage.setText(message);
+    }
+
+    public boolean validateLoginInfo(){
+        int len;
+        int maxLen=9;
+        String illegalChar="[^0-9]";
+        String alphabet=".*[a-z].*";
+        // Checks if the data is empty
+        if(textFieldUsername.getText().isEmpty()||textFieldPassword.getText().isEmpty()){
+            displayMessage("Login Info Required");
+            return false;
+        }
+        // Checks if username is greater or less than 9 characters long
+        else if((len=textFieldUsername.getLength())!=maxLen){
+            displayMessage("Invalid Username Length");
+            return false;
+        }
+        else if((len=textFieldPassword.getLength())>maxLen){
+            displayMessage("Password Too Long");
+            return false;
+        }
+        // checks if username contains letters
+        else if(textFieldUsername.getText().matches(alphabet)){
+            displayMessage("Username Cannot Have Letters");
+            return false;
+        }
+        // Checks if username or password contains dangerous characters
+        else if(textFieldUsername.getText().contains(illegalChar)||textFieldPassword.getText().contains(illegalChar)){
+            displayMessage("Cannot Use ' \" # - % & * ");
+            return false;
+        }
+        return true;
+    }
+
     public void attemptLogin() throws Exception {
         // Check to ensure that textfields have data.
-        if(textFieldUsername.getText().isEmpty()){ textFieldUsername.setText("Username Required"); }
-        else if (textFieldPassword.getText().isEmpty()) { textFieldPassword.setText("Password Required"); }
+        if (validateLoginInfo()==false){ System.out.print("");}
         else {
-
             // Create Variables
             String username = textFieldUsername.getText();
             String claimedPassword = textFieldPassword.getText();
@@ -58,8 +91,8 @@ public class LoginController {
 
             // Determine if user info was in CachedRow
             if (!accountData.isBeforeFirst()) {
-                labelMessage.setTextFill(Color.RED);
-                labelMessage.setText("Invalid Username");
+//                labelMessage.setTextFill(Color.RED);
+                displayMessage("Login Info Not found");
             } else {
                 // Acquire the account's password and than compare to the given password
                 while (accountData.next()) {
@@ -71,11 +104,11 @@ public class LoginController {
                 // If the passwords match and the user information is valid
                 if (claimedPassword.equals(truePassword)) {
                     setUser(id, fname, lname, employee);
+                    labelMessage.setVisible(false);
                     mainStageController.openTestPane();
                     closeLogin();
                 } else {
-                    labelMessage.setTextFill(Color.RED);
-                    labelMessage.setText("Invalid Password");
+                    displayMessage("Login Info Not found");
                 }
             }
         }// Ends else
