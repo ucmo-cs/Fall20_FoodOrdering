@@ -18,4 +18,12 @@ public class RestaurantModel {
     {
         return this.foods;
     }
+    public void showFoods()
+    {
+        for(FoodMenuItem food : foods)
+        {
+            System.out.println(String.format("%s %s %s %s %s",
+                    food.foodID, food.name, food.price, food.type, food.available));
+        }
+    }
 }

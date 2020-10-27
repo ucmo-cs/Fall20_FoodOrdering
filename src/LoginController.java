@@ -66,33 +66,31 @@ public class LoginController {
         Boolean employee = false;
 
 
-            if (!userExists(username)) {
-                System.err.println("User does not exist");
-                labelMessage.setTextFill(Color.RED);
-                labelMessage.setText("Invalid Username");
-            }
-
-            if (!verifyPassword(username, claimedPassword)) {
-                System.err.println("Invalid Password");
-                labelMessage.setTextFill(Color.RED);
-                labelMessage.setText("Invalid Password");
-            }
-
-            // Credentials OK
-            // Acquire user data
-            String query = LoginQueries.getUserInfo(username);
-            CachedRowSet accountData = sqlCommands.readDataBase(2, query);
-
-            accountData.next();
-            id = accountData.getString("id");
-            fname = accountData.getString("first_name");
-            lname = accountData.getString("last_name");
-            System.out.println(String.format("User: %s, %s: %s", lname, fname, id));
-            setUser(id, fname, lname, employee);
-            mainStageController.openTestPane();
-            closeLogin();
+        if (!userExists(username)) {
+            System.err.println("User does not exist");
+            labelMessage.setTextFill(Color.RED);
+            labelMessage.setText("Invalid Username");
         }
 
+        if (!verifyPassword(username, claimedPassword)) {
+            System.err.println("Invalid Password");
+            labelMessage.setTextFill(Color.RED);
+            labelMessage.setText("Invalid Password");
+        }
+
+        // Credentials OK
+        // Acquire user data
+        String query = LoginQueries.getUserInfo(username);
+        CachedRowSet accountData = sqlCommands.readDataBase(2, query);
+
+        accountData.next();
+        id = accountData.getString("id");
+        fname = accountData.getString("first_name");
+        lname = accountData.getString("last_name");
+        System.out.println(String.format("User: %s, %s: %s", lname, fname, id));
+        setUser(id, fname, lname, employee);
+        mainStageController.openTestPane();
+        closeLogin();
     }
 
     private boolean verifyPassword(String username, String claimedPassword) throws Exception {

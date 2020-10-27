@@ -41,6 +41,7 @@ public class MainStageController {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/TacoBellScreen.fxml"));
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
+        TacoBellController tbell = new TacoBellController();
     }
 
     public void openEinsteinBrosMenu() throws IOException {

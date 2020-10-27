@@ -16,6 +16,6 @@ public class FoodMenuItem {
         this.name = name;
         this.price = Float.parseFloat(price);
         this.type = type;
-        this.available = available.equals("1");
+        this.available = available.equals("true");
     }
 }
