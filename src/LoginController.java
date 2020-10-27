@@ -105,7 +105,7 @@ public class LoginController {
                 if (claimedPassword.equals(truePassword)) {
                     setUser(id, fname, lname, employee);
                     labelMessage.setVisible(false);
-                    mainStageController.openTestPane();
+                    mainStageController.openFrontScreen();
                     closeLogin();
                 } else {
                     displayMessage("Login Info Not found");
@@ -115,7 +115,7 @@ public class LoginController {
     }// Ends attemptLogin
 
     public void attemptloginTest() throws Exception {
-        mainStageController.openTestPane();
+        mainStageController.openFrontScreen();
         closeLogin();
     }
 
