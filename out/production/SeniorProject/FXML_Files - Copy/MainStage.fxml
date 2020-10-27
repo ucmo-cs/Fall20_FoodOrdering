@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainStageController" stylesheets="">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="700.0" prefWidth="203.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +23,4 @@
          </children>
       </VBox>
    </left>
-   <center>
-      <Pane fx:id="menuPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
 </BorderPane>

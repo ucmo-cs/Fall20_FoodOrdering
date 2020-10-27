@@ -40,7 +40,7 @@
             </MenuBar>
             <AnchorPane prefHeight="49.0" prefWidth="600.0">
                <children>
-                  <Label layoutX="130.0" text="Welcome To Spin Pizza menu" textAlignment="RIGHT">
+                  <Label layoutX="130.0" text="Welcome Starbucks menu" textAlignment="RIGHT">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -55,7 +55,7 @@
          <children>
             <TabPane layoutY="-3.0" prefHeight="231.0" prefWidth="212.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Pizza">
+                <Tab text="Drinks">
                   <content>
                     <AnchorPane cacheShape="false" minHeight="0.0" minWidth="0.0" prefHeight="229.0" prefWidth="249.0">
                            <children>
@@ -70,7 +70,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Salad">
+                <Tab text="Bakery">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -85,36 +85,6 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Soup">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <TableView prefHeight="350.0" prefWidth="217.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="Type" />
-                                    <TableColumn prefWidth="75.0" text="Price" />
-                                    <TableColumn prefWidth="62.0" text="Available" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab text="Drinks">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <TableView prefHeight="350.0" prefWidth="217.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="Type" />
-                                    <TableColumn prefWidth="75.0" text="Price" />
-                                    <TableColumn prefWidth="62.0" text="Available" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
               </tabs>
             </TabPane>
          </children>

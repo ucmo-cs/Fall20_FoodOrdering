@@ -20,7 +20,6 @@ public class LoginController {
 
     // Classes
     SQLCommands sqlCommands=new SQLCommands();
-    MenuController menuController=new MenuController();
     MainStageController mainStageController = MainStageController.getInstance();
 
     // Variables
@@ -33,6 +32,13 @@ public class LoginController {
     @FXML public Label labelMessage;
     @FXML public RadioButton radButtonStudent;
     @FXML public RadioButton radButtonEmployee;
+
+    public void openLogin() throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FXML_Files/loginScreen.fxml"));
+        loginStage.setTitle("Mule Trough Login");
+        loginStage.setScene(new Scene(root, 300, 220));
+        loginStage.show();
+    }
 
     public void closeLogin(){
         Stage stage=(loginStage);
@@ -50,14 +56,14 @@ public class LoginController {
         // Create Variables
 
         // Check to ensure that textfields have data.
-        if(textFieldUsername.getText().isEmpty()){ textFieldUsername.setText("Username Required"); }
-        else if (textFieldPassword.getText().isEmpty()) { textFieldPassword.setText("Password Required"); }
-        else {
+        if (textFieldUsername.getText().isEmpty()) { textFieldUsername.setText("Username Required"); return;}
+        if (textFieldPassword.getText().isEmpty()) { textFieldPassword.setText("Password Required"); return;}
 
-            String username = textFieldUsername.getText();
-            String claimedPassword = textFieldPassword.getText();
-            String id = null, fname = null, lname = null, truePassword = null;
-            Boolean employee = false;
+        // Create Variables
+        String username = textFieldUsername.getText();
+        String claimedPassword = textFieldPassword.getText();
+        String id = null, fname = null, lname = null, truePassword = null;
+        Boolean employee = false;
 
 
             if (!userExists(username)) {
@@ -83,7 +89,7 @@ public class LoginController {
             lname = accountData.getString("last_name");
             System.out.println(String.format("User: %s, %s: %s", lname, fname, id));
             setUser(id, fname, lname, employee);
-            menuController.openMainScreen();
+            mainStageController.openTestPane();
             closeLogin();
         }
 
@@ -105,7 +111,7 @@ public class LoginController {
 
     //Possibly unneeded?
     public void attemptloginTest() throws Exception {
-        menuController.openMainScreen();
+        mainStageController.openTestPane();
         closeLogin();
     }
 }

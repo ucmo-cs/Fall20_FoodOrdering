@@ -1,6 +1,9 @@
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class SQLCommands {
     private Connection connection;
@@ -8,7 +11,7 @@ public class SQLCommands {
     private CachedRowSet cachedRowSet;
 
     public void createConnection(ConnectionValues connectionValues) throws SQLException {
-        connection=DriverManager.getConnection(connectionValues.urlString,connectionValues.userName,connectionValues.password);
+        connection = DriverManager.getConnection(connectionValues.urlString, connectionValues.userName, connectionValues.password);
     }
 
     private final String urlRestaurant="jdbc:mysql://stoves-dev.duckdns.org:50931/restaurant?serverTimezone=CST";
@@ -18,7 +21,7 @@ public class SQLCommands {
     private final String username="table_editor";
     private final String password="!sleekPanda!";
     public void createCachedRowSet(ConnectionValues connectionValues, String query) throws SQLException {
-        cachedRowSet= RowSetProvider.newFactory().createCachedRowSet();
+        cachedRowSet = RowSetProvider.newFactory().createCachedRowSet();
         cachedRowSet.setUsername(connectionValues.userName);
         cachedRowSet.setPassword(connectionValues.password);
         cachedRowSet.setUrl(connectionValues.urlString);
@@ -50,22 +53,22 @@ public class SQLCommands {
         return cachedRowset;
     }
     public void createPreparedStatement(CachedRowSet cachedRowSet) throws SQLException {
-        preparedStatement=connection.prepareStatement(cachedRowSet.getCommand());
+        preparedStatement = connection.prepareStatement(cachedRowSet.getCommand());
     }
 
     public CachedRowSet readDataBase(int dbID, String query) throws Exception {
-        ConnectionValues connectionValues=new ConnectionValues(dbID);
+        ConnectionValues connectionValues = new ConnectionValues(dbID);
         createConnection(connectionValues);
-        createCachedRowSet(connectionValues,query);
+        createCachedRowSet(connectionValues, query);
         createPreparedStatement(cachedRowSet);
 
         try {
             cachedRowSet.execute();
             return cachedRowSet;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.print("ERROR!\nFunction: readDataBase\nClass: SQLCommands\n");
             System.err.print(e);
-        }finally {
+        } finally {
             connection.close();
         }
         return cachedRowSet;
