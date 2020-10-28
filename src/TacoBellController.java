@@ -6,7 +6,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 
 import javax.sql.rowset.CachedRowSet;
-import java.awt.*;
 
 public class TacoBellController {
     @FXML Tab tabMain;
@@ -26,7 +25,7 @@ public class TacoBellController {
     private final static int RESTAURANT_ID = 2;
 
     public void initialize() throws Exception {
-        String getFoodsQuery = RestaurantQueries.getFoodsByID(String.valueOf(RESTAURANT_ID));
+        String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(RESTAURANT_ID));
         SQLCommands sqlCommands = new SQLCommands();
         CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
         while(foods.next())

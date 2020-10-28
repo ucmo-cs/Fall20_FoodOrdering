@@ -1,4 +1,3 @@
-import com.mysql.cj.log.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +13,6 @@ import Controllers.DatabaseController;
 
 import javax.sql.rowset.CachedRowSet;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class LoginController {
 
@@ -80,7 +78,7 @@ public class LoginController {
 
         // Credentials OK
         // Acquire user data
-        String query = LoginQueries.getUserInfo(username);
+        String query = LoginQueries.getUserInfoQuery(username);
         CachedRowSet accountData = sqlCommands.readDataBase(2, query);
 
         accountData.next();

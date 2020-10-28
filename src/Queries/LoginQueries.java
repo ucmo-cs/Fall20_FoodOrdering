@@ -7,28 +7,28 @@ public class LoginQueries {
                 "SELECT\n" +
                 "  COUNT(1)\n" +
                 "FROM\n" +
-                "  login.user\n" +
+                "  `login`.`user`\n" +
                 "WHERE\n" +
-                "   id = '%s';", id);
+                "   `id` = '%s';", id);
     }
     public static String getPasswordQuery(String id)
     {
         return String.format(
                 "SELECT\n" +
-                "   password\n" +
+                "   `password`\n" +
                 "FROM\n" +
-                "   login.user\n" +
+                "   `login`.`user`\n" +
                 "WHERE\n" +
-                "id = '%s';", id);
+                "`id` = '%s';", id);
     }
-    public static String getUserInfo(String id)
+    public static String getUserInfoQuery(String id)
     {
         return String.format(
                 "SELECT\n" +
                 "   *\n" +
                 "FROM\n" +
-                "   student.student_information\n" +
+                "   `student`.`student_information`\n" +
                 "WHERE\n" +
-                "   id = '%s';",id);
+                "   `id` = '%s';",id);
     }
 }

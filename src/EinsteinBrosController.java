@@ -7,8 +7,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 
 import javax.sql.rowset.CachedRowSet;
-import java.io.IOException;
-import java.awt.*;
 
 public class EinsteinBrosController {
 
@@ -31,7 +29,7 @@ public class EinsteinBrosController {
     private final static int RESTAURANT_ID = 4;
 
     public void initialize() throws Exception {
-        String getFoodsQuery = RestaurantQueries.getFoodsByID(String.valueOf(RESTAURANT_ID));
+        String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(RESTAURANT_ID));
         SQLCommands sqlCommands = new SQLCommands();
         CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
         while(foods.next())
