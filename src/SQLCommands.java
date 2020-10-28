@@ -14,6 +14,12 @@ public class SQLCommands {
         connection = DriverManager.getConnection(connectionValues.urlString, connectionValues.userName, connectionValues.password);
     }
 
+    private final String urlRestaurant="jdbc:mysql://stoves-dev.duckdns.org:50931/restaurant?serverTimezone=CST";
+    private final String urlStudent="jdbc:mysql://stoves-dev.duckdns.org:50931/student?serverTimezone=CST";
+    private final String urlLogin="jdbc:mysql://stoves-dev.duckdns.org:50931/login?serverTimezone=CST";
+    private final String dbDriver="com.mysql.jdbc.Driver";
+    private final String username="table_editor";
+    private final String password="!sleekPanda!";
     public void createCachedRowSet(ConnectionValues connectionValues, String query) throws SQLException {
         cachedRowSet = RowSetProvider.newFactory().createCachedRowSet();
         cachedRowSet.setUsername(connectionValues.userName);
@@ -22,6 +28,30 @@ public class SQLCommands {
         cachedRowSet.setCommand(query);
     }
 
+    // NOTICE!
+    // setConnection and readRestaurantDataBase are still in development.
+    // Will replace both of the other readDB functions when completed.
+    public CachedRowSet setConnection(int db) throws SQLException {
+        String url = null;
+        switch (db) {
+            case 1:
+                url = urlRestaurant;
+                break;
+            case 2:
+                url = urlStudent;
+                break;
+            case 3:
+                url = urlLogin;
+            default:
+                url = "Invalid URL";
+                break;
+        }
+        CachedRowSet cachedRowset = RowSetProvider.newFactory().createCachedRowSet();
+        cachedRowset.setUrl(url);
+        cachedRowset.setUsername(username);
+        cachedRowset.setPassword(password);
+        return cachedRowset;
+    }
     public void createPreparedStatement(CachedRowSet cachedRowSet) throws SQLException {
         preparedStatement = connection.prepareStatement(cachedRowSet.getCommand());
     }

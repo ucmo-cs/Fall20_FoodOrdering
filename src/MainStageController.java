@@ -67,7 +67,7 @@ public class MainStageController {
         menuPane.getChildren().add(paneTest);
     }
 
-    public void openTestPane() throws IOException {
+    public void openFrontScreen() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/FrontScreen.fxml"));
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);

@@ -28,7 +28,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="527.0" prefWidth="295.0">
+                              <TableView fx:id="tableViewBagel" prefHeight="527.0" prefWidth="295.0">
                                  <columns>
                                     <TableColumn fx:id="columnBagelsName" prefWidth="134.0" text="       Name       " />
                                     <TableColumn fx:id="columnBagelsPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
@@ -43,7 +43,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="220.0">
                            <children>
-                              <TableView prefHeight="527.0" prefWidth="295.0">
+                              <TableView fx:id="tableViewShmear" prefHeight="527.0" prefWidth="295.0">
                                  <columns>
                                     <TableColumn fx:id="columnShmearName" prefWidth="134.0" text="       Name       " />
                                     <TableColumn fx:id="columnShmearPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
@@ -58,7 +58,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutY="-2.0" prefHeight="527.0" prefWidth="295.0">
+                              <TableView fx:id="tableViewDrinks" layoutY="-2.0" prefHeight="527.0" prefWidth="295.0">
                                  <columns>
                                     <TableColumn fx:id="columnDrinksName" prefWidth="134.0" text="       Name       " />
                                     <TableColumn fx:id="columnDrinksPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
