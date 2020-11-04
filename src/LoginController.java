@@ -77,41 +77,42 @@ public class LoginController {
 
     public void attemptLogin() throws Exception {
         // Check to ensure that textfields have data.
-        if (validateLoginInfo()==false){ System.out.print("");}
-        else {
-            // Create Variables
-            String username = textFieldUsername.getText();
-            String claimedPassword = textFieldPassword.getText();
-            String id = null, fname = null, lname = null, truePassword = null;
-            Boolean employee = false;
+        if (validateLoginInfo()==false){ System.out.print(""); return;}
+        // else
+        // Create Variables
+        String username = textFieldUsername.getText();
+        String claimedPassword = textFieldPassword.getText();
+        String id = null, fname = null, lname = null, truePassword = null;
+        Boolean employee = false;
 
-            // Acquire user data
-            String query = "select * from student.student_information where id = '" + username + "';";
-            CachedRowSet accountData = sqlCommands.readDataBase(1, query);
+        // Acquire user data
+        String query = "select * from student.student_information where id = '" + username + "';";
+        CachedRowSet accountData = sqlCommands.readDataBase(1, query);
 
-            // Determine if user info was in CachedRow
-            if (!accountData.isBeforeFirst()) {
-//                labelMessage.setTextFill(Color.RED);
-                displayMessage("Login Info Not found");
-            } else {
-                // Acquire the account's password and than compare to the given password
-                while (accountData.next()) {
-                    id = accountData.getString("id");
-                    fname = accountData.getString("first_name");
-                    lname = accountData.getString("last_name");
-                    truePassword = accountData.getString("password");
-                }
-                // If the passwords match and the user information is valid
-                if (claimedPassword.equals(truePassword)) {
-                    setUser(id, fname, lname, employee);
-                    labelMessage.setVisible(false);
-                    mainStageController.openFrontScreen();
-                    closeLogin();
-                } else {
-                    displayMessage("Login Info Not found");
-                }
-            }
-        }// Ends else
+        // Determine if user info was in CachedRow
+        if (!accountData.isBeforeFirst()) {
+//               labelMessage.setTextFill(Color.RED);
+            displayMessage("Login Info Not found");
+            return;
+        }
+        //else
+        // Acquire the account's password and than compare to the given password
+        while (accountData.next()) {
+            id = accountData.getString("id");
+            fname = accountData.getString("first_name");
+            lname = accountData.getString("last_name");
+            truePassword = accountData.getString("password");
+        }
+        // If the passwords match and the user information is valid
+        if (claimedPassword.equals(truePassword)) {
+            setUser(id, fname, lname, employee);
+            labelMessage.setVisible(false);
+            mainStageController.openFrontScreen();
+            closeLogin();
+            return;
+        }
+        //else
+        displayMessage("Login Info Not found");
     }// Ends attemptLogin
 
     public void attemptloginTest() throws Exception {
