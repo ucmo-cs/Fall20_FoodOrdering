@@ -54,21 +54,21 @@ public class LoginController {
             return false;
         }
         // Checks if username is greater or less than 9 characters long
-        else if((len=textFieldUsername.getLength())!=maxLen){
+        if((len=textFieldUsername.getLength())!=maxLen){
             displayMessage("Invalid Username Length");
             return false;
         }
-        else if((len=textFieldPassword.getLength())>maxLen){
+        if((len=textFieldPassword.getLength())>maxLen){
             displayMessage("Password Too Long");
             return false;
         }
         // checks if username contains letters
-        else if(textFieldUsername.getText().matches(alphabet)){
+        if(textFieldUsername.getText().matches(alphabet)){
             displayMessage("Username Cannot Have Letters");
             return false;
         }
         // Checks if username or password contains dangerous characters
-        else if(textFieldUsername.getText().contains(illegalChar)||textFieldPassword.getText().contains(illegalChar)){
+        if(textFieldUsername.getText().contains(illegalChar)||textFieldPassword.getText().contains(illegalChar)){
             displayMessage("Cannot Use ' \" # - % & * ");
             return false;
         }
@@ -119,6 +119,4 @@ public class LoginController {
         mainStageController.openFrontScreen();
         closeLogin();
     }
-
 }
-
