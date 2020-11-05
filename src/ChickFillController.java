@@ -7,6 +7,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 
 import javax.sql.rowset.CachedRowSet;
+import java.util.concurrent.TimeUnit;
 
 public class ChickFillController extends RestaurantBaseController{
 
@@ -49,6 +50,7 @@ public class ChickFillController extends RestaurantBaseController{
         double total = calculateOrderTotal(testOrder); // superclass method
 
         // string for submitting the order to database
+        /*
         String submitOrderQuery = RestaurantQueries.submitNewOrderQuery(
                 this.userID,
                 formatOrderForDB(testOrder),
@@ -62,6 +64,31 @@ public class ChickFillController extends RestaurantBaseController{
         String debitAccountQuery = StudentQueries.debitDiningDollarsQuery(this.userID, String.valueOf(total));
         System.out.println(debitAccountQuery);
         sqlCommands.readDataBase(2, debitAccountQuery);
+        */
+
+        // get new orders
+        showNewOrders(RESTAURANT_ID);
+
+        // restaurant employees make the order
+        TimeUnit.SECONDS.sleep(3);
+
+        // make the order ready
+        int orderReadyButton = 22; // this value will be gotten from the restaurant user screen "ready" button.
+                                    // when clicked, the button will populate this variable with the order ID assoc. with that button
+        makeOrderReady(orderReadyButton);
+
+        //show the ready orders
+        showReadyOrders(RESTAURANT_ID);
+
+        // user comes to pick up the food
+        TimeUnit.SECONDS.sleep(3);
+
+        // mark as picked up
+        int orderPickedUpButton = 22; // same idea as above, a button will assign the value here
+        makeOrderComplete(orderPickedUpButton);
+
+        // prove the order is complete
+        showReadyOrders(RESTAURANT_ID);
 
     }
 }
