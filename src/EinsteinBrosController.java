@@ -1,5 +1,5 @@
 import Models.FoodMenuItem;
-import Models.RestaurantModel;
+import Models.MenuModel;
 import Queries.RestaurantQueries;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,7 +8,7 @@ import javafx.scene.control.TableColumn;
 
 import javax.sql.rowset.CachedRowSet;
 
-public class EinsteinBrosController {
+public class EinsteinBrosController extends RestaurantBaseController{
 
     @FXML Button buttonCheckout;
     @FXML Button buttonAddCart;
@@ -25,24 +25,13 @@ public class EinsteinBrosController {
     @FXML TableColumn columnShmearPrice;
     @FXML TableColumn columnShmearAvailable;
 
-    private RestaurantModel einstein = new RestaurantModel();
+    private MenuModel einstein = new MenuModel();
     private final static int RESTAURANT_ID = 4;
 
     public void initialize() throws Exception {
         String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(RESTAURANT_ID));
         SQLCommands sqlCommands = new SQLCommands();
-        CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
-        while(foods.next())
-        {
-            FoodMenuItem item = new FoodMenuItem(
-                    foods.getString(1),
-                    foods.getString(2),
-                    foods.getString(3),
-                    foods.getString(4),
-                    foods.getString(5),
-                    foods.getString(6));
-            this.einstein.appendFood(item);
-        }
-        this.einstein.showFoods();
+        buildMenu(RESTAURANT_ID);
+        this.menuModel.showFoods();
     }
 }

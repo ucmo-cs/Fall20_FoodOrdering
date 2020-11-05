@@ -16,7 +16,7 @@ public class RestaurantQueries {
     }
     public static String submitNewOrderQuery(String studentID, String items, String total, String restaurantID)
     {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date timestamp = new Date();
         return String.format(
                 "INSERT INTO\n" +

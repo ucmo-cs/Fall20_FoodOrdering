@@ -3,7 +3,7 @@ package Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantModel {
+public class MenuModel {
     private List<FoodMenuItem> foods = new ArrayList<>();
 
     public void appendFood(FoodMenuItem item)
@@ -18,6 +18,7 @@ public class RestaurantModel {
     {
         return this.foods;
     }
+
     public void showFoods()
     {
         for(FoodMenuItem food : foods)
@@ -25,5 +26,16 @@ public class RestaurantModel {
             System.out.println(String.format("%s %s %s %s %s",
                     food.foodID, food.name, food.price, food.type, food.available));
         }
+    }
+
+    public FoodMenuItem getFoodByID(int id)
+    {
+        FoodMenuItem item = null;
+        for (FoodMenuItem food : this.foods)
+        {
+            if (food.foodID.equals(String.valueOf(id)))
+                item = food;
+        }
+        return item;
     }
 }
