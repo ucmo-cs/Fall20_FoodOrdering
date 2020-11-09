@@ -5,17 +5,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
 import javax.sql.rowset.CachedRowSet;
 import java.awt.*;
+import java.util.List;
+import Models.FoodMenuItem;
+import Models.MenuModel;
 
-public class TacoBellController {
+public class TacoBellController extends RestaurantBaseController {
     @FXML Tab tabMain;
     @FXML Tab tabDessert;
     @FXML Tab tabDrinks;
-    @FXML TableView<FoodMenuItem> tableViewMain;
-    @FXML TableView<FoodMenuItem> tableViewDessert;
-    @FXML TableView<FoodMenuItem> tableViewDrinks;
     @FXML TableColumn columnMainName;
     @FXML TableColumn columnMainPrice;
     @FXML TableColumn columnMainAvailable;
@@ -26,26 +25,15 @@ public class TacoBellController {
     @FXML TableColumn columnDrinksPrice;
     @FXML TableColumn columnDrinksAvailable;
 
-    private RestaurantModel tbell = new RestaurantModel();
     private final static int RESTAURANT_ID = 2;
 
     public void initialize() throws Exception {
-        String getFoodsQuery = RestaurantQueries.getFoodsByID(String.valueOf(RESTAURANT_ID));
         SQLCommands sqlCommands = new SQLCommands();
-        CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
-        while(foods.next())
-        {
-            var x = foods.getString(6);
-            FoodMenuItem item = new FoodMenuItem(
-                    foods.getString(1),
-                    foods.getString(2),
-                    foods.getString(3),
-                    foods.getString(4),
-                    foods.getString(5),
-                    foods.getString(6));
-            this.tbell.appendFood(item);
-        }
-        this.tbell.showFoods();
+        buildMenu(RESTAURANT_ID);
+        this.menuModel.showFoods();
     }
 
+    List<FoodMenuItem> tacoFood = this.menuModel.getFoods();
+
 }
+

@@ -33,7 +33,7 @@ public class ChickFillController {
     private final static int RESTAURANT_ID = 1;
 
     public void initialize() throws Exception {
-        String getFoodsQuery = RestaurantQueries.getFoodsByID(String.valueOf(RESTAURANT_ID));
+        String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(RESTAURANT_ID));
         SQLCommands sqlCommands = new SQLCommands();
         CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
         fillTable(foods);
