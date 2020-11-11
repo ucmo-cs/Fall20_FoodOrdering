@@ -12,8 +12,9 @@ import javax.sql.rowset.CachedRowSet;
 import java.io.IOException;
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.List;
 
-public class EinsteinBrosController {
+public class EinsteinBrosController extends RestaurantBaseController{
 
     @FXML Button buttonCheckout;
     @FXML Button buttonAddCart;
@@ -37,15 +38,13 @@ public class EinsteinBrosController {
     private final static int RESTAURANT_ID = 4;
 
     public void initialize() throws Exception {
-        String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(RESTAURANT_ID));
-        SQLCommands sqlCommands = new SQLCommands();
-        CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
-        fillTable(foods);
-        this.einstein.showFoods();
+        SQLCommands sqlCommands=new SQLCommands();
+        buildMenu(RESTAURANT_ID);
+        fillTable();
     }
 
-    public void fillTable(CachedRowSet foods) throws SQLException {
-        // Set the cell values for the table
+    public void fillTable() {
+        List<FoodMenuItem> brosFood = this.menuModel.getFoods();
         columnBagelsName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("name"));
         columnBagelsPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("price"));
         columnBagelsAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("available"));
@@ -58,20 +57,11 @@ public class EinsteinBrosController {
         columnDrinksPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Price"));
         columnDrinksAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Available"));
 
-        while(foods.next()){
-            FoodMenuItem item = new FoodMenuItem(
-                    foods.getString(1),
-                    foods.getString(2),
-                    foods.getString(3),
-                    foods.getString(4),
-                    foods.getString(5),
-                    foods.getString(6));
-            this.einstein.appendFood(item);
-
-            switch (item.type) {
-                case "bagel" -> tableViewBagel.getItems().add(item);
-                case "shmear" -> tableViewShmear.getItems().add(item);
-                case "drink" -> tableViewDrinks.getItems().add(item);
+        for(FoodMenuItem f:brosFood) {
+            switch (f.type) {
+                case "bagel" -> tableViewBagel.getItems().add(f);
+                case "shmear" -> tableViewShmear.getItems().add(f);
+                case "drink" -> tableViewDrinks.getItems().add(f);
             }
         }
     }

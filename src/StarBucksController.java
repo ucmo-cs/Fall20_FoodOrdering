@@ -9,8 +9,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.sql.rowset.CachedRowSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class StarBucksController {
+public class StarBucksController extends RestaurantBaseController {
 
     @FXML Tab tabDrinks;
     @FXML Tab tabBakery;
@@ -27,15 +28,13 @@ public class StarBucksController {
     private final static int RESTAURANT_ID = 3;
 
     public void initialize() throws Exception {
-        String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(RESTAURANT_ID));
         SQLCommands sqlCommands = new SQLCommands();
-        CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
-        fillTable(foods);
-        this.bucks.showFoods();
+        buildMenu(RESTAURANT_ID);
+        fillTable();
     }
 
-    public void fillTable(CachedRowSet foods) throws SQLException {
-        // Set the cell values for the table
+    public void fillTable() throws SQLException {
+        List<FoodMenuItem> starFood=this.menuModel.getFoods();
         columnDrinksName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("name"));
         columnDrinksPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("price"));
         columnDrinksAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("available"));
@@ -44,19 +43,10 @@ public class StarBucksController {
         columnBakeryPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("price"));
         columnBakeryAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("available"));
 
-        while(foods.next()){
-            FoodMenuItem item = new FoodMenuItem(
-                    foods.getString(1),
-                    foods.getString(2),
-                    foods.getString(3),
-                    foods.getString(4),
-                    foods.getString(5),
-                    foods.getString(6));
-            this.bucks.appendFood(item);
-
-            switch (item.type) {
-                case "drink" -> tableViewDrinks.getItems().add(item);
-                case "bakery" -> tableViewBakery.getItems().add(item);
+        for(FoodMenuItem f:starFood){
+            switch (f.type) {
+                case "drink" -> tableViewDrinks.getItems().add(f);
+                case "bakery" -> tableViewBakery.getItems().add(f);
             }
         }
     }
