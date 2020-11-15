@@ -3111,7 +3111,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
             // FIX for Bug#56305, allowing the code to proceed with empty fields causing NPE later
             if (!hasResults) {
                 // throw SQLError.createSQLException(
-                // "User does not have access to metadata required to determine " +
+                // "Models.User does not have access to metadata required to determine " +
                 // "stored procedure parameter types. If rights can not be granted, configure connection with \"noAccessToProcedureBodies=true\" " +
                 // "to have driver generate parameters that represent INOUT strings irregardless of actual parameter types.",
                 // MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR, getExceptionInterceptor());

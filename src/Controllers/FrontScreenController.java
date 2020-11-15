@@ -1,3 +1,5 @@
+package Controllers;
+
 import java.io.IOException;
 
 public class FrontScreenController {

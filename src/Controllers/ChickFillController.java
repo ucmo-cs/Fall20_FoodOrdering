@@ -1,14 +1,14 @@
+package Controllers;
+
 import Models.FoodMenuItem;
+import Models.SQLCommands;
 import Models.RestaurantModel;
-import Queries.RestaurantQueries;
 import javafx.fxml.FXML;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javax.sql.rowset.CachedRowSet;
 import java.sql.SQLException;
 import java.util.List;
 
