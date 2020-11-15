@@ -2,15 +2,21 @@ import Models.FoodMenuItem;
 import Models.RestaurantModel;
 import Queries.RestaurantQueries;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javax.sql.rowset.CachedRowSet;
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import Models.FoodMenuItem;
 import Models.MenuModel;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class TacoBellController extends RestaurantBaseController {
     @FXML Tab tabMain;
@@ -28,6 +34,7 @@ public class TacoBellController extends RestaurantBaseController {
     @FXML TableColumn columnDrinksName;
     @FXML TableColumn columnDrinksPrice;
     @FXML TableColumn columnDrinksAvailable;
+    @FXML Pane menuPane;
 
     private final static int RESTAURANT_ID = 2;
 
@@ -58,6 +65,20 @@ public class TacoBellController extends RestaurantBaseController {
                 case "drink"-> tableViewDrinks.getItems().add(f);
             }
         }
+    }
+
+    //public void OpenCheckout() throws IOException{
+    //    Pane paneCheckout= FXMLLoader.load(getClass().getResource("FXML_Files/CheckoutScreen.fxml"));
+     //   menuPane.getChildren().clear();
+     //  menuPane.getChildren().add(paneCheckout);
+    public void OpenCheckout() throws IOException{
+        Parent checkout = FXMLLoader.load(getClass().getResource("FXML_Files/CheckoutScreen.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(checkout,1000,700);
+        scene.getStylesheets().add(getClass().getResource("FXML_Files/test.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("FXML_Files/login.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

@@ -2,6 +2,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.*;
 import javafx.scene.*;
 import java.io.IOException;
@@ -12,6 +15,8 @@ public class MainStageController {
     Parent root;
     @FXML Pane menuPane;
     @FXML Button buttonHome;
+    @FXML Button buttonMyCart;
+    @FXML Button buttonMap;
 
     public static MainStageController getInstance() {
         return instance;
@@ -42,6 +47,8 @@ public class MainStageController {
     public void openTacoBellMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/TacoBellScreen.fxml"));
         buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
         TacoBellController tbell = new TacoBellController();
@@ -50,6 +57,8 @@ public class MainStageController {
     public void openEinsteinBrosMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/EisteinBrosScreen.fxml"));
         buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
@@ -57,6 +66,8 @@ public class MainStageController {
     public void openStarbucksMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/StarBucksPane.fxml"));
         buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
@@ -64,6 +75,8 @@ public class MainStageController {
     public void openChickFilletMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/ChickFilScreen.fxml"));
         buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
@@ -71,6 +84,8 @@ public class MainStageController {
     public void openSpinPizzaMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/SpinPizzaScreen.fxml"));
         buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
@@ -78,6 +93,8 @@ public class MainStageController {
     public void openFrontScreen() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/FrontScreen.fxml"));
         buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
@@ -85,7 +102,27 @@ public class MainStageController {
     public void openLoginPane() throws IOException {
         Pane paneLogin = FXMLLoader.load(getClass().getResource("FXML_Files/LoginScreen.fxml"));
         buttonHome.setVisible(false);
+        buttonMyCart.setVisible(false);
+        buttonMap.setVisible(false);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneLogin);
+    }
+
+    public void openMyCart() throws IOException {
+        Pane paneTest = FXMLLoader.load(getClass().getResource("FXML_Files/MyCartScreen.fxml"));
+        buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
+        menuPane.getChildren().clear();
+        menuPane.getChildren().add(paneTest);
+    }
+
+    public void openMap() throws IOException{
+        Pane paneTest=FXMLLoader.load(getClass().getResource("FXML_Files/Map.fxml"));
+        buttonHome.setVisible(true);
+        buttonMyCart.setVisible(true);
+        buttonMap.setVisible(true);
+        menuPane.getChildren().clear();
+        menuPane.getChildren().add(paneTest);
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<!-- This adds a stylesheet in FXML, but not working properly?:
+   <stylesheets>
+      <URL value="@test.css" />
+   </stylesheets>
+-->
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
+   <center>
+      <Pane prefHeight="694.0" prefWidth="928.0" styleClass="centerPane" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="37.0" layoutY="53.0" prefHeight="42.0" prefWidth="513.0" styleClass="title" text="MAP" textFill="#d3caca">
+               <font>
+                  <Font size="52.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="132.0" fitWidth="244.0" layoutX="168.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ucm.png" />
+               </image>
+            </ImageView>
+            <WebView fx:id="map" layoutX="-2.0" layoutY="156.0" prefHeight="536.0" prefWidth="798.0" />
+         </children>
+      </Pane>
+   </center>
+
+</BorderPane>
