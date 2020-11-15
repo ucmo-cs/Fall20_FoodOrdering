@@ -23,6 +23,8 @@ public class LoginController {
     @FXML public TextField textFieldUsername;
     @FXML public TextField textFieldPassword;
     @FXML public Button buttonLogin;
+    @FXML public Button buttonStudent;
+    @FXML public Button buttonEmployee;
     @FXML public Label labelMessage;
 
     public void closeLogin(){
