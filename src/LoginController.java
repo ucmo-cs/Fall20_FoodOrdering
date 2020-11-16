@@ -87,7 +87,7 @@ public class LoginController {
             credentials_good = true;
 
         System.out.printf("Restaurant User: %s\nSucessfull Login: %s\n", String.valueOf(restaurant_user),String.valueOf(credentials_good));
-        if(false)//if(credentials_good)
+        if(credentials_good)
         {
             // Acquire user data
             String query = LoginQueries.getUserInfoQuery(username);
