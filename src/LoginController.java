@@ -61,45 +61,69 @@ public class LoginController {
         String username = textFieldUsername.getText();
         String claimedPassword = textFieldPassword.getText();
         String id = null, fname = null, lname = null, truePassword = null;
-        Boolean employee = false;
+        boolean restaurant_user = false;
+        boolean credentials_good = false;
 
+        // Check if given username exists in student table
+        if (!StudentUserExists(username)) {
 
-        if (!userExists(username)) {
-            System.err.println("User does not exist");
-            labelMessage.setTextFill(Color.RED);
-            labelMessage.setText("Invalid Username");
+            // If username does not exist in student table, check if it exists in the restaurant users table
+            if(RestaurantUserExists(username))
+                restaurant_user = true;
+            else
+            {
+                System.err.println("User does not exist");
+                labelMessage.setTextFill(Color.RED);
+                labelMessage.setText("Invalid Username");
+            }
         }
 
-        if (!verifyPassword(username, claimedPassword)) {
+        if (!verifyPassword(username, claimedPassword, restaurant_user)) {
             System.err.println("Invalid Password");
             labelMessage.setTextFill(Color.RED);
             labelMessage.setText("Invalid Password");
         }
+        else
+            credentials_good = true;
 
-        // Credentials OK
-        // Acquire user data
-        String query = LoginQueries.getUserInfoQuery(username);
-        CachedRowSet accountData = sqlCommands.readDataBase(2, query);
+        System.out.printf("Restaurant User: %s\nSucessfull Login: %s\n", String.valueOf(restaurant_user),String.valueOf(credentials_good));
+        if(false)//if(credentials_good)
+        {
+            // Acquire user data
+            String query = LoginQueries.getUserInfoQuery(username);
+            CachedRowSet accountData = sqlCommands.readDataBase(2, query);
 
-        accountData.next();
-        id = accountData.getString("id");
-        fname = accountData.getString("first_name");
-        lname = accountData.getString("last_name");
-        System.out.println(String.format("User: %s, %s: %s", lname, fname, id));
-        setUser(id, fname, lname, employee);
-        mainStageController.openTestPane();
-        closeLogin();
+            accountData.next();
+            id = accountData.getString("id");
+            fname = accountData.getString("first_name");
+            lname = accountData.getString("last_name");
+            System.out.println(String.format("User: %s, %s: %s", lname, fname, id));
+            setUser(id, fname, lname, restaurant_user);
+            mainStageController.openTestPane();
+            closeLogin();
+        }
     }
 
-    private boolean verifyPassword(String username, String claimedPassword) throws Exception {
-        final String query = LoginQueries.getPasswordQuery(username);
+    private boolean verifyPassword(String username, String claimedPassword, boolean restaurant) throws Exception {
+        final String query;
+        if(!restaurant)
+            query = LoginQueries.getStudentPasswordQuery(username);
+        else
+            query = LoginQueries.getRestaurantPasswordQuery(username);
+
         ResultSet result = DatabaseController.readStudentLoginDatabase(query);
         result.next();
         return result.getString(1).equals(claimedPassword);
     }
 
-    private boolean userExists(String username) throws Exception {
-        final String query = LoginQueries.IDExistsQuery(username);
+    private boolean StudentUserExists(String username) throws Exception {
+        String query = LoginQueries.StudentUserExistsQuery(username);
+        ResultSet result = DatabaseController.readStudentLoginDatabase(query);
+        result.next();
+        return result.getString(1).equals("1");
+    }
+    private boolean RestaurantUserExists(String username) throws Exception {
+        String query = LoginQueries.RestaurantUserExistsQuery(username);
         ResultSet result = DatabaseController.readStudentLoginDatabase(query);
         result.next();
         return result.getString(1).equals("1");
