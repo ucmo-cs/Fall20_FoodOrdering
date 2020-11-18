@@ -25,12 +25,9 @@ public class EinsteinBrosController extends RestaurantBaseController{
     @FXML TableColumn columnShmearPrice;
     @FXML TableColumn columnShmearAvailable;
 
-    private MenuModel einstein = new MenuModel();
     private final static int RESTAURANT_ID = 4;
 
     public void initialize() throws Exception {
-        String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(RESTAURANT_ID));
-        SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         this.menuModel.showFoods();
     }

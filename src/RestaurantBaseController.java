@@ -1,6 +1,8 @@
 import Models.FoodMenuItem;
 import Models.MenuModel;
 import Queries.RestaurantQueries;
+import Queries.StudentQueries;
+import org.jetbrains.annotations.NotNull;
 
 import javax.sql.rowset.CachedRowSet;
 import java.util.Arrays;
@@ -9,6 +11,14 @@ import java.util.List;
 class RestaurantBaseController {
 
     MenuModel menuModel = new MenuModel();
+    User user;
+
+    public void setUser(User u) { this.user = u; }
+
+    void showUser()
+    {
+        System.out.printf("Logged in as: %s, %s %s\n", this.user.getLname(), this.user.getFname(), this.user.getID());
+    }
 
     void buildMenu(int restaurantID) throws Exception {
         String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(restaurantID));
@@ -27,6 +37,25 @@ class RestaurantBaseController {
         }
     }
 
+    void createNewOrder(int[] items, int restaurant_id) throws Exception {
+        SQLCommands sqlCommands = new SQLCommands();
+        double subtotal = calculateOrderSubtotal(items);
+        String submitOrderQuery = RestaurantQueries.submitNewOrderQuery(
+                this.user.getID(),
+                formatOrderForDB(items),
+                String.valueOf(subtotal),
+                String.valueOf(restaurant_id));
+        System.out.println(submitOrderQuery);
+
+        // do command
+        sqlCommands.readDataBase(1, submitOrderQuery);
+
+        // debit account
+        String debitAccountQuery = StudentQueries.debitDiningDollarsQuery(this.user.getID(), String.valueOf(subtotal));
+        System.out.println(debitAccountQuery);
+        //sqlCommands.readDataBase(2, debitAccountQuery);
+    }
+
     String formatOrderForDB(int[] items)
     {
         StringBuilder s= new StringBuilder();
@@ -38,7 +67,7 @@ class RestaurantBaseController {
         }
         return s.toString();
     }
-    double calculateOrderTotal(int[] items)
+    double calculateOrderSubtotal(@NotNull int[] items)
     {
         double subtotal = 0.0;
         for (int i:items)

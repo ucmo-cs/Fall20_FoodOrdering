@@ -10,7 +10,7 @@ public class FrontScreenController {
         mainStageController.openEinsteinBrosMenu();
     }
     public void openChickFillet() throws IOException {
-        mainStageController.openChickFilletMenu();
+        mainStageController.openChickFilAMenu();
     }
     public void openStarbucks() throws IOException {
         mainStageController.openStarbucksMenu();

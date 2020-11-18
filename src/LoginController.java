@@ -99,6 +99,7 @@ public class LoginController {
             lname = accountData.getString("last_name");
             System.out.println(String.format("User: %s, %s: %s", lname, fname, id));
             setUser(id, fname, lname, restaurant_user);
+            mainStageController.setUser(user);
             mainStageController.openTestPane();
             closeLogin();
         }
@@ -131,7 +132,7 @@ public class LoginController {
 
     //Possibly unneeded?
     public void attemptloginTest() throws Exception {
-        mainStageController.openTestPane();
+        //mainStageController.openTestPane();
         closeLogin();
     }
 }
