@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -33,8 +32,12 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+<<<<<<< HEAD
 <!--        <ToggleButton fx:id="buttonStudent" layoutX="325.0" layoutY="411.0" prefHeight="25.0" prefWidth="75.0" selected="true" text="Student" />-->
 <!--        <ToggleButton fx:id="buttonEmployee" layoutX="398.0" layoutY="411.0" prefHeight="25.0" prefWidth="75.0" text="Employee" />-->
       <Button fx:id="buttonLogin" layoutX="282.0" layoutY="442.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
+=======
+      <Button fx:id="buttonLogin" layoutX="282.0" layoutY="442.0" mnemonicParsing="false" onAction="#attemptloginTest" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
+>>>>>>> Josh
    </children>
 </Pane>
