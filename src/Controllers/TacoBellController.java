@@ -4,6 +4,7 @@ import Models.FoodMenuItem;
 import Models.SQLCommands;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -12,6 +13,8 @@ import java.util.List;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TacoBellController extends RestaurantBaseController {
+
+    @FXML TabPane tabPaneTacoBell;
     @FXML Tab tabMain;
     @FXML Tab tabDessert;
     @FXML Tab tabDrinks;
@@ -56,6 +59,21 @@ public class TacoBellController extends RestaurantBaseController {
                 case "dessert"-> tableViewDessert.getItems().add(f);
                 case "drink"-> tableViewDrinks.getItems().add(f);
             }
+        }
+    }
+
+    public void getItem(){
+        if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Main       ")){
+            FoodMenuItem foodMenuItem=tableViewMain.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
+        }
+        else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Dessert       ")){
+            FoodMenuItem foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
+        }
+        else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
+            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
         }
     }
 }
