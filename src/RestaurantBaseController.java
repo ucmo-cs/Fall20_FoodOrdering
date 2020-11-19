@@ -2,7 +2,6 @@ import Models.FoodMenuItem;
 import Models.MenuModel;
 import Queries.RestaurantQueries;
 import Queries.StudentQueries;
-import org.jetbrains.annotations.NotNull;
 
 import javax.sql.rowset.CachedRowSet;
 import java.util.Arrays;
@@ -67,7 +66,7 @@ class RestaurantBaseController {
         }
         return s.toString();
     }
-    double calculateOrderSubtotal(@NotNull int[] items)
+    double calculateOrderSubtotal(int[] items)
     {
         double subtotal = 0.0;
         for (int i:items)
