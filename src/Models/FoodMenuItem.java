@@ -18,4 +18,13 @@ public class FoodMenuItem {
         this.type = type;
         this.available = available.equals("true");
     }
+    public String getFoodID(){ return foodID; }
+    public String getRestaurantID(){ return restaurantID; }
+    public String getName(){ return (name); }
+    public String getType(){ return type; }
+    public float getPrice(){ return price; }
+    public boolean isAvailable(){ return available; }
+    public String toString(){
+        return foodID+" : "+name+" : "+price+" : "+available;
+    }
 }
