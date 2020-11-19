@@ -31,7 +31,7 @@ public class MainStageController {
         Scene scene=new Scene(root,1000,700);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        mainStage.setTitle("Test Stage");
+        mainStage.setTitle("UCMO Food Ordering (Mule Trough)");
         mainStage.setScene(scene);
         mainStage.show();
     }
@@ -52,6 +52,7 @@ public class MainStageController {
         Pane paneEmployee=FXMLLoader.load(getClass().getResource("/FXML_Files/EmployeeViewPoint.fxml"));
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneEmployee);
+        buttonLogout.setVisible(true);
     }
 
     public void openCheckoutPane() throws IOException {
@@ -68,7 +69,7 @@ public class MainStageController {
     }
 
     public void openEinsteinBrosMenu() throws IOException {
-        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/EisteinBrosScreen.fxml"));
+        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/EinsteinBrosScreen.fxml"));
         buttonHome.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
