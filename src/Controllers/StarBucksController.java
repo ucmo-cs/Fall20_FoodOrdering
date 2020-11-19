@@ -5,6 +5,7 @@ import Models.RestaurantModel;
 import Models.SQLCommands;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class StarBucksController extends RestaurantBaseController {
 
+    @FXML TabPane tabPaneStarbucks;
     @FXML Tab tabDrinks;
     @FXML Tab tabBakery;
     @FXML TableView<FoodMenuItem> tableViewDrinks;
@@ -52,4 +54,14 @@ public class StarBucksController extends RestaurantBaseController {
         }
     }
 
+    public void getItem(){
+        if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
+            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
+        }
+        else if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("      Bakery      ")){
+            FoodMenuItem foodMenuItem=tableViewBakery.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
+        }
+    }
 }

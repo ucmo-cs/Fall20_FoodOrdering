@@ -5,6 +5,7 @@ import Models.SQLCommands;
 import Models.RestaurantModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +15,7 @@ import java.util.List;
 
 public class ChickFillController extends RestaurantBaseController{
 
+    @FXML TabPane tabPaneChick;
     @FXML Tab tabMain;
     @FXML Tab tabDessert;
     @FXML Tab tabDrinks;
@@ -61,4 +63,19 @@ public class ChickFillController extends RestaurantBaseController{
             }
         }
     }
+    public void getItem(){
+        if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("    Main   ")) {
+            FoodMenuItem foodMenuItemMain = tableViewMain.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItemMain.toString());
+        }
+        else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Dessert   ")){
+            FoodMenuItem foodMenuItemDessert=tableViewDessert.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItemDessert.toString());
+        }
+        else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Drinks   ")){
+            FoodMenuItem foodMenuItemDessert=tableViewDrinks.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItemDessert.toString());
+        }
+    }
 }
+
