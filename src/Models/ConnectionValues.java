@@ -1,6 +1,5 @@
 package Models;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ConnectionValues {
@@ -14,11 +13,6 @@ public class ConnectionValues {
         getConnectionSettings(db);
     }
 
-    // Empty constructor
-    public ConnectionValues() {
-
-    }
-
     // Establish the connection settings
     public void getConnectionSettings(int db) throws SQLException {
 
@@ -27,21 +21,20 @@ public class ConnectionValues {
         userName="table_editor";
         password="!sleekPanda!";
 
-        String serverDbSchema;
-        switch (db) {
-            case 1: serverDbSchema = "/login";      break;
-            case 2: serverDbSchema = "/restaurant"; break;
-            case 3: serverDbSchema = "/student";    break;
-            default: serverDbSchema = "InvalidURL"; break;
-        }
+        String serverDbSchema = switch (db) {
+            case 1 -> "/login";
+            case 2 -> "/restaurant";
+            case 3 -> "/student";
+            default -> "InvalidURL";
+        };
         urlString= serverURL + serverDbSchema + serverTimeZone;
     }
 
-    public PreparedStatement createPreparedStatment(ConnectionValues connection, String query){
-        PreparedStatement preparedStatement=null;
-
-        return preparedStatement;
-    }
+//    public PreparedStatement createPreparedStatement(ConnectionValues connection, String query){
+//        PreparedStatement preparedStatement=null;
+//
+//        return preparedStatement;
+//    }
 
     public String getUserName() { return userName; }
 
