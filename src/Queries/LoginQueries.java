@@ -51,4 +51,17 @@ public class LoginQueries {
                 "WHERE\n" +
                 "   `id` = '%s';",id);
     }
+    public static String getRestaurantUserInfoQuery(String name)
+    {
+        return String.format(
+                "SELECT\n" +
+                "   r.*\n" +
+                "FROM\n" +
+                "   `restaurant`.`restaurant_info` AS r,\n" +
+                "   `login`.`restaurant` AS l\n" +
+                "WHERE\n" +
+                "   r.id = l.restaurant_id\n" +
+                "   AND\n" +
+                "   l.login_name = '%s';", name);
+    }
 }

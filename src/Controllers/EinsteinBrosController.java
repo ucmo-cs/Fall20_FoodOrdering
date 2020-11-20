@@ -55,9 +55,9 @@ public class EinsteinBrosController extends RestaurantBaseController{
 
         for(FoodMenuItem f:brosFood) {
             switch (f.type) {
-                case "bagel" -> tableViewBagel.getItems().add(f);
-                case "shmear" -> tableViewShmear.getItems().add(f);
-                case "drink" -> tableViewDrinks.getItems().add(f);
+                case "bagel":   tableViewBagel.getItems().add(f);   break;
+                case "shmear":  tableViewShmear.getItems().add(f);  break;
+                case "drink":   tableViewDrinks.getItems().add(f);  break;
             }
         }
     }

@@ -32,6 +32,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="buttonLogin" layoutX="282.0" layoutY="442.0" mnemonicParsing="false" onAction="#attemptloginTest" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
+      <Button fx:id="buttonLogin" layoutX="282.0" layoutY="442.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
    </children>
 </Pane>

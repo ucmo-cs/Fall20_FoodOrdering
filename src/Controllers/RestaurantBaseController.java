@@ -3,6 +3,7 @@ package Controllers;
 import Models.FoodMenuItem;
 import Models.SQLCommands;
 import Models.MenuModel;
+import Models.User;
 import Queries.RestaurantQueries;
 
 import javax.sql.rowset.CachedRowSet;
@@ -10,6 +11,15 @@ import javax.sql.rowset.CachedRowSet;
 class RestaurantBaseController {
 
     MenuModel menuModel = new MenuModel();
+    private User user;
+
+
+    public void setUser(User u) { this.user = u; }
+
+    void showUser()
+    {
+        System.out.printf("Logged in as: %s, %s %s\n", this.user.getLname(), this.user.getFname(), this.user.getID());
+    }
 
     void buildMenu(int restaurantID) throws Exception {
         String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(restaurantID));

@@ -1,5 +1,7 @@
 import Models.FoodMenuItem;
 import Models.MenuModel;
+import Models.User;
+import Models.SQLCommands;
 import Queries.RestaurantQueries;
 import Queries.StudentQueries;
 

@@ -119,20 +119,25 @@ public class LoginController {
         System.out.printf("Restaurant User: %s\nSucessfull Login: %s\n", String.valueOf(restaurant_user),String.valueOf(credentials_good));
         if(credentials_good)
         {
-            // Acquire user data
-            String query = LoginQueries.getUserInfoQuery(username);
-            CachedRowSet accountData = sqlCommands.readDataBase(2, query);
+            if(!restaurant_user) {
+                // Acquire user data
+                String query = LoginQueries.getUserInfoQuery(username);
+                CachedRowSet accountData = sqlCommands.readDataBase(2, query);
 
-//            accountData.next();
-//            id = accountData.getString("id");
-//            fname = accountData.getString("first_name");
-//            lname = accountData.getString("last_name");
-//            System.out.println(String.format("User: %s, %s: %s", lname, fname, id));
-//            setUser(id, fname, lname, restaurant_user);
-
-            if(restaurant_user==false) {
+                accountData.next();
+                setUser(accountData.getString("id"),
+                        accountData.getString("first_name"),
+                        accountData.getString("last_name"),
+                        false);
+                mainStageController.setUser(user);
                 mainStageController.openFrontScreen();
-            } else if(restaurant_user==true){
+            } else {
+                // Acquire restaurant user data
+                String query = LoginQueries.getRestaurantUserInfoQuery(username);
+                CachedRowSet accountData = sqlCommands.readDataBase(1, query);
+                accountData.next();
+                setUser(accountData.getString("id"), accountData.getString("name"), "Employee",true);
+                mainStageController.setUser(user);
                 mainStageController.openEmployeeView();
             }
             closeLogin();

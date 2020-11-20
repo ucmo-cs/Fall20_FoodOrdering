@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -9,9 +10,9 @@ import javafx.scene.*;
 import java.io.IOException;
 
 public class MainStageController {
-    static MainStageController instance = null;
-    public Stage mainStage=new Stage();
-    Parent root;
+    private static MainStageController instance = null;
+    private Stage mainStage=new Stage();
+    private User user;
     @FXML Pane menuPane;
     @FXML Button buttonHome;
     @FXML Button buttonCart;
@@ -25,9 +26,13 @@ public class MainStageController {
         instance = this;
         openLoginPane();
     }
+    public void setUser(User u) {
+        this.user = u;
+        System.out.printf("Logged in as %s %s %s\n", this.user.getFname(), this.user.getLname(), this.user.getID());
+    }
 
     public void openMainStage()throws Exception {
-        root = FXMLLoader.load(getClass().getResource("/FXML_Files/MainStage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML_Files/MainStage.fxml"));
         Scene scene=new Scene(root,1000,700);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
@@ -62,35 +67,55 @@ public class MainStageController {
     }
 
     public void openTacoBellMenu() throws IOException {
-        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/TacoBellScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/TacoBellScreen.fxml"));
+        Pane paneTest = loader.load();
+        TacoBellController tbell = loader.getController();
+        tbell.setUser(this.user);
+//        tbell.showUser();
         buttonHome.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
 
     public void openEinsteinBrosMenu() throws IOException {
-        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/EinsteinBrosScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/EinsteinBrosScreen.fxml"));
+        Pane paneTest = loader.load();
+        EinsteinBrosController einstein = loader.getController();
+        einstein.setUser(this.user);
+//        einstein.showUser();
         buttonHome.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
 
     public void openStarbucksMenu() throws IOException {
-        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/StarBucksPane.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/StarBucksPane.fxml"));
+        Pane paneTest = loader.load();
+        StarBucksController bux = loader.getController();
+        bux.setUser(this.user);
+//        bux.showUser();
         buttonHome.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
 
-    public void openChickFilletMenu() throws IOException {
-        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/ChickFilScreen.fxml"));
+    public void openChickFilAMenu() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/ChickFilScreen.fxml"));
+        Pane paneTest = loader.load();
+        ChickFillController chick = loader.getController();
+        chick.setUser(this.user);
+//        chick.showUser();
         buttonHome.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);
     }
 
     public void openSpinPizzaMenu() throws IOException {
-        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/SpinPizzaScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/SpinPizzaScreen.fxml"));
+        Pane paneTest = loader.load();
+        SpinPizzaController spin = loader.getController();
+        spin.setUser(this.user);
+//        spin.showUser();
         buttonHome.setVisible(true);
         menuPane.getChildren().clear();
         menuPane.getChildren().add(paneTest);

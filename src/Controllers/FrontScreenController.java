@@ -3,7 +3,7 @@ package Controllers;
 import java.io.IOException;
 
 public class FrontScreenController {
-    MainStageController mainStageController=MainStageController.getInstance();
+    private MainStageController mainStageController=MainStageController.getInstance();
 
     public void openTacoBell() throws IOException {
         mainStageController.openTacoBellMenu();
@@ -12,7 +12,7 @@ public class FrontScreenController {
         mainStageController.openEinsteinBrosMenu();
     }
     public void openChickFillet() throws IOException {
-        mainStageController.openChickFilletMenu();
+        mainStageController.openChickFilAMenu();
     }
     public void openStarbucks() throws IOException {
         mainStageController.openStarbucksMenu();

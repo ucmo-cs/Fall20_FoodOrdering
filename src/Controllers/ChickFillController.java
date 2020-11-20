@@ -22,6 +22,7 @@ public class ChickFillController extends RestaurantBaseController{
     @FXML TableView<FoodMenuItem> tableViewMain;
     @FXML TableView<FoodMenuItem> tableViewDessert;
     @FXML TableView<FoodMenuItem> tableViewDrinks;
+    @FXML TableView<FoodMenuItem> tableViewSide;
     @FXML TableColumn columnMainName;
     @FXML TableColumn columnMainPrice;
     @FXML TableColumn columnMainAvailable;
@@ -36,7 +37,6 @@ public class ChickFillController extends RestaurantBaseController{
     private final static int RESTAURANT_ID = 1;
 
     public void initialize() throws Exception {
-        SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
     }
@@ -57,9 +57,10 @@ public class ChickFillController extends RestaurantBaseController{
 
         for(FoodMenuItem f:chickFood){
             switch (f.type) {
-                case "main" -> tableViewMain.getItems().add(f);
-                case "dessert" -> tableViewDessert.getItems().add(f);
-                case "drink" -> tableViewDrinks.getItems().add(f);
+                case "main":    tableViewMain.getItems().add(f);    break;
+                case "dessert": tableViewDessert.getItems().add(f); break;
+                case "drink":   tableViewDrinks.getItems().add(f);  break;
+                case "side":    tableViewSide.getItems().add(f);    break;
             }
         }
     }
@@ -73,8 +74,8 @@ public class ChickFillController extends RestaurantBaseController{
             System.out.println(foodMenuItemDessert.toString());
         }
         else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Drinks   ")){
-            FoodMenuItem foodMenuItemDessert=tableViewDrinks.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItemDessert.toString());
+            FoodMenuItem foodMenuItemDrink=tableViewDrinks.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItemDrink.toString());
         }
     }
 }

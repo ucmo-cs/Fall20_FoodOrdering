@@ -55,9 +55,12 @@ public class TacoBellController extends RestaurantBaseController {
 
         for (FoodMenuItem f : tacoFood) {
             switch (f.type) {
-                case "main"-> tableViewMain.getItems().add(f);
-                case "dessert"-> tableViewDessert.getItems().add(f);
-                case "drink"-> tableViewDrinks.getItems().add(f);
+                case "main":
+                    List<FoodMenuItem> main = tableViewMain.getItems();
+                    main.add(f);
+                    //tableViewMain.getItems().add(f);    break;
+                case "dessert": tableViewDessert.getItems().add(f); break;
+                case "drink":   tableViewDrinks.getItems().add(f);  break;
             }
         }
     }

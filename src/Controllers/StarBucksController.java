@@ -48,8 +48,9 @@ public class StarBucksController extends RestaurantBaseController {
 
         for(FoodMenuItem f:starFood){
             switch (f.type) {
-                case "drink" -> tableViewDrinks.getItems().add(f);
-                case "bakery" -> tableViewBakery.getItems().add(f);
+                case "drink":   tableViewDrinks.getItems().add(f);  break;
+                case "bakery":  tableViewBakery.getItems().add(f);  break;
+                default:        System.err.println("bad food");     break;
             }
         }
     }

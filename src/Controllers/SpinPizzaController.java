@@ -10,7 +10,7 @@ import javafx.scene.control.TableColumn;
 
 import javax.sql.rowset.CachedRowSet;
 
-public class SpinPizzaController {
+public class SpinPizzaController extends RestaurantBaseController{
 
     @FXML Tab tabMain;
     @FXML Tab tabDessert;
