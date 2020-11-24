@@ -5,6 +5,7 @@ import Models.SQLCommands;
 import Models.MenuModel;
 import Models.User;
 import Queries.RestaurantQueries;
+import Queries.StudentQueries;
 
 import javax.sql.rowset.CachedRowSet;
 
@@ -115,5 +116,35 @@ class RestaurantBaseController {
                 System.out.printf("\t%s\n", this.menuModel.getFoodByID(Integer.parseInt(item)).name);
             }
         }
+    }
+    private void debitAmount(double orderTotal) throws Exception {
+        String query = StudentQueries.debitDiningDollarsQuery(this.user.getID(), String.valueOf(orderTotal));
+        SQLCommands sqlCommands = new SQLCommands();
+        sqlCommands.readDataBase(2, query);
+    }
+    private double getUserDiningBalance() throws Exception
+    {
+        String query = StudentQueries.getBalanceQuery(this.user.getID());
+        SQLCommands sqlCommands = new SQLCommands();
+        CachedRowSet balance = sqlCommands.readDataBase(2, query);
+        balance.next();
+        return Double.parseDouble(String.format("%.2f", Double.parseDouble(balance.getString(1))));
+    }
+    private void submitOrder(String items, String total, String restaurant_id) throws Exception {
+        String query = RestaurantQueries.submitNewOrderQuery(this.user.getID(), items, total, restaurant_id);
+        SQLCommands sqlCommands = new SQLCommands();
+        sqlCommands.readDataBase(2, query);
+    }
+    private void processOrder(int[] items, String restaurant_id) throws Exception {
+        double orderTotal = calculateOrderTotal(items);
+        double userBalance = getUserDiningBalance();
+        if(orderTotal > userBalance)
+            throw new Exception("Insufficient Funds");
+        else
+        {
+            debitAmount(orderTotal);
+            submitOrder(formatOrderForDB(items), String.valueOf(orderTotal), restaurant_id);
+        }
+
     }
 }
