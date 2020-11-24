@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChickFillController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
@@ -23,7 +22,7 @@
                   <Font size="28.0" />
                </font>
             </Label>
-            <TabPane layoutX="14.0" layoutY="131.0" prefHeight="552.0" prefWidth="291.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPaneChick" layoutX="14.0" layoutY="131.0" prefHeight="552.0" prefWidth="291.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab fx:id="tabMain" text="    Main   ">
                      <content>
@@ -87,7 +86,7 @@
                   </Tab>
                </tabs>
             </TabPane>
-            <Button fx:id="buttonAddCart" layoutX="315.0" layoutY="610.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Add To Cart" />
+            <Button fx:id="buttonAddCart" layoutX="315.0" layoutY="610.0" mnemonicParsing="false" onAction="#getItem" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Add To Cart" />
             <ImageView fitHeight="230.0" fitWidth="290.0" layoutX="405.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/spinPizza.jpg" />
