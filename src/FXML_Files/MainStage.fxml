@@ -23,6 +23,6 @@
       </VBox>
    </left>
    <center>
-      <Pane fx:id="menuPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="paneMenu" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

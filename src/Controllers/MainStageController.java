@@ -11,8 +11,9 @@ import java.io.IOException;
 public class MainStageController {
     static MainStageController instance = null;
     public Stage mainStage=new Stage();
+    OrderStageController orderStageController=new OrderStageController();
     Parent root;
-    @FXML Pane menuPane;
+    @FXML Pane paneMenu;
     @FXML Button buttonHome;
     @FXML Button buttonCart;
     @FXML Button buttonLogout;
@@ -37,63 +38,54 @@ public class MainStageController {
     }
 
     public void closeMainStage(){
-        menuPane.getChildren().clear();
+        paneMenu.getChildren().clear();
         mainStage.close();
     }
 
-    public void openCartPane() throws IOException {
-        Pane paneCart=FXMLLoader.load(getClass().getResource("/FXML_Files/MyCartScreen.fxml"));
-        buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneCart);
+    public void openCartPane() throws Exception {
+        orderStageController.openCartStage();
     }
 
     public void openEmployeeView() throws IOException {
         Pane paneEmployee=FXMLLoader.load(getClass().getResource("/FXML_Files/EmployeeViewPoint.fxml"));
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneEmployee);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneEmployee);
         buttonLogout.setVisible(true);
-    }
-
-    public void openCheckoutPane() throws IOException {
-        Pane paneCheckout=FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneCheckout);
     }
 
     public void openTacoBellMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/TacoBellScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openEinsteinBrosMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/EinsteinBrosScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openStarbucksMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/StarBucksPane.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openChickFilletMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/ChickFilScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openSpinPizzaMenu() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/SpinPizzaScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openFrontScreen() throws IOException {
@@ -101,8 +93,8 @@ public class MainStageController {
         buttonHome.setVisible(false);
         buttonCart.setVisible(true);
         buttonLogout.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openLoginPane() throws IOException {
@@ -110,7 +102,7 @@ public class MainStageController {
         buttonHome.setVisible(false);
         buttonCart.setVisible(false);
         buttonLogout.setVisible(false);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneLogin);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneLogin);
     }
 }
