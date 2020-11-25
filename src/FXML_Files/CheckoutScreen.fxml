@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CheckoutScreenController">
    <children>
-      <Button fx:id="buttonCancel" layoutX="394.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Cancel" />
+      <Button fx:id="buttonCancel" layoutX="394.0" layoutY="503.0" mnemonicParsing="false" prefHeight="33.0" onAction="#openCart" prefWidth="235.0" styleClass="loginButton" text="Cancel" />
       <Label layoutX="22.0" layoutY="213.0" prefHeight="42.0" prefWidth="513.0" styleClass="titlelbl" text="Checkout" textFill="#d3caca">
          <font>
             <Font size="28.0" />
@@ -23,12 +23,12 @@
             <Image url="@../images/ucm.png" />
          </image>
       </ImageView>
-      <TableView layoutX="22.0" layoutY="261.0" prefHeight="186.0" prefWidth="606.0">
+      <TableView fx:id="tableViewCheckout" layoutX="22.0" layoutY="261.0" prefHeight="186.0" prefWidth="606.0">
          <columns>
-            <TableColumn prefWidth="282.0" text="Name" />
-            <TableColumn minWidth="0.0" prefWidth="135.0" text="Restautant" />
-            <TableColumn minWidth="0.0" prefWidth="86.0" text="Quantity" />
-            <TableColumn minWidth="0.0" prefWidth="93.0" text="Price" />
+            <TableColumn fx:id="columnCheckoutName" prefWidth="282.0" text="Name" />
+            <TableColumn fx:id="columnCheckoutRestaurant" minWidth="0.0" prefWidth="135.0" text="Restaurant" />
+            <TableColumn fx:id="columnCheckoutQuantity" minWidth="0.0" prefWidth="86.0" text="Quantity" />
+            <TableColumn fx:id="columnCheckoutPrice" minWidth="0.0" prefWidth="93.0" text="Price" />
          </columns>
       </TableView>
       <Label fx:id="labelTotalPrice" layoutX="172.0" layoutY="471.0" text="Total Price" textFill="WHITE">

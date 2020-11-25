@@ -16,6 +16,10 @@ public class OrderStageController {
 
     public static OrderStageController getInstance(){ return instance; }
 
+    public void closeOrderStage(){
+        paneOrder.getChildren().clear();
+    }
+
     public void initialize() throws IOException {
         instance=this;
         openCartPane();
@@ -26,7 +30,7 @@ public class OrderStageController {
         Scene scene=new Scene(root,655,555);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        cartStage.setTitle("Mule Trough Cart");
+        cartStage.setTitle("Placeholder");
         cartStage.setScene(scene);
         cartStage.show();
     }
@@ -42,5 +46,4 @@ public class OrderStageController {
         paneOrder.getChildren().clear();
         paneOrder.getChildren().add(paneCheckout);
     }
-
 }

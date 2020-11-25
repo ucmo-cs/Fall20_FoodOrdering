@@ -6,6 +6,6 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.OrderStageController" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <Pane fx:id="paneCart" prefHeight="550.0" prefWidth="650.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="paneOrder" prefHeight="550.0" prefWidth="650.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

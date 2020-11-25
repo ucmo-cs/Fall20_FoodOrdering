@@ -12,8 +12,8 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MyCartController">
    <children>
       <Button fx:id="buttonRemoveFromCart" layoutX="394.0" layoutY="461.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Remove from Cart" />
-      <Button fx:id="buttonClose" layoutX="449.0" layoutY="502.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="124.0" styleClass="loginButton" text="Close" />
-      <Button fx:id="buttonCheckout" layoutX="394.0" layoutY="421.0" mnemonicParsing="false" onAction="#openCheckoutPane" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Proceed to Checkout" />
+      <Button fx:id="buttonClose" layoutX="449.0" layoutY="502.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="124.0" onAction="#close" styleClass="loginButton" text="Close" />
+      <Button fx:id="buttonCheckout" layoutX="394.0" layoutY="421.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" onAction="#openCheckout" styleClass="loginButton" text="Proceed to Checkout" />
       <Label layoutX="25.0" layoutY="68.0" prefHeight="42.0" prefWidth="513.0" styleClass="titlelbl" text="My Cart" textFill="#d3caca">
          <font>
             <Font size="28.0" />
