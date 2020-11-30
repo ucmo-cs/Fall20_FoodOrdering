@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ public class MainStageController {
     public Stage mainStage=new Stage();
     OrderStageController orderStageController=new OrderStageController();
     Parent root;
+    User user;
     @FXML Pane paneMenu;
     @FXML Button buttonHome;
     @FXML Button buttonCart;
@@ -26,7 +28,10 @@ public class MainStageController {
         instance = this;
         openLoginPane();
     }
-
+    public void setUser(User u)
+    {
+        this.user = u;
+    }
     public void openMainStage()throws Exception {
         root = FXMLLoader.load(getClass().getResource("/FXML_Files/MainStage.fxml"));
         Scene scene=new Scene(root,1000,700);

@@ -57,9 +57,9 @@ public class ChickFillController extends RestaurantBaseController{
 
         for(FoodMenuItem f:chickFood){
             switch (f.type) {
-                case "main" -> tableViewMain.getItems().add(f);
-                case "dessert" -> tableViewDessert.getItems().add(f);
-                case "drink" -> tableViewDrinks.getItems().add(f);
+                case "main":    tableViewMain.getItems().add(f);        break;
+                case "dessert": tableViewDessert.getItems().add(f);     break;
+                case "drink":   tableViewDrinks.getItems().add(f);      break;
             }
         }
     }
