@@ -1,12 +1,17 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.FoodMenuItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.awt.*;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyCartController {
     // Classes
@@ -18,6 +23,10 @@ public class MyCartController {
     @FXML TableColumn columnCartQuantity;
     @FXML Label labelSubtotal;
 
+    public void initialize() throws SQLException {
+        fillTable();
+    }
+
     public void close(){
         orderStageController.closeOrderStage();
     }
@@ -25,6 +34,19 @@ public class MyCartController {
     public void openCheckout() throws IOException {
         orderStageController.openCheckoutPane();
     }
+
+    public void fillTable() throws SQLException{
+        List<FoodMenuItem> cartItems=CartModel.getInstance().getCart();
+        columnCartName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("name"));
+        columnCartPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("price"));
+//        columnCartQuantity.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("quantity"));
+
+        for(FoodMenuItem f:cartItems){
+            tableViewCart.getItems().add(f);
+        }
+
+    }
+
     //1. Take items from cart and populate table with the results.
     //2. Display subtotal, quantity and ensure availability of items in cart
     //3. If user clicks checkout button, switch pane to checkout and process payment information

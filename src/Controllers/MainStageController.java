@@ -46,6 +46,12 @@ public class MainStageController {
         orderStageController.openCartStage();
     }
 
+    public  void openMapView() throws IOException{
+        Pane paneMap=FXMLLoader.load(getClass().getResource("/FXML_Files/Map.fxml"));
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneMap);
+    }
+
     public void openEmployeeView() throws IOException {
         Pane paneEmployee=FXMLLoader.load(getClass().getResource("/FXML_Files/EmployeeViewPoint.fxml"));
         paneMenu.getChildren().clear();
