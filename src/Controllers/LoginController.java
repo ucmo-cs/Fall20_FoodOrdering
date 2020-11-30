@@ -129,7 +129,7 @@ public class LoginController {
                         accountData.getString("first_name"),
                         accountData.getString("last_name"),
                         false);
-                mainStageController.setUser(user);
+//                mainStageController.set(user);
                 mainStageController.openFrontScreen();
             } else {
                 // Acquire restaurant user data
@@ -137,7 +137,7 @@ public class LoginController {
                 CachedRowSet accountData = sqlCommands.readDataBase(1, query);
                 accountData.next();
                 setUser(accountData.getString("id"), accountData.getString("name"), "Employee",true);
-                mainStageController.setUser(user);
+//                mainStageController.setUser(user);
                 mainStageController.openEmployeeView();
             }
             closeLogin();
