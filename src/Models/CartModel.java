@@ -2,25 +2,23 @@ package Models;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class CartModel {
-    private static CartModel intsance=null;
-
-    static {
-        intsance=new CartModel();
-    }
-
-//    public static CartModel getInstance(){
-//        return intsance;
-//    }
-
-    private List<FoodMenuItem> cart=new ArrayList<>();
+    private static CartModel instance;
+    private ArrayList<FoodMenuItem> cart=new ArrayList<>();
     Iterator<FoodMenuItem> iterator=cart.iterator();
 
+    public static CartModel getInstance() {
+        if(instance==null){
+            instance=new CartModel();
+        }
+        return instance;
+    }
+
     public void appendCart(FoodMenuItem item) {this.cart.add(item);}
-    public void setCart(List<FoodMenuItem> cart) {this.cart=cart;}
-    public List<FoodMenuItem> getCart() {return  this.cart;}
+
+    public ArrayList<FoodMenuItem> getCart() { return this.cart; }
+
     public void showCart() {
         for(FoodMenuItem food : cart)
         {
@@ -28,6 +26,7 @@ public class CartModel {
                     food.foodID, food.name, food.price, food.type, food.available));
         }
     }
+
     public FoodMenuItem getCartItemsByID(int id) {
         FoodMenuItem item = null;
         for (FoodMenuItem food : this.cart)

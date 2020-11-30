@@ -7,7 +7,11 @@ public class FoodMenuItem {
     public float price;
     public String type;
     public boolean available;
+    public String quantity;
 
+    public FoodMenuItem(){
+
+    }
 
     public FoodMenuItem(String foodID, String restaurantID, String name, String price, String type, String available)
     {

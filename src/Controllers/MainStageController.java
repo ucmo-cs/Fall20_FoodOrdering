@@ -1,6 +1,5 @@
 package Controllers;
 
-import Models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -10,10 +9,11 @@ import javafx.scene.*;
 import java.io.IOException;
 
 public class MainStageController {
-    private static MainStageController instance = null;
-    private Stage mainStage=new Stage();
-    private User user;
-    @FXML Pane menuPane;
+    static MainStageController instance = null;
+    public Stage mainStage=new Stage();
+    OrderStageController orderStageController=new OrderStageController();
+    Parent root;
+    @FXML Pane paneMenu;
     @FXML Button buttonHome;
     @FXML Button buttonCart;
     @FXML Button buttonLogout;
@@ -26,13 +26,9 @@ public class MainStageController {
         instance = this;
         openLoginPane();
     }
-    public void setUser(User u) {
-        this.user = u;
-        System.out.printf("Logged in as %s %s %s\n", this.user.getFname(), this.user.getLname(), this.user.getID());
-    }
 
     public void openMainStage()throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/FXML_Files/MainStage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/FXML_Files/MainStage.fxml"));
         Scene scene=new Scene(root,1000,700);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
@@ -42,92 +38,69 @@ public class MainStageController {
     }
 
     public void closeMainStage(){
-        menuPane.getChildren().clear();
+        paneMenu.getChildren().clear();
         mainStage.close();
     }
 
-    public void openCartPane() throws IOException {
-        Pane paneCart=FXMLLoader.load(getClass().getResource("/FXML_Files/MyCartScreen.fxml"));
-        buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneCart);
+    public void openCartPane() throws Exception {
+        orderStageController.openCartStage();
+    }
+
+    public  void openMapView() throws IOException{
+        Pane paneMap=FXMLLoader.load(getClass().getResource("/FXML_Files/Map.fxml"));
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneMap);
     }
 
     public void openEmployeeView() throws IOException {
         Pane paneEmployee=FXMLLoader.load(getClass().getResource("/FXML_Files/EmployeeViewPoint.fxml"));
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneEmployee);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneEmployee);
         buttonLogout.setVisible(true);
     }
 
-    public void openCheckoutPane() throws IOException {
-        Pane paneCheckout=FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneCheckout);
-    }
-
     public void openTacoBellMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/TacoBellScreen.fxml"));
-        Pane paneTest = loader.load();
-        TacoBellController tbell = loader.getController();
-        tbell.setUser(this.user);
-//        tbell.showUser();
+        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/TacoBellScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openEinsteinBrosMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/EinsteinBrosScreen.fxml"));
-        Pane paneTest = loader.load();
-        EinsteinBrosController einstein = loader.getController();
-        einstein.setUser(this.user);
-//        einstein.showUser();
+        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/EinsteinBrosScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openStarbucksMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/StarBucksPane.fxml"));
-        Pane paneTest = loader.load();
-        StarBucksController bux = loader.getController();
-        bux.setUser(this.user);
-//        bux.showUser();
+        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/StarBucksPane.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
-    public void openChickFilAMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/ChickFilScreen.fxml"));
-        Pane paneTest = loader.load();
-        ChickFillController chick = loader.getController();
-        chick.setUser(this.user);
-//        chick.showUser();
+    public void openChickFilletMenu() throws IOException {
+        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/ChickFilScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openSpinPizzaMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/SpinPizzaScreen.fxml"));
-        Pane paneTest = loader.load();
-        SpinPizzaController spin = loader.getController();
-        spin.setUser(this.user);
-//        spin.showUser();
+        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/SpinPizzaScreen.fxml"));
         buttonHome.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openFrontScreen() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/FrontScreen.fxml"));
         buttonHome.setVisible(false);
-        buttonCart.setVisible(false);
+        buttonCart.setVisible(true);
         buttonLogout.setVisible(true);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneTest);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public void openLoginPane() throws IOException {
@@ -135,7 +108,7 @@ public class MainStageController {
         buttonHome.setVisible(false);
         buttonCart.setVisible(false);
         buttonLogout.setVisible(false);
-        menuPane.getChildren().clear();
-        menuPane.getChildren().add(paneLogin);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneLogin);
     }
 }

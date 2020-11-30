@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.SQLCommands;
 import Models.RestaurantModel;
@@ -14,7 +15,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ChickFillController extends RestaurantBaseController{
-
     @FXML TabPane tabPaneChick;
     @FXML Tab tabMain;
     @FXML Tab tabDessert;
@@ -22,7 +22,6 @@ public class ChickFillController extends RestaurantBaseController{
     @FXML TableView<FoodMenuItem> tableViewMain;
     @FXML TableView<FoodMenuItem> tableViewDessert;
     @FXML TableView<FoodMenuItem> tableViewDrinks;
-    @FXML TableView<FoodMenuItem> tableViewSide;
     @FXML TableColumn columnMainName;
     @FXML TableColumn columnMainPrice;
     @FXML TableColumn columnMainAvailable;
@@ -37,6 +36,7 @@ public class ChickFillController extends RestaurantBaseController{
     private final static int RESTAURANT_ID = 1;
 
     public void initialize() throws Exception {
+        SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
     }
@@ -57,26 +57,27 @@ public class ChickFillController extends RestaurantBaseController{
 
         for(FoodMenuItem f:chickFood){
             switch (f.type) {
-                case "main":    tableViewMain.getItems().add(f);    break;
-                case "dessert": tableViewDessert.getItems().add(f); break;
-                case "drink":   tableViewDrinks.getItems().add(f);  break;
-                case "side":    tableViewSide.getItems().add(f);    break;
+                case "main" -> tableViewMain.getItems().add(f);
+                case "dessert" -> tableViewDessert.getItems().add(f);
+                case "drink" -> tableViewDrinks.getItems().add(f);
             }
         }
     }
     public void getItem(){
+        FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("    Main   ")) {
-            FoodMenuItem foodMenuItemMain = tableViewMain.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItemMain.toString());
+            foodMenuItem= tableViewMain.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Dessert   ")){
-            FoodMenuItem foodMenuItemDessert=tableViewDessert.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItemDessert.toString());
+            foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Drinks   ")){
-            FoodMenuItem foodMenuItemDrink=tableViewDrinks.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItemDrink.toString());
+            foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
         }
+        CartModel.getInstance().appendCart(foodMenuItem);
     }
 }
 
