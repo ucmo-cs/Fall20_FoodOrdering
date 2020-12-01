@@ -14,11 +14,8 @@ public class CartModel {
         }
         return instance;
     }
-
     public void appendCart(FoodMenuItem item) {this.cart.add(item);}
-
     public ArrayList<FoodMenuItem> getCart() { return this.cart; }
-
     public void showCart() {
         for(FoodMenuItem food : cart)
         {
@@ -26,7 +23,6 @@ public class CartModel {
                     food.foodID, food.name, food.price, food.type, food.available));
         }
     }
-
     public FoodMenuItem getCartItemsByID(int id) {
         FoodMenuItem item = null;
         for (FoodMenuItem food : this.cart)
@@ -35,5 +31,16 @@ public class CartModel {
                 item = food;
         }
         return item;
+    }
+    public int getNumberOfItems(){
+        return getCart().size();
+    }
+    public void emptyCart(){
+        getCart().clear();
+    }
+    public void promptUser(){
+        if(getNumberOfItems()>1){
+
+        }
     }
 }

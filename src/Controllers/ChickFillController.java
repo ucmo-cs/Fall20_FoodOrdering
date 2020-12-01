@@ -39,6 +39,7 @@ public class ChickFillController extends RestaurantBaseController{
         SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
+
     }
 
     public void fillTable() throws SQLException {

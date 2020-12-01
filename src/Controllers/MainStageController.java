@@ -1,5 +1,8 @@
 package Controllers;
 
+import Models.CartModel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -12,6 +15,7 @@ public class MainStageController {
     static MainStageController instance = null;
     public Stage mainStage=new Stage();
     OrderStageController orderStageController=new OrderStageController();
+    PopUpMessageController popUpMessageController=new PopUpMessageController();
     Parent root;
     @FXML Pane paneMenu;
     @FXML Button buttonHome;
@@ -35,6 +39,20 @@ public class MainStageController {
         mainStage.setTitle("UCMO Food Ordering (Mule Trough)");
         mainStage.setScene(scene);
         mainStage.show();
+    }
+
+    public boolean checkCart() throws IOException {
+        boolean run=false;
+        if(CartModel.getInstance().getNumberOfItems()>0){
+            run=promptUser();
+        }
+        return run;
+    }
+
+    public boolean promptUser() throws IOException {
+        popUpMessageController.openPopUp();
+//        EventHandler<ActionEvent> buttonclick
+        return true;
     }
 
     public void closeMainStage(){

@@ -28,8 +28,7 @@ class RestaurantBaseController {
         }
     }
 
-    String formatOrderForDB(int[] items)
-    {
+    String formatOrderForDB(int[] items) {
         StringBuilder s= new StringBuilder();
         for(int i=0; i<items.length; i++)
         {
@@ -39,8 +38,7 @@ class RestaurantBaseController {
         }
         return s.toString();
     }
-    double calculateOrderTotal(int[] items)
-    {
+    double calculateOrderTotal(int[] items) {
         double subtotal = 0.0;
         for (int i:items)
         {
@@ -50,33 +48,26 @@ class RestaurantBaseController {
         }
         return Double.parseDouble(String.format("%.2f", subtotal));
     }
-
     void showNewOrders(int restaurantID) throws Exception {
         System.out.println("\nNEW ORDERS\n");
         String getNewOrdersQuery = RestaurantQueries.getNewOrdersQuery(String.valueOf(restaurantID));
         showOrderHistory(getNewOrdersQuery);
     }
-
-    void showReadyOrders(int restaurantID) throws Exception
-    {
+    void showReadyOrders(int restaurantID) throws Exception {
         System.out.println("\nORDERS READY FOR PICKUP\n");
         String getNewOrdersQuery = RestaurantQueries.getReadyOrdersQuery(String.valueOf(restaurantID));
         showOrderHistory(getNewOrdersQuery);
     }
-    void makeOrderReady(int orderID) throws Exception
-    {
+    void makeOrderReady(int orderID) throws Exception {
         String makeOrderReadyQuery = RestaurantQueries.makeOrderReadyQuery(String.valueOf(orderID));
         SQLCommands sqlCommands = new SQLCommands();
         sqlCommands.readDataBase(1, makeOrderReadyQuery);
     }
-
-    void makeOrderComplete(int orderID) throws Exception
-    {
+    void makeOrderComplete(int orderID) throws Exception {
         String makeOrderCompleteQuery = RestaurantQueries.completeOrderQuery(String.valueOf(orderID));
         SQLCommands sqlCommands = new SQLCommands();
         sqlCommands.readDataBase(1, makeOrderCompleteQuery);
     }
-
     private void showOrderHistory(String query) throws Exception {
         SQLCommands sqlCommands = new SQLCommands();
         CachedRowSet orders = sqlCommands.readDataBase(1, query);
