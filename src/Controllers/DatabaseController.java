@@ -21,7 +21,7 @@ public class DatabaseController {
 
         Connection conn = null;
 
-        System.out.println("===========\n"+query+"\n");
+        //System.out.println("===========\n"+query+"\n");
 
         try {
             String url = String.format(baseURL, schema);

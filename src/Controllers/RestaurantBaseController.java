@@ -1,32 +1,37 @@
-import Models.FoodMenuItem;
-import Models.MenuModel;
-import Models.User;
-import Models.SQLCommands;
+package Controllers;
+
+import Models.*;
 import Queries.RestaurantQueries;
 import Queries.StudentQueries;
 
 import javax.sql.rowset.CachedRowSet;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 class RestaurantBaseController {
 
     MenuModel menuModel = new MenuModel();
     User user;
+    CartModel cart;
+
 
     public void setUser(User u) { this.user = u; }
 
-    void showUser()
-    {
+    void showUser(){
         System.out.printf("Logged in as: %s, %s %s\n", this.user.getLname(), this.user.getFname(), this.user.getID());
     }
 
     void buildMenu(int restaurantID) throws Exception {
+        this.menuModel = buildStaticMenu(restaurantID);
+    }
+
+    private static MenuModel buildStaticMenu(int restaurantID) throws Exception
+    {
+        MenuModel menu = new MenuModel();
         String getFoodsQuery = RestaurantQueries.getFoodsByRestaurantIDQuery(String.valueOf(restaurantID));
         SQLCommands sqlCommands = new SQLCommands();
         CachedRowSet foods = sqlCommands.readDataBase(1, getFoodsQuery);
-        while(foods.next())
-        {
+        while(foods.next()) {
             FoodMenuItem item = new FoodMenuItem(
                     foods.getString(1),
                     foods.getString(2),
@@ -34,79 +39,60 @@ class RestaurantBaseController {
                     foods.getString(4),
                     foods.getString(5),
                     foods.getString(6));
-            this.menuModel.appendFood(item);
+            menu.appendFood(item);
         }
+        return menu;
     }
 
-    void createNewOrder(int[] items, int restaurant_id) throws Exception {
-        SQLCommands sqlCommands = new SQLCommands();
-        double subtotal = calculateOrderSubtotal(items);
-        String submitOrderQuery = RestaurantQueries.submitNewOrderQuery(
-                this.user.getID(),
-                formatOrderForDB(items),
-                String.valueOf(subtotal),
-                String.valueOf(restaurant_id));
-        System.out.println(submitOrderQuery);
-
-        // do command
-        sqlCommands.readDataBase(1, submitOrderQuery);
-
-        // debit account
-        String debitAccountQuery = StudentQueries.debitDiningDollarsQuery(this.user.getID(), String.valueOf(subtotal));
-        System.out.println(debitAccountQuery);
-        //sqlCommands.readDataBase(2, debitAccountQuery);
-    }
-
-    String formatOrderForDB(int[] items)
+    static String formatOrderForDB(List<FoodMenuItem> items)
     {
         StringBuilder s= new StringBuilder();
-        for(int i=0; i<items.length; i++)
+        Iterator<FoodMenuItem> itemsIterator = items.iterator();
+        while(itemsIterator.hasNext())
         {
-            s.append(items[i]);
-            if(i+1 < items.length)
+            s.append(itemsIterator.next().foodID);
+            if(itemsIterator.hasNext())
                 s.append(",");
         }
         return s.toString();
     }
-    double calculateOrderSubtotal(int[] items)
+    static double calculateOrderTotal(List<FoodMenuItem> items)
     {
         double subtotal = 0.0;
-        for (int i:items)
+        for (FoodMenuItem f:items)
         {
-            FoodMenuItem item = this.menuModel.getFoodByID(i);
-            if(item != null)
-                subtotal += item.price;
+            subtotal += f.price;
         }
         return Double.parseDouble(String.format("%.2f", subtotal));
     }
 
-    void showNewOrders(int restaurantID) throws Exception {
+    static void showNewOrders(int restaurantID) throws Exception {
         System.out.println("\nNEW ORDERS\n");
         String getNewOrdersQuery = RestaurantQueries.getNewOrdersQuery(String.valueOf(restaurantID));
-        showOrderHistory(getNewOrdersQuery);
+        showOrderHistory(getNewOrdersQuery, buildStaticMenu(restaurantID));
     }
 
-    void showReadyOrders(int restaurantID) throws Exception
+    static void showReadyOrders(int restaurantID) throws Exception
     {
         System.out.println("\nORDERS READY FOR PICKUP\n");
         String getNewOrdersQuery = RestaurantQueries.getReadyOrdersQuery(String.valueOf(restaurantID));
-        showOrderHistory(getNewOrdersQuery);
+        showOrderHistory(getNewOrdersQuery, buildStaticMenu(restaurantID));
     }
-    void makeOrderReady(int orderID) throws Exception
+    static void makeOrderReady(int orderID) throws Exception
     {
         String makeOrderReadyQuery = RestaurantQueries.makeOrderReadyQuery(String.valueOf(orderID));
         SQLCommands sqlCommands = new SQLCommands();
         sqlCommands.readDataBase(1, makeOrderReadyQuery);
     }
 
-    void makeOrderComplete(int orderID) throws Exception
+    static void makeOrderComplete(int orderID) throws Exception
     {
         String makeOrderCompleteQuery = RestaurantQueries.completeOrderQuery(String.valueOf(orderID));
         SQLCommands sqlCommands = new SQLCommands();
         sqlCommands.readDataBase(1, makeOrderCompleteQuery);
     }
 
-    private void showOrderHistory(String query) throws Exception {
+    static private void showOrderHistory(String query, MenuModel menu) throws Exception {
         SQLCommands sqlCommands = new SQLCommands();
         CachedRowSet orders = sqlCommands.readDataBase(1, query);
         while(orders.next())
@@ -131,8 +117,38 @@ class RestaurantBaseController {
             String[] itemsAsList = items.split("\\s*,\\s*");
             for(String item:itemsAsList)
             {
-                System.out.printf("\t%s\n", this.menuModel.getFoodByID(Integer.parseInt(item)).name);
+                System.out.printf("\t%s\n", menu.getFoodByID(Integer.parseInt(item)).name);
             }
         }
+    }
+    static private void debitAmount(double orderTotal, User u) throws Exception {
+        String query = StudentQueries.debitDiningDollarsQuery(u.getID(), String.valueOf(orderTotal));
+        SQLCommands sqlCommands = new SQLCommands();
+        sqlCommands.readDataBase(2, query);
+    }
+    static private double getUserDiningBalance(User u) throws Exception
+    {
+        String query = StudentQueries.getBalanceQuery(u.getID());
+        SQLCommands sqlCommands = new SQLCommands();
+        CachedRowSet balance = sqlCommands.readDataBase(2, query);
+        balance.next();
+        return Double.parseDouble(String.format("%.2f", Double.parseDouble(balance.getString(1))));
+    }
+    static private void submitOrder(String items, String total, String restaurant_id, User u) throws Exception {
+        String query = RestaurantQueries.submitNewOrderQuery(u.getID(), items, total, restaurant_id);
+        SQLCommands sqlCommands = new SQLCommands();
+        sqlCommands.readDataBase(2, query);
+    }
+    static public void processOrder(List<FoodMenuItem> items, String restaurant_id, User u) throws Exception {
+        double orderTotal = calculateOrderTotal(items);
+        double userBalance = getUserDiningBalance(u);
+        if(orderTotal > userBalance)
+            throw new Exception("Insufficient Funds");
+        else
+        {
+            debitAmount(orderTotal, u);
+            submitOrder(formatOrderForDB(items), String.valueOf(orderTotal), restaurant_id, u);
+        }
+
     }
 }

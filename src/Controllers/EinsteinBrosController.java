@@ -1,25 +1,17 @@
+package Controllers;
+
 import Models.FoodMenuItem;
 import Models.RestaurantModel;
-import Queries.RestaurantQueries;
+import Models.SQLCommands;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import javax.sql.rowset.CachedRowSet;
-import java.io.IOException;
-import java.awt.*;
-import java.sql.SQLException;
 import java.util.List;
 
 public class EinsteinBrosController extends RestaurantBaseController{
 
+    @FXML TabPane tabPaneEinstein;
     @FXML Button buttonCheckout;
     @FXML Button buttonAddCart;
     @FXML Tab tabBagels;
@@ -63,20 +55,24 @@ public class EinsteinBrosController extends RestaurantBaseController{
 
         for(FoodMenuItem f:brosFood) {
             switch (f.type) {
-                case "bagel" -> tableViewBagel.getItems().add(f);
-                case "shmear" -> tableViewShmear.getItems().add(f);
-                case "drink" -> tableViewDrinks.getItems().add(f);
+                case "bagel":   tableViewBagel.getItems().add(f);   break;
+                case "shmear":  tableViewShmear.getItems().add(f);  break;
+                case "drink":   tableViewDrinks.getItems().add(f);  break;
             }
         }
     }
-
-    public void OpenCheckout() throws IOException{
-        Parent checkout = FXMLLoader.load(getClass().getResource("FXML_Files/CheckoutScreen.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(checkout,1000,700);
-        scene.getStylesheets().add(getClass().getResource("FXML_Files/test.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("FXML_Files/login.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+    public void getItem(){
+        if(tabPaneEinstein.getSelectionModel().getSelectedItem().getText().equals("      Bagels      ")){
+            FoodMenuItem foodMenuItem=tableViewBagel.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
+        }
+        else if(tabPaneEinstein.getSelectionModel().getSelectedItem().getText().equals("      Shmear      ")){
+            FoodMenuItem foodMenuItem=tableViewShmear.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
+        }
+        else if(tabPaneEinstein.getSelectionModel().getSelectedItem().getText().equals("      Drinks       ")){
+            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+            System.out.println(foodMenuItem.toString());
+        }
     }
 }

@@ -1,4 +1,5 @@
-import java.sql.PreparedStatement;
+package Models;
+
 import java.sql.SQLException;
 
 public class ConnectionValues {
@@ -10,11 +11,6 @@ public class ConnectionValues {
 
     public ConnectionValues(int db) throws SQLException {
         getConnectionSettings(db);
-    }
-
-    // Empty constructor
-    public ConnectionValues() {
-
     }
 
     // Establish the connection settings
@@ -35,11 +31,11 @@ public class ConnectionValues {
         urlString= serverURL + serverDbSchema + serverTimeZone;
     }
 
-    public PreparedStatement createPreparedStatment(ConnectionValues connection, String query){
-        PreparedStatement preparedStatement=null;
-
-        return preparedStatement;
-    }
+//    public PreparedStatement createPreparedStatement(ConnectionValues connection, String query){
+//        PreparedStatement preparedStatement=null;
+//
+//        return preparedStatement;
+//    }
 
     public String getUserName() { return userName; }
 

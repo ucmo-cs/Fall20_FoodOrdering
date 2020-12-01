@@ -9,13 +9,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
          <children>
             <TextField fx:id="textFieldUsername" layoutX="280.0" layoutY="279.0" prefHeight="44.0" prefWidth="236.0" promptText="Username" styleClass="usernameField" />
             <PasswordField fx:id="textFieldPassword" layoutX="280.0" layoutY="358.0" prefHeight="44.0" prefWidth="236.0" promptText="Password" styleClass="passwordField" />
-            <Button fx:id="buttonLogin" layoutX="281.0" layoutY="427.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
             <ImageView fitHeight="123.0" fitWidth="191.0" layoutX="302.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/ucm.png" />
@@ -33,5 +32,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="buttonLogin" layoutX="282.0" layoutY="442.0" mnemonicParsing="false" onAction="#attemptLogin" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Login" />
    </children>
 </Pane>

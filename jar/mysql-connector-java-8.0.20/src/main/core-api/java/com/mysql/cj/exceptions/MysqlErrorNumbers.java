@@ -243,7 +243,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_BAD_SLAVE = 1200; //SQLSTATE: HY000 Message: The server is not configured as slave; fix in config file or with CHANGE MASTER TO
     public final static int ER_MASTER_INFO = 1201; //SQLSTATE: HY000 Message: Could not initialize master info structure; more error messages can be found in the MySQL error log
     public final static int ER_SLAVE_THREAD = 1202; //SQLSTATE: HY000 Message: Could not create slave thread; check system resources
-    public final static int ER_TOO_MANY_USER_CONNECTIONS = 1203; //SQLSTATE: 42000 Message: User %s already has more than 'max_user_connections' active connections
+    public final static int ER_TOO_MANY_USER_CONNECTIONS = 1203; //SQLSTATE: 42000 Message: Models.User %s already has more than 'max_user_connections' active connections
     public final static int ER_SET_CONSTANTS_ONLY = 1204; //SQLSTATE: HY000 Message: You may only use constant expressions with SET
     public final static int ER_LOCK_WAIT_TIMEOUT = 1205; //SQLSTATE: HY000 Message: Lock wait timeout exceeded; try restarting transaction
     public final static int ER_LOCK_TABLE_FULL = 1206; //SQLSTATE: HY000 Message: The total number of locks exceeds the lock table size
@@ -266,7 +266,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_CANT_UPDATE_WITH_READLOCK = 1223; //SQLSTATE: HY000 Message: Can't execute the query because you have a conflicting read lock
     public final static int ER_MIXING_NOT_ALLOWED = 1224; //SQLSTATE: HY000 Message: Mixing of transactional and non-transactional tables is disabled
     public final static int ER_DUP_ARGUMENT = 1225; //SQLSTATE: HY000 Message: Option '%s' used twice in statement
-    public final static int ER_USER_LIMIT_REACHED = 1226; //SQLSTATE: 42000 Message: User '%s' has exceeded the '%s' resource (current value: %ld)
+    public final static int ER_USER_LIMIT_REACHED = 1226; //SQLSTATE: 42000 Message: Models.User '%s' has exceeded the '%s' resource (current value: %ld)
     public final static int ER_SPECIFIC_ACCESS_DENIED_ERROR = 1227; //SQLSTATE: 42000 Message: Access denied; you need (at least one of) the %s privilege(s) for this operation
     public final static int ER_LOCAL_VARIABLE = 1228; //SQLSTATE: HY000 Message: Variable '%s' is a SESSION variable and can't be used with SET GLOBAL
     public final static int ER_GLOBAL_VARIABLE = 1229; //SQLSTATE: HY000 Message: Variable '%s' is a GLOBAL variable and should be set with SET GLOBAL

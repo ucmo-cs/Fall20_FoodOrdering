@@ -1,5 +1,8 @@
+package Controllers;
+
 import Models.FoodMenuItem;
 import Models.RestaurantModel;
+import Models.SQLCommands;
 import Queries.RestaurantQueries;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,7 +1,9 @@
+package Controllers;
+
 import java.io.IOException;
 
 public class FrontScreenController {
-    MainStageController mainStageController=MainStageController.getInstance();
+    private MainStageController mainStageController=MainStageController.getInstance();
 
     public void openTacoBell() throws IOException {
         mainStageController.openTacoBellMenu();
