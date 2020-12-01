@@ -1,14 +1,12 @@
 package Controllers;
 
-import Models.MenuModel;
-import Models.Order;
-import Models.SQLCommands;
-import Models.User;
+import Models.*;
 import Queries.RestaurantQueries;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.sql.rowset.CachedRowSet;
 import java.util.ArrayList;
@@ -17,12 +15,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class EmployeeViewPointController {
-    @FXML public TableView pickup_table;
-    @FXML public TableView new_order_table;
+    @FXML public TableView<Order> pickup_table;
+    @FXML public TableView<Order> new_order_table;
     @FXML public TableColumn columnNewOrderID;
     @FXML public TableColumn columnNewOrderItems;
     @FXML public TableColumn columnReadyID;
     @FXML public TableColumn columnReadyName;
+
 
     private User user;
 
@@ -57,8 +56,11 @@ public class EmployeeViewPointController {
         List<Order> orders = getOrdersAsList(getNewOrdersQuery,
                 RestaurantBaseController.buildStaticMenu(Integer.parseInt(this.user.getID())));
 
+        columnNewOrderID.setCellValueFactory(new PropertyValueFactory<Order,String>("order_id"));
+        columnNewOrderItems.setCellValueFactory(new PropertyValueFactory<Order,String>("order_items"));
         for(Order o : orders) {
-            System.out.println(o.toString());
+            //System.out.println(o.toString());
+            new_order_table.getItems().add(o);
         }
     }
 
