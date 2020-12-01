@@ -3,7 +3,6 @@ package Controllers;
 import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.SQLCommands;
-import Models.RestaurantModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -32,13 +31,13 @@ public class ChickFillController extends RestaurantBaseController{
     @FXML TableColumn columnDrinksPrice;
     @FXML TableColumn columnDrinksAvailable;
 
-    private RestaurantModel chick = new RestaurantModel();
     private final static int RESTAURANT_ID = 1;
 
     public void initialize() throws Exception {
         SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
+        this.cart = CartModel.getInstance();
     }
 
     public void fillTable() throws SQLException {
@@ -73,11 +72,13 @@ public class ChickFillController extends RestaurantBaseController{
             foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
-        else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Drinks   ")){
-            foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+        else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Drinks   ")) {
+            foodMenuItem = tableViewDrinks.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
-        CartModel.getInstance().appendCart(foodMenuItem);
+        this.cart.setUser(this.user);
+        this.cart.setRestaurant_id(RESTAURANT_ID);
+        this.cart.appendToCart(foodMenuItem);
     }
 }
 

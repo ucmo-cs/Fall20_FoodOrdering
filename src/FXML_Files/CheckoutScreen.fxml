@@ -17,7 +17,7 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="buttonSubmitOrder" layoutX="394.0" layoutY="463.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Submit Order" />
+      <Button fx:id="buttonSubmitOrder" layoutX="394.0" layoutY="463.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Submit Order" onAction="#submitOrder"/>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="411.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ucm.png" />

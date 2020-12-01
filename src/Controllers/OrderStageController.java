@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ public class OrderStageController {
     static OrderStageController instance = null;
     public Stage cartStage=new Stage();
     Parent root;
+    User user;
     @FXML Pane paneOrder;
 
     public static OrderStageController getInstance(){ return instance; }
@@ -19,6 +21,7 @@ public class OrderStageController {
     public void closeOrderStage(){
         paneOrder.getChildren().clear();
     }
+    public void setUser(User u) { this.user = u; }
 
     public void initialize() throws IOException {
         instance=this;
@@ -26,7 +29,8 @@ public class OrderStageController {
     }
 
     public void openCartStage() throws Exception{
-        root= FXMLLoader.load(getClass().getResource("/FXML_Files/OrderStage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/OrderStage.fxml"));
+        root = loader.load();
         Scene scene=new Scene(root,655,555);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
@@ -36,13 +40,17 @@ public class OrderStageController {
     }
 
     public void openCartPane() throws IOException {
-        Pane paneCart=FXMLLoader.load(getClass().getResource("/FXML_Files/MyCartScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/MyCartScreen.fxml"));
+        Pane paneCart = loader.load();
         paneOrder.getChildren().clear();
         paneOrder.getChildren().add(paneCart);
     }
 
     public void openCheckoutPane() throws IOException {
-        Pane paneCheckout=FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.FXML"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
+        Pane paneCheckout = loader.load();
+        CheckoutScreenController controller = loader.getController();
+        //controller.setUser(this.user);
         paneOrder.getChildren().clear();
         paneOrder.getChildren().add(paneCheckout);
     }
