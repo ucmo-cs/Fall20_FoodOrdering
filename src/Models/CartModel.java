@@ -22,7 +22,9 @@ public class CartModel {
         return instance;
     }
 
+
     public void appendToCart(FoodMenuItem item) {this.cart.add(item);}
+
 
     public ArrayList<FoodMenuItem> getCart() { return this.cart; }
 
@@ -42,6 +44,19 @@ public class CartModel {
                 item = food;
         }
         return item;
+    }
+
+    public int getNumberOfItems(){
+        return getCart().size();
+    }
+    public void appendCart(FoodMenuItem item) {this.cart.add(item);}
+    public void emptyCart(){
+        getCart().clear();
+    }
+    public void promptUser(){
+        if(getNumberOfItems()>1){
+
+        }
     }
 
 }

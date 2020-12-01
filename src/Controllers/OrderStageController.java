@@ -18,6 +18,7 @@ public class OrderStageController {
 
     public static OrderStageController getInstance(){ return instance; }
 
+    @FXML
     public void closeOrderStage(){
         paneOrder.getChildren().clear();
     }

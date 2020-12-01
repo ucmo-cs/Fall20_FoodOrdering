@@ -63,12 +63,13 @@ public class MainStageController {
         paneMenu.getChildren().add(paneMap);
     }
 
-    public void openEmployeeView() throws IOException {
+    public void openEmployeeView() throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/EmployeeViewPoint.fxml"));
         Pane paneEmployee = loader.load();
         EmployeeViewPointController controller = loader.getController();
         controller.setUser(this.user);
         controller.showUser();
+        controller.refreshTables();
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneEmployee);
         buttonLogout.setVisible(true);
