@@ -4,9 +4,14 @@ import Models.FoodMenuItem;
 import Models.RestaurantModel;
 import Models.SQLCommands;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EinsteinBrosController extends RestaurantBaseController{
@@ -74,5 +79,14 @@ public class EinsteinBrosController extends RestaurantBaseController{
             FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
+    }
+    public void OpenCheckout() throws IOException {
+        Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(checkout,1000,700);
+        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
     }
 }
