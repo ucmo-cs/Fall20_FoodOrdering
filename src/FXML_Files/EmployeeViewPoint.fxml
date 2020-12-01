@@ -9,28 +9,66 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeViewPointController">
    <children>
-      <Label layoutX="47.0" layoutY="63.0" prefHeight="42.0" prefWidth="513.0" styleClass="titlelbl" text="Order History" textFill="#d3caca">
+      <Label layoutX="47.0" layoutY="63.0" prefHeight="51.0" prefWidth="235.0" styleClass="titlelbl" text="Logged in as" textFill="#d3caca">
          <font>
-            <Font size="28.0" />
+            <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="325.0" layoutY="620.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Mark as completed" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="573.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="341.0" layoutY="604.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="87.0" styleClass="loginButton">
+         <font>
+            <Font size="32.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="71.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/refresh.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="570.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ucm.png" />
          </image>
       </ImageView>
-      <TableView layoutX="47.0" layoutY="234.0" prefHeight="348.0" prefWidth="719.0">
+      <TableView layoutX="28.0" layoutY="214.0" prefHeight="346.0" prefWidth="371.0">
          <columns>
-            <TableColumn prefWidth="307.0" text="Name" />
-            <TableColumn prefWidth="142.0" text="Order #" />
-            <TableColumn prefWidth="97.0" text="Quantity" />
-            <TableColumn prefWidth="88.0" text="Type" />
-            <TableColumn prefWidth="84.0" text="Price" />
+            <TableColumn prefWidth="160.0" text="Order ID" />
+            <TableColumn prefWidth="100.0" text="Items" />
+            <TableColumn prefWidth="129.0" text="Ready" />
          </columns>
       </TableView>
+      <Label layoutX="257.0" layoutY="63.0" prefHeight="51.0" prefWidth="235.0" styleClass="titlelbl" textFill="#d3caca">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TableView layoutX="399.0" layoutY="214.0" prefHeight="346.0" prefWidth="371.0">
+         <columns>
+            <TableColumn prefWidth="268.0" text="Order name" />
+            <TableColumn prefWidth="102.0" text="Done" />
+         </columns>
+      </TableView>
+      <Label layoutX="112.0" layoutY="162.0" prefHeight="51.0" prefWidth="235.0" styleClass="titlelbl" text="New Orders" textFill="#d3caca">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="443.0" layoutY="162.0" prefHeight="53.0" prefWidth="298.0" styleClass="titlelbl" text="Ready for pickup" textFill="#d3caca">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button layoutX="136.0" layoutY="560.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" styleClass="loginButton" text="mark as ready">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="515.0" layoutY="560.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" styleClass="loginButton" text="mark as done">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

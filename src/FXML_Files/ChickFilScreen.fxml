@@ -16,7 +16,7 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
          <children>
-            <Button fx:id="buttonCheckout" layoutX="315.0" layoutY="650.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Checkout" />
+            <Button fx:id="buttonCheckout" layoutX="315.0" layoutY="650.0" mnemonicParsing="false" onAction="#OpenCheckout" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Checkout" />
             <Label layoutX="37.0" layoutY="53.0" prefHeight="42.0" prefWidth="513.0" styleClass="titlelbl" text="Welcome to Chick-fil-A Menu" textFill="#d3caca">
                <font>
                   <Font size="28.0" />
