@@ -3,11 +3,7 @@ package Controllers;
 import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.SQLCommands;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -21,6 +17,7 @@ import java.util.List;
 
 public class ChickFillController extends RestaurantBaseController{
     @FXML TabPane tabPaneChick;
+    @FXML Button buttonCheckout;
     @FXML Tab tabMain;
     @FXML Tab tabDessert;
     @FXML Tab tabDrinks;
@@ -36,7 +33,8 @@ public class ChickFillController extends RestaurantBaseController{
     @FXML TableColumn columnDrinksName;
     @FXML TableColumn columnDrinksPrice;
     @FXML TableColumn columnDrinksAvailable;
-
+    OrderStageController orderStageController=new OrderStageController();
+    private RestaurantModel chick = new RestaurantModel();
     private final static int RESTAURANT_ID = 1;
 
     public void initialize() throws Exception {
@@ -72,30 +70,21 @@ public class ChickFillController extends RestaurantBaseController{
         FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("    Main   ")) {
             foodMenuItem= tableViewMain.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Dessert   ")){
             foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
         }
-        else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Drinks   ")) {
-            foodMenuItem = tableViewDrinks.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
+        else if(tabPaneChick.getSelectionModel().getSelectedItem().getText().equals("   Drinks   ")){
+            foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
         }
         this.cart.setUser(this.user);
         this.cart.setRestaurant_id(RESTAURANT_ID);
-        this.cart.appendToCart(foodMenuItem);
+        this.cart.appendCart(foodMenuItem);
     }
 
-//    public void OpenCheckout() throws IOException {
-//        Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-//        Stage stage = new Stage();
-//        Scene scene = new Scene(checkout,1000,700);
-//        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
-//        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-//        stage.setScene(scene);
-//        stage.show();
-//
-//    }
+    public void openCheckout() throws Exception {
+        orderStageController.openCartStage();
+    }
+
 }
 

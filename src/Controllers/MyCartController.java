@@ -2,6 +2,7 @@ package Controllers;
 
 import Models.CartModel;
 import Models.FoodMenuItem;
+import com.sun.javafx.collections.MappingChange;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
@@ -11,20 +12,25 @@ import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MyCartController {
     // Classes
     OrderStageController orderStageController=OrderStageController.getInstance();
+    List<FoodMenuItem> cartItems=CartModel.getInstance().getCart();
     // Elements
     @FXML TableView<FoodMenuItem> tableViewCart;
     @FXML TableColumn columnCartName;
     @FXML TableColumn columnCartPrice;
     @FXML TableColumn columnCartQuantity;
     @FXML Label labelSubtotal;
+    float fTotal=0;
+    String sTotal="";
 
     public void initialize() throws SQLException {
         fillTable();
+        setTotal();
     }
 
     public void close(){
@@ -36,7 +42,6 @@ public class MyCartController {
     }
 
     public void fillTable() throws SQLException{
-        List<FoodMenuItem> cartItems=CartModel.getInstance().getCart();
         columnCartName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("name"));
         columnCartPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("price"));
 //        columnCartQuantity.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("quantity"));
@@ -44,11 +49,21 @@ public class MyCartController {
         for(FoodMenuItem f:cartItems){
             tableViewCart.getItems().add(f);
         }
-
     }
 
-    //1. Take items from cart and populate table with the results.
-    //2. Display subtotal, quantity and ensure availability of items in cart
-    //3. If user clicks checkout button, switch pane to checkout and process payment information
+    public void setTotal(){
+        for(FoodMenuItem f:cartItems){
+            fTotal=fTotal+f.price;
+        }
+        sTotal=String.valueOf(fTotal);
+        labelSubtotal.setText("Subtotal: $"+sTotal);
+    }
+    public void setQuantity(){
+        HashMap<String,Integer> hashMap=new HashMap<String, Integer>();
+        for(FoodMenuItem f:cartItems){
+
+        }
+    }
+
 
 }

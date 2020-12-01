@@ -4,7 +4,6 @@ import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.RestaurantModel;
 import Models.SQLCommands;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,7 +32,7 @@ public class StarBucksController extends RestaurantBaseController {
     @FXML TableColumn columnBakeryName;
     @FXML TableColumn columnBakeryPrice;
     @FXML TableColumn columnBakeryAvailable;
-
+    OrderStageController orderStageController=new OrderStageController();
     private RestaurantModel bucks = new RestaurantModel();
     private final static int RESTAURANT_ID = 3;
 
@@ -66,22 +65,14 @@ public class StarBucksController extends RestaurantBaseController {
         FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
             foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("      Bakery      ")){
             foodMenuItem=tableViewBakery.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
         }
         CartModel.getInstance().appendCart(foodMenuItem);
     }
 
-    public void OpenCheckout() throws IOException {
-        Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(checkout,1000,700);
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+    public void openCheckout() throws Exception {
+        orderStageController.openCartStage();
     }
 }
