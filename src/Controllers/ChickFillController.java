@@ -1,17 +1,9 @@
 package Controllers;
 
-import Models.CartModel;
-import Models.FoodMenuItem;
-import Models.SQLCommands;
+import Models.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
