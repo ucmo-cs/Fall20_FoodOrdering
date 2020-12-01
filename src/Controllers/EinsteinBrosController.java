@@ -30,7 +30,7 @@ public class EinsteinBrosController extends RestaurantBaseController{
     @FXML TableColumn columnShmearName;
     @FXML TableColumn columnShmearPrice;
     @FXML TableColumn columnShmearAvailable;
-
+    OrderStageController orderStageController=new OrderStageController();
     private RestaurantModel einstein = new RestaurantModel();
     private final static int RESTAURANT_ID = 4;
 
@@ -38,6 +38,7 @@ public class EinsteinBrosController extends RestaurantBaseController{
         SQLCommands sqlCommands=new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
+        this.cart=CartModel.getInstance();
     }
 
     public void fillTable() {
@@ -76,6 +77,12 @@ public class EinsteinBrosController extends RestaurantBaseController{
             foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
-        CartModel.getInstance().appendCart(foodMenuItem);
+        this.cart.setUser(this.user);
+        this.cart.setRestaurant_id(RESTAURANT_ID);
+        this.cart.appendCart(foodMenuItem);
+    }
+
+    public void openCheckout() throws Exception {
+        orderStageController.openCartStage();
     }
 }

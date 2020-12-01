@@ -31,13 +31,14 @@ public class TacoBellController extends RestaurantBaseController {
     @FXML TableColumn columnDrinksName;
     @FXML TableColumn columnDrinksPrice;
     @FXML TableColumn columnDrinksAvailable;
-
+    OrderStageController orderStageController=new OrderStageController();
     private final static int RESTAURANT_ID = 2;
 
     public void initialize() throws Exception {
         SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
+        this.cart=CartModel.getInstance();
     }
 
     public void fillTable() {
@@ -67,17 +68,21 @@ public class TacoBellController extends RestaurantBaseController {
         FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Main       ")){
             foodMenuItem=tableViewMain.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Dessert       ")){
             foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
             foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
         }
-        CartModel.getInstance().appendCart(foodMenuItem);
+
+        this.cart.setUser(this.user);
+        this.cart.setRestaurant_id(RESTAURANT_ID);
+        this.cart.appendCart(foodMenuItem);
+    }
+
+    public void openCheckout() throws Exception {
+        orderStageController.openCartStage();
     }
 }
 
