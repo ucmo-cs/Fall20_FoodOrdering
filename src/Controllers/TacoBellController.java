@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.SQLCommands;
 import javafx.fxml.FXML;
@@ -71,18 +72,20 @@ public class TacoBellController extends RestaurantBaseController {
     }
 
     public void getItem(){
+        FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Main       ")){
-            FoodMenuItem foodMenuItem=tableViewMain.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewMain.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Dessert       ")){
-            FoodMenuItem foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
-            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
+        CartModel.getInstance().appendCart(foodMenuItem);
     }
     public void OpenCheckout() throws IOException {
         Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
