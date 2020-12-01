@@ -1,30 +1,77 @@
 package Controllers;
 
 import Models.MenuModel;
+import Models.Order;
 import Models.SQLCommands;
 import Models.User;
 import Queries.RestaurantQueries;
+import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import javax.sql.rowset.CachedRowSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 public class EmployeeViewPointController {
+    @FXML public TableView pickup_table;
+    @FXML public TableView new_order_table;
+    @FXML public TableColumn columnNewOrderID;
+    @FXML public TableColumn columnNewOrderItems;
+    @FXML public TableColumn columnReadyID;
+    @FXML public TableColumn columnReadyName;
+
     private User user;
 
     public void setUser(User user) { this.user = user; }
     public void showUser(){ System.out.printf("Logged in as %s", this.user.toString()); }
 
-    void showNewOrders() throws Exception {
+    @FXML
+    void refreshTables() throws Exception {
+        System.out.println("refresh");
+        showNewOrders();
+        showReadyOrders();
+    }
+
+    @FXML
+    void markComplete() throws Exception {
+        int order_id = -1;  // initial value, should be replaced with order ID of the selected order
+        System.out.printf("Order %d marked as complete\n", order_id);
+        //makeOrderComplete(order_id);
+    }
+
+    @FXML
+    void markReady() throws Exception {
+        int order_id = -1;  // initial value, should be replaced with order ID of the selected order
+        System.out.printf("Order %d marked as ready\n", order_id);
+        //makeOrderReady(order_id);
+    }
+
+    public void showNewOrders() throws Exception {
         System.out.println("\nNEW ORDERS\n");
         String getNewOrdersQuery = RestaurantQueries.getNewOrdersQuery(this.user.getID());
-        showOrderHistory(getNewOrdersQuery,
+
+        List<Order> orders = getOrdersAsList(getNewOrdersQuery,
                 RestaurantBaseController.buildStaticMenu(Integer.parseInt(this.user.getID())));
+
+        for(Order o : orders) {
+            System.out.println(o.toString());
+        }
     }
 
     void showReadyOrders() throws Exception {
         System.out.println("\nORDERS READY FOR PICKUP\n");
         String getNewOrdersQuery = RestaurantQueries.getReadyOrdersQuery(this.user.getID());
-        showOrderHistory(getNewOrdersQuery,
+
+        List<Order> orders = getOrdersAsList(getNewOrdersQuery,
                 RestaurantBaseController.buildStaticMenu(Integer.parseInt(this.user.getID())));
+
+        for(Order o : orders) {
+            System.out.println(o.toString());
+        }
     }
 
     static void makeOrderReady(int orderID) throws Exception {
@@ -39,23 +86,56 @@ public class EmployeeViewPointController {
         sqlCommands.readDataBase(1, makeOrderCompleteQuery);
     }
 
+    static private List<Order> getOrdersAsList(String query, MenuModel menu) throws Exception {
+        SQLCommands sqlCommands = new SQLCommands();
+        List<Order> ordersAsList = new ArrayList<>();
+        CachedRowSet orders = sqlCommands.readDataBase(1, query);
+        while(orders.next()) {
+            StringBuilder s = new StringBuilder();
+
+            String orderID = orders.getString(1);
+            String studentID = orders.getString(2);
+            String fname = orders.getString(3);
+            String lname = orders.getString(4);
+            String date = orders.getString(5);
+            String items = orders.getString(6);
+            float total = Float.parseFloat(orders.getString(7));
+            String restaurant_id = orders.getString(8);
+            boolean ready = orders.getBoolean(9);
+            boolean complete = orders.getBoolean(10);
+
+
+            List<String> itemsAsList = Arrays.asList(items.split("\\s*,\\s*"));
+            Iterator<String> iterator = itemsAsList.iterator();
+            while(iterator.hasNext()) {
+                s.append(String.format("%s", menu.getFoodByID(Integer.parseInt(iterator.next())).name));
+                if(iterator.hasNext())
+                    s.append(", ");
+            }
+
+            Order order = new Order(orderID, studentID, fname, lname, date, s.toString(), total, restaurant_id, ready, complete);
+            ordersAsList.add(order);
+        }
+        return ordersAsList;
+    }
+
     static private void showOrderHistory(String query, MenuModel menu) throws Exception {
         SQLCommands sqlCommands = new SQLCommands();
         CachedRowSet orders = sqlCommands.readDataBase(1, query);
         while(orders.next())
         {
-            String orderID =    orders.getString(1);
-            String studentID =  orders.getString(2);
-            String fname =      orders.getString(3);
-            String lname =      orders.getString(4);
-            String date =       orders.getString(5);
-            String items =      orders.getString(6);
-            String total =      orders.getString(7);
+            String orderID      =   orders.getString(1);
+            String studentID    =   orders.getString(2);
+            String fname        =   orders.getString(3);
+            String lname        =   orders.getString(4);
+            String date         =   orders.getString(5);
+            String items        =   orders.getString(6);
+            float total        =   Float.parseFloat(orders.getString(7));
 
             System.out.println("===================================");
             System.out.printf(
                     "Order No: %s\n" +
-                    "Order Total: $%s\n" +
+                    "Order Total: $%.2f\n" +
                     "Name: %s, %s %s\n" +
                     "Order Placed: %s\n" +
                     "Order Items:\n",

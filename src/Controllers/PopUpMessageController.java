@@ -27,12 +27,12 @@ public class PopUpMessageController {
         String restaurantName;
         String warningText;
         switch (restaurantID){
-            case 1 -> restaurantName="Chick-Fil-A";
-            case 2 -> restaurantName="Taco Bell";
-            case 3 -> restaurantName="Starbucks";
-            case 4 -> restaurantName="Einstein Bros";
-            case 5 -> restaurantName="Spin! Pizza";
-            default -> throw new IllegalStateException("Unexpected value: " + restaurantID);
+            case 1: restaurantName="Chick-Fil-A"; break;
+            case 2: restaurantName="Taco Bell"; break;
+            case 3: restaurantName="Starbucks"; break;
+            case 4: restaurantName="Einstein Bros"; break;
+            case 5: restaurantName="Spin! Pizza"; break;
+            default: throw new IllegalStateException("Unexpected value: " + restaurantID);
         }
         warningText="Alert, you have "+ CartModel.getInstance().getNumberOfItems()+" item(s) currently in your cart from "+restaurantName+" " +
                 "and only one restaurant's items can be in your cart at a time. If you continue then the current items in your cart will be removed.";
