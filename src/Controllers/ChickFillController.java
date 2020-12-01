@@ -84,21 +84,18 @@ public class ChickFillController extends RestaurantBaseController{
         }
         this.cart.setUser(this.user);
         this.cart.setRestaurant_id(RESTAURANT_ID);
-<<<<<<< HEAD
         this.cart.appendToCart(foodMenuItem);
     }
 
-    public void OpenCheckout() throws IOException {
-        Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(checkout,1000,700);
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-=======
-        this.cart.appendCart(foodMenuItem);
->>>>>>> Josh
-    }
+//    public void OpenCheckout() throws IOException {
+//        Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
+//        Stage stage = new Stage();
+//        Scene scene = new Scene(checkout,1000,700);
+//        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
+//        stage.setScene(scene);
+//        stage.show();
+//
+//    }
 }
 

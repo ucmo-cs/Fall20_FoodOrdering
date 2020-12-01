@@ -39,6 +39,7 @@ public class TacoBellController extends RestaurantBaseController {
     @FXML TableColumn columnDrinksAvailable;
 
     private final static int RESTAURANT_ID = 2;
+    OrderStageController orderStageController =new OrderStageController();
 
     public void initialize() throws Exception {
         SQLCommands sqlCommands = new SQLCommands();
