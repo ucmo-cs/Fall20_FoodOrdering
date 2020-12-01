@@ -25,4 +25,10 @@ public class User {
     public String getFname(){ return fname;}
     public String getLname(){ return lname;}
     public boolean getEmployee(){ return employee;}
+
+    @Override
+    public String toString(){
+        return String.format("ID: %s, FName: %s, LName: %s, Employee User: %s\n",
+                this.id, this.fname, this.lname, String.valueOf(this.employee));
+    }
 }

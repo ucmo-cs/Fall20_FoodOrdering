@@ -39,7 +39,7 @@ public class ChickFillController extends RestaurantBaseController{
         SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
-
+        this.cart = CartModel.getInstance();
     }
 
     public void fillTable() throws SQLException {
@@ -78,7 +78,9 @@ public class ChickFillController extends RestaurantBaseController{
             foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
-        CartModel.getInstance().appendCart(foodMenuItem);
+        this.cart.setUser(this.user);
+        this.cart.setRestaurant_id(RESTAURANT_ID);
+        this.cart.appendCart(foodMenuItem);
     }
 }
 
