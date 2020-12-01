@@ -62,6 +62,7 @@ public class MainStageController {
         Pane paneEmployee = loader.load();
         EmployeeViewPointController controller = loader.getController();
         controller.setUser(this.user);
+        controller.showUser();
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneEmployee);
         buttonLogout.setVisible(true);

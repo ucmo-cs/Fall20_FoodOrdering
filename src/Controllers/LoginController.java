@@ -137,7 +137,7 @@ public class LoginController {
                 CachedRowSet accountData = sqlCommands.readDataBase(1, query);
                 accountData.next();
                 setUser(accountData.getString("id"), accountData.getString("name"), "Employee",true);
-                mainStageController.setUser(user);
+                mainStageController.setUser(this.user);
                 mainStageController.openEmployeeView();
             }
             closeLogin();
