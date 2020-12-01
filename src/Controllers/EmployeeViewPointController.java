@@ -4,10 +4,15 @@ import Models.MenuModel;
 import Models.SQLCommands;
 import Models.User;
 import Queries.RestaurantQueries;
+import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 
 import javax.sql.rowset.CachedRowSet;
+import javax.swing.text.TableView;
+import java.awt.*;
 
 public class EmployeeViewPointController {
+
     private User user;
 
     public void setUser(User user) { this.user = user; }
@@ -66,5 +71,13 @@ public class EmployeeViewPointController {
                 System.out.printf("\t%s\n", menu.getFoodByID(Integer.parseInt(item)).name);
             }
         }
+    }
+    @FXML
+    TableView TableOrder;
+    @FXML
+    TableView TablePickup;
+    public void Refresh(){
+
+        
     }
 }

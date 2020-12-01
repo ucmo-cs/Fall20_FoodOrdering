@@ -131,8 +131,9 @@ public class MainStageController {
 
     public void openFrontScreen() throws IOException {
         Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/FrontScreen.fxml"));
-        buttonHome.setVisible(false);
+        buttonHome.setVisible(true);
         buttonCart.setVisible(true);
+        buttonMap.setVisible(true);
         buttonLogout.setVisible(true);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneTest);
@@ -142,6 +143,7 @@ public class MainStageController {
         Pane paneLogin = FXMLLoader.load(getClass().getResource("/FXML_Files/LoginScreen.fxml"));
         buttonHome.setVisible(false);
         buttonCart.setVisible(false);
+        buttonMap.setVisible((false));
         buttonLogout.setVisible(false);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneLogin);

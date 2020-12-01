@@ -11,12 +11,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeViewPointController">
    <children>
-      <Label layoutX="47.0" layoutY="63.0" prefHeight="51.0" prefWidth="235.0" styleClass="titlelbl" text="Logged in as" textFill="#d3caca">
+      <Label layoutX="47.0" layoutY="63.0" prefHeight="53.0" prefWidth="298.0" styleClass="titlelbl" text="Logged in as........" textFill="#d3caca">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="341.0" layoutY="604.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="87.0" styleClass="loginButton">
+      <Button fx:id="ButtonRefresh" layoutX="341.0" layoutY="604.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="78.0" prefWidth="87.0" styleClass="loginButton">
          <font>
             <Font size="32.0" />
          </font>
@@ -32,19 +32,14 @@
             <Image url="@../images/ucm.png" />
          </image>
       </ImageView>
-      <TableView layoutX="28.0" layoutY="214.0" prefHeight="346.0" prefWidth="371.0">
+      <TableView fx:id="TableOrder" layoutX="28.0" layoutY="214.0" prefHeight="346.0" prefWidth="371.0">
          <columns>
             <TableColumn prefWidth="160.0" text="Order ID" />
             <TableColumn prefWidth="100.0" text="Items" />
             <TableColumn prefWidth="129.0" text="Ready" />
          </columns>
       </TableView>
-      <Label layoutX="257.0" layoutY="63.0" prefHeight="51.0" prefWidth="235.0" styleClass="titlelbl" textFill="#d3caca">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <TableView layoutX="399.0" layoutY="214.0" prefHeight="346.0" prefWidth="371.0">
+      <TableView fx:id="TablePickup" layoutX="399.0" layoutY="214.0" prefHeight="346.0" prefWidth="371.0">
          <columns>
             <TableColumn prefWidth="268.0" text="Order name" />
             <TableColumn prefWidth="102.0" text="Done" />
@@ -52,20 +47,20 @@
       </TableView>
       <Label layoutX="112.0" layoutY="162.0" prefHeight="51.0" prefWidth="235.0" styleClass="titlelbl" text="New Orders" textFill="#d3caca">
          <font>
-            <Font size="36.0" />
+            <Font size="28.0" />
          </font>
       </Label>
       <Label layoutX="443.0" layoutY="162.0" prefHeight="53.0" prefWidth="298.0" styleClass="titlelbl" text="Ready for pickup" textFill="#d3caca">
          <font>
-            <Font size="36.0" />
+            <Font size="28.0" />
          </font>
       </Label>
-      <Button layoutX="136.0" layoutY="560.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" styleClass="loginButton" text="mark as ready">
+      <Button fx:id="ButtonReady" layoutX="136.0" layoutY="560.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" styleClass="loginButton" text="mark as ready">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="515.0" layoutY="560.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" styleClass="loginButton" text="mark as done">
+      <Button fx:id="ButtonDone" layoutX="515.0" layoutY="560.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" styleClass="loginButton" text="mark as done">
          <font>
             <Font size="20.0" />
          </font>
