@@ -19,6 +19,7 @@ public class MainStageController {
     @FXML Button buttonHome;
     @FXML Button buttonCart;
     @FXML Button buttonLogout;
+    @FXML Button buttonMap;
 
     public static MainStageController getInstance() {
         return instance;
@@ -48,7 +49,12 @@ public class MainStageController {
     }
 
     public void openCartPane() throws Exception {
-        orderStageController.openCartStage();
+        Pane paneTest = FXMLLoader.load(getClass().getResource("/FXML_Files/MyCartScreen.fxml"));
+        buttonHome.setVisible(true);
+        buttonCart.setVisible(true);
+        buttonMap.setVisible(true);
+        paneMenu.getChildren().clear();
+        paneMenu.getChildren().add(paneTest);
     }
 
     public  void openMapView() throws IOException{
