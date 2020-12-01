@@ -43,7 +43,10 @@ public class RestaurantQueries {
                 "    s.last_name,\n" +
                 "    h.order_date,\n" +
                 "    h.order_items,\n" +
-                "    h.order_total\n" +
+                "    h.order_total,\n" +
+                "    h.restaurant_id,\n" +
+                "    h.ready,\n" +
+                "    h.picked_up\n" +
                 "FROM\n" +
                 "    `restaurant`.`history` as h,\n" +
                 "    `student`.`student_information` as s\n" +
@@ -67,7 +70,10 @@ public class RestaurantQueries {
                 "    s.last_name,\n" +
                 "    h.order_date,\n" +
                 "    h.order_items,\n" +
-                "    h.order_total\n" +
+                "    h.order_total,\n" +
+                "    h.restaurant_id,\n" +
+                "    h.ready,\n" +
+                "    h.picked_up\n" +
                 "FROM\n" +
                 "    `restaurant`.`history` as h,\n" +
                 "    `student`.`student_information` as s\n" +

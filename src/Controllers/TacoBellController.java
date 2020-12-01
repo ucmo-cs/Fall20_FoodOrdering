@@ -1,15 +1,10 @@
 package Controllers;
 
-import Models.FoodMenuItem;
-import Models.SQLCommands;
+import Models.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,44 +14,61 @@ import javafx.stage.Stage;
 
 public class TacoBellController extends RestaurantBaseController {
 
-    @FXML TabPane tabPaneTacoBell;
-    @FXML Tab tabMain;
-    @FXML Tab tabDessert;
-    @FXML Tab tabDrinks;
-    @FXML TableView<FoodMenuItem> tableViewMain;
-    @FXML TableView<FoodMenuItem> tableViewDessert;
-    @FXML TableView<FoodMenuItem> tableViewDrinks;
-    @FXML TableColumn columnMainName;
-    @FXML TableColumn columnMainPrice;
-    @FXML TableColumn columnMainAvailable;
-    @FXML TableColumn columnDessertName;
-    @FXML TableColumn columnDessertPrice;
-    @FXML TableColumn columnDessertAvailable;
-    @FXML TableColumn columnDrinksName;
-    @FXML TableColumn columnDrinksPrice;
-    @FXML TableColumn columnDrinksAvailable;
-
+    @FXML
+    TabPane tabPaneTacoBell;
+    @FXML
+    Tab tabMain;
+    @FXML
+    Tab tabDessert;
+    @FXML
+    Tab tabDrinks;
+    @FXML
+    TableView<FoodMenuItem> tableViewMain;
+    @FXML
+    TableView<FoodMenuItem> tableViewDessert;
+    @FXML
+    TableView<FoodMenuItem> tableViewDrinks;
+    @FXML
+    TableColumn columnMainName;
+    @FXML
+    TableColumn columnMainPrice;
+    @FXML
+    TableColumn columnMainAvailable;
+    @FXML
+    TableColumn columnDessertName;
+    @FXML
+    TableColumn columnDessertPrice;
+    @FXML
+    TableColumn columnDessertAvailable;
+    @FXML
+    TableColumn columnDrinksName;
+    @FXML
+    TableColumn columnDrinksPrice;
+    @FXML
+    TableColumn columnDrinksAvailable;
+    OrderStageController orderStageController = new OrderStageController();
     private final static int RESTAURANT_ID = 2;
 
     public void initialize() throws Exception {
         SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
+        this.cart = CartModel.getInstance();
     }
 
     public void fillTable() {
         List<FoodMenuItem> tacoFood = this.menuModel.getFoods();
-        columnMainName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("name"));
-        columnMainPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("price"));
-        columnMainAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("available"));
+        columnMainName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));
+        columnMainPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("price"));
+        columnMainAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("available"));
 
-        columnDessertName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Name"));
-        columnDessertPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Price"));
-        columnDessertAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Available"));
+        columnDessertName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("Name"));
+        columnDessertPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("Price"));
+        columnDessertAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("Available"));
 
-        columnDrinksName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Name"));
-        columnDrinksPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Price"));
-        columnDrinksAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem,String>("Available"));
+        columnDrinksName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("Name"));
+        columnDrinksPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("Price"));
+        columnDrinksAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("Available"));
 
         for (FoodMenuItem f : tacoFood) {
             switch (f.type) {
@@ -64,34 +76,33 @@ public class TacoBellController extends RestaurantBaseController {
                     List<FoodMenuItem> main = tableViewMain.getItems();
                     main.add(f);
                     //tableViewMain.getItems().add(f);    break;
-                case "dessert": tableViewDessert.getItems().add(f); break;
-                case "drink":   tableViewDrinks.getItems().add(f);  break;
+                case "dessert":
+                    tableViewDessert.getItems().add(f);
+                    break;
+                case "drink":
+                    tableViewDrinks.getItems().add(f);
+                    break;
             }
         }
     }
 
-    public void getItem(){
-        if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Main       ")){
-            FoodMenuItem foodMenuItem=tableViewMain.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
+    public void getItem() {
+        FoodMenuItem foodMenuItem = new FoodMenuItem();
+        if (tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Main       ")) {
+            foodMenuItem = tableViewMain.getSelectionModel().getSelectedItem();
+        } else if (tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Dessert       ")) {
+            foodMenuItem = tableViewDessert.getSelectionModel().getSelectedItem();
+        } else if (tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")) {
+            foodMenuItem = tableViewDrinks.getSelectionModel().getSelectedItem();
         }
-        else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Dessert       ")){
-            FoodMenuItem foodMenuItem=tableViewDessert.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
-        }
-        else if(tabPaneTacoBell.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
-            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
-        }
+
+        this.cart.setUser(this.user);
+        this.cart.setRestaurant_id(RESTAURANT_ID);
+        this.cart.appendCart(foodMenuItem);
     }
-    public void OpenCheckout() throws IOException {
-        Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(checkout,1000,700);
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+
+    public void openCheckout() throws Exception {
+        orderStageController.openCartStage();
     }
 }
 

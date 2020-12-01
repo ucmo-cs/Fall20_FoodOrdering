@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.RestaurantModel;
 import Models.SQLCommands;
@@ -31,7 +32,7 @@ public class StarBucksController extends RestaurantBaseController {
     @FXML TableColumn columnBakeryName;
     @FXML TableColumn columnBakeryPrice;
     @FXML TableColumn columnBakeryAvailable;
-
+    OrderStageController orderStageController=new OrderStageController();
     private RestaurantModel bucks = new RestaurantModel();
     private final static int RESTAURANT_ID = 3;
 
@@ -61,14 +62,18 @@ public class StarBucksController extends RestaurantBaseController {
     }
 
     public void getItem(){
+        FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
-            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
+            foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
         }
         else if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("      Bakery      ")){
-            FoodMenuItem foodMenuItem=tableViewBakery.getSelectionModel().getSelectedItem();
-            System.out.println(foodMenuItem.toString());
+            foodMenuItem=tableViewBakery.getSelectionModel().getSelectedItem();
         }
+        CartModel.getInstance().appendCart(foodMenuItem);
+    }
+
+    public void openCheckout() throws Exception {
+        orderStageController.openCartStage();
     }
 
     public void OpenCheckout() throws IOException {

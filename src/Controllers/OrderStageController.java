@@ -18,6 +18,7 @@ public class OrderStageController {
 
     public static OrderStageController getInstance(){ return instance; }
 
+    @FXML
     public void closeOrderStage(){
         paneOrder.getChildren().clear();
     }
@@ -34,7 +35,7 @@ public class OrderStageController {
         Scene scene=new Scene(root,655,555);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        cartStage.setTitle("Placeholder");
+        cartStage.setTitle("Your Cart");
         cartStage.setScene(scene);
         cartStage.show();
     }
