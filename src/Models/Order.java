@@ -31,7 +31,7 @@ public class Order {
     @Override
     public String toString() {
         return String.format(
-                "Order %s, Restaurant %s: %s %s %s, %s\n" +
+                "Order %s, Restaurant %s: %s %s %s, Placed on %s\n" +
                         "Total: $%.2f, Ready? %s\n" +
                         "Items: %s\n",
                 this.order_id, this.restaurant_id, this.lname, this.fname, this.student_id, this.order_date,
