@@ -84,6 +84,7 @@ public class ChickFillController extends RestaurantBaseController{
         }
         this.cart.setUser(this.user);
         this.cart.setRestaurant_id(RESTAURANT_ID);
+<<<<<<< HEAD
         this.cart.appendToCart(foodMenuItem);
     }
 
@@ -95,6 +96,9 @@ public class ChickFillController extends RestaurantBaseController{
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+=======
+        this.cart.appendCart(foodMenuItem);
+>>>>>>> Josh
     }
 }
 

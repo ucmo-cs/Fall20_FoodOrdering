@@ -21,9 +21,12 @@ public class CartModel {
         }
         return instance;
     }
+<<<<<<< HEAD
 
     public void appendToCart(FoodMenuItem item) {this.cart.add(item);}
 
+=======
+>>>>>>> Josh
     public ArrayList<FoodMenuItem> getCart() { return this.cart; }
 
     public void showCart() {
@@ -43,4 +46,19 @@ public class CartModel {
         }
         return item;
     }
+<<<<<<< HEAD
+=======
+    public int getNumberOfItems(){
+        return getCart().size();
+    }
+    public void appendCart(FoodMenuItem item) {this.cart.add(item);}
+    public void emptyCart(){
+        getCart().clear();
+    }
+    public void promptUser(){
+        if(getNumberOfItems()>1){
+
+        }
+    }
+>>>>>>> Josh
 }
