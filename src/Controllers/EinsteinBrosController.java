@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.RestaurantModel;
 import Models.SQLCommands;
@@ -62,17 +63,19 @@ public class EinsteinBrosController extends RestaurantBaseController{
         }
     }
     public void getItem(){
+        FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneEinstein.getSelectionModel().getSelectedItem().getText().equals("      Bagels      ")){
-            FoodMenuItem foodMenuItem=tableViewBagel.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewBagel.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneEinstein.getSelectionModel().getSelectedItem().getText().equals("      Shmear      ")){
-            FoodMenuItem foodMenuItem=tableViewShmear.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewShmear.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneEinstein.getSelectionModel().getSelectedItem().getText().equals("      Drinks       ")){
-            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
+        CartModel.getInstance().appendCart(foodMenuItem);
     }
 }

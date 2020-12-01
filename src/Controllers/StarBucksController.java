@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.RestaurantModel;
 import Models.SQLCommands;
@@ -56,13 +57,15 @@ public class StarBucksController extends RestaurantBaseController {
     }
 
     public void getItem(){
+        FoodMenuItem foodMenuItem=new FoodMenuItem();
         if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("       Drinks       ")){
-            FoodMenuItem foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewDrinks.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
         else if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("      Bakery      ")){
-            FoodMenuItem foodMenuItem=tableViewBakery.getSelectionModel().getSelectedItem();
+            foodMenuItem=tableViewBakery.getSelectionModel().getSelectedItem();
             System.out.println(foodMenuItem.toString());
         }
+        CartModel.getInstance().appendCart(foodMenuItem);
     }
 }
