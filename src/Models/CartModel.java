@@ -16,15 +16,11 @@ public class CartModel {
     public int getRestaurant_id() { return this.restaurant_id; }
 
     public static CartModel getInstance() {
-        if(instance==null){
-            instance=new CartModel();
+        if (instance == null) {
+            instance = new CartModel();
         }
         return instance;
     }
-
-
-    public void appendToCart(FoodMenuItem item) {this.cart.add(item);}
-    public void clearCart() {this.cart.clear();}
 
 
     public ArrayList<FoodMenuItem> getCart() { return this.cart; }
