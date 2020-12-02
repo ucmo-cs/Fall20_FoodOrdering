@@ -55,7 +55,7 @@
       </TabPane>
       <Button layoutX="316.0" layoutY="613.0" mnemonicParsing="false" onAction="#getItem" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Add To Cart" />
       <Button layoutX="316.0" layoutY="653.0" mnemonicParsing="false" onAction="#openCheckout" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Checkout" />
-      <ImageView fitHeight="230.0" fitWidth="290.0" layoutX="530.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="230.0" fitWidth="290.0" layoutX="556.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/starbucks2.png" />
          </image>

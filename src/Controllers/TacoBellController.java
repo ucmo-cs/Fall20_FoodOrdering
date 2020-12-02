@@ -86,7 +86,7 @@ public class TacoBellController extends RestaurantBaseController {
     }
 
     public void openCheckout() throws Exception {
-        orderStageController.openCheckoutPane();
+        orderStageController.openCartStage();
     }
 }
 

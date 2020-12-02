@@ -14,9 +14,11 @@ public class MainStageController {
     static MainStageController instance = null;
     public Stage mainStage=new Stage();
     OrderStageController orderStageController=new OrderStageController();
+    PopUpMessageController popUpMessageController=new PopUpMessageController();
     Parent root;
     User user;
     CartModel cart;
+    int run=0;
     @FXML Pane paneMenu;
     @FXML Button buttonHome;
     @FXML Button buttonCart;
@@ -30,12 +32,15 @@ public class MainStageController {
     public void initialize() throws IOException {
         instance = this;
         openLoginPane();
+        this.cart=CartModel.getInstance();
     }
     public void setUser(User u)
     {
         this.user = u;
     }
-
+    public void setRun(int runValue){
+        run=runValue;
+    }
     public void openMainStage()throws Exception {
         root = FXMLLoader.load(getClass().getResource("/FXML_Files/MainStage.fxml"));
         Scene scene=new Scene(root,1000,700);
@@ -46,6 +51,29 @@ public class MainStageController {
         mainStage.setScene(scene);
         mainStage.show();
     }
+
+//    public boolean checkCartContents() throws IOException {
+//        if(this.cart.getNumberOfItems()>0){
+////            run=3;
+//            popUpMessageController.openPopUp();
+////
+////            while(true){
+////                // 0 is clear : 1 is do not
+////                // true is clear : false is do not
+////                if(run!=0||run!=1){
+////
+////                }
+////                else if(run==0){
+////                    return true;
+////                }
+////                else if(run==1){
+////                    return false;
+////                }
+////            }
+//        }
+////        else{ return true; }
+//        return true;
+//    }
 
     public void closeMainStage(){
         paneMenu.getChildren().clear();
@@ -140,15 +168,18 @@ public class MainStageController {
     }
 
     public void openFrontScreen() throws IOException {
-        Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/FrontScreen.fxml"));
-        buttonHome.setVisible(true);
-        buttonCart.setVisible(true);
-        buttonMap.setVisible(true);
-        buttonLogout.setVisible(true);
-        paneMenu.getChildren().clear();
-        paneMenu.getChildren().add(paneTest);
-        this.cart = CartModel.getInstance();
-        this.cart.emptyCart();
+//            checkCartContents();
+            Pane paneTest=FXMLLoader.load(getClass().getResource("/FXML_Files/FrontScreen.fxml"));
+            buttonHome.setVisible(true);
+            buttonCart.setVisible(true);
+            buttonMap.setVisible(true);
+            buttonLogout.setVisible(true);
+            paneMenu.getChildren().clear();
+            paneMenu.getChildren().add(paneTest);
+            this.cart = CartModel.getInstance();
+            this.cart.emptyCart();
+            run=3;
+
     }
 
     public void openLoginPane() throws IOException {

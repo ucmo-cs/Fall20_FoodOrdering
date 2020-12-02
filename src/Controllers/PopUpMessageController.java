@@ -5,37 +5,32 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.awt.*;
+
 import java.io.IOException;
 
 public class PopUpMessageController {
-
+    static PopUpMessageController instance=null;
+    MainStageController mainStageController=MainStageController.getInstance();
     public Stage stagePopUp=new Stage();
     Parent root;
-    int restaurantID;
     @FXML Label labelWarning;
     @FXML Button buttonContinue;
     @FXML Button buttonCancel;
+    boolean run;
 
     public void initialize(){
-        setLabelWarning(restaurantID);
+        instance=this;
+        setLabelWarning();
     }
 
-    public void setLabelWarning(int restaurantID){
-        String restaurantName;
+    public void setLabelWarning(){
+        String restaurantName=CartModel.getInstance().getRestaurantName();
         String warningText;
-        switch (restaurantID){
-            case 1: restaurantName="Chick-Fil-A"; break;
-            case 2: restaurantName="Taco Bell"; break;
-            case 3: restaurantName="Starbucks"; break;
-            case 4: restaurantName="Einstein Bros"; break;
-            case 5: restaurantName="Spin! Pizza"; break;
-            default: throw new IllegalStateException("Unexpected value: " + restaurantID);
-        }
-        warningText="Alert, you have "+ CartModel.getInstance().getNumberOfItems()+" item(s) currently in your cart from "+restaurantName+" " +
-                "and only one restaurant's items can be in your cart at a time. If you continue then the current items in your cart will be removed.";
+        warningText="Alert, you have "+ CartModel.getInstance().getNumberOfItems()+" item(s) currently in your cart from "+restaurantName;
         labelWarning.setText(warningText);
     }
 
@@ -49,11 +44,8 @@ public class PopUpMessageController {
         stagePopUp.show();
     }
 
-    public boolean buttonContinue(){
-        return true;
-    }
-
-    public boolean buttonCancel(){
-        return false;
-    }
+    // These buttons will return a value to the MainStageController
+    // that sets the 'run' integer to one of two values.
+    public void buttonContinue(){ mainStageController.setRun(0); }
+    public void buttonCancel(){ mainStageController.setRun(1); }
 }

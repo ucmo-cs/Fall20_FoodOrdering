@@ -55,5 +55,23 @@ public class CartModel {
 
         }
     }
+    public String getRestaurantName(){
+        String restaurantName="";
+        int id=CartModel.getInstance().getRestaurant_id();
+        switch (id){
+            case 1: restaurantName="Chick-Fil-A";
+                break;
+            case 2: restaurantName="Taco Bell";
+                break;
+            case 3: restaurantName="Starbucks";
+                break;
+            case 4: restaurantName="Einstein Bros";
+                break;
+            case 5: restaurantName="Spin! Pizza";
+                break;
+            default:restaurantName="Welcome to";
+        }
+        return restaurantName;
+    }
 
 }
