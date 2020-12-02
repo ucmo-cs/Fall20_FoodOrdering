@@ -28,6 +28,21 @@ public class Order {
         this.complete = complete;
     }
 
+    public String getOrder_id() {return this.order_id;}
+    public String getStudent_id() {return this.student_id;}
+    public String getFname() {return this.fname;}
+    public String getLname() {return this.lname;}
+    public String getOrder_date() {return this.order_date;}
+    public String getOrder_items() {return this.order_items;}
+    public float getOrder_total() {return this.order_total;}
+    public String getRestaurant_id() {return this.restaurant_id;}
+    public boolean isReady() {return this.ready;}
+    public boolean isComplete() {return this.complete;}
+
+    public String getOrder_display_name() {
+        return String.format("%s - %s, %s", this.student_id, this.lname, this.fname);
+    }
+
     @Override
     public String toString() {
         return String.format(

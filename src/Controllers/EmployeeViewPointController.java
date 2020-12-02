@@ -1,14 +1,12 @@
 package Controllers;
 
-import Models.MenuModel;
-import Models.Order;
-import Models.SQLCommands;
-import Models.User;
+import Models.*;
 import Queries.RestaurantQueries;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.sql.rowset.CachedRowSet;
 import java.util.ArrayList;
@@ -17,12 +15,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class EmployeeViewPointController {
-    @FXML public TableView pickup_table;
-    @FXML public TableView new_order_table;
+    @FXML public TableView<Order> pickup_table;
+    @FXML public TableView<Order> new_order_table;
     @FXML public TableColumn columnNewOrderID;
     @FXML public TableColumn columnNewOrderItems;
     @FXML public TableColumn columnReadyID;
     @FXML public TableColumn columnReadyName;
+
 
     private User user;
 
@@ -32,45 +31,56 @@ public class EmployeeViewPointController {
     @FXML
     void refreshTables() throws Exception {
         System.out.println("refresh");
+        pickup_table.getItems().clear();
+        new_order_table.getItems().clear();
         showNewOrders();
         showReadyOrders();
     }
 
     @FXML
     void markComplete() throws Exception {
-        int order_id = -1;  // initial value, should be replaced with order ID of the selected order
+        int order_id = Integer.parseInt(pickup_table.getSelectionModel().getSelectedItem().getOrder_id());
         System.out.printf("Order %d marked as complete\n", order_id);
-        //makeOrderComplete(order_id);
+        makeOrderComplete(order_id);
+        refreshTables();
     }
 
     @FXML
     void markReady() throws Exception {
-        int order_id = -1;  // initial value, should be replaced with order ID of the selected order
+        int order_id = Integer.parseInt(new_order_table.getSelectionModel().getSelectedItem().getOrder_id());
         System.out.printf("Order %d marked as ready\n", order_id);
-        //makeOrderReady(order_id);
+        makeOrderReady(order_id);
+        refreshTables();
     }
 
     public void showNewOrders() throws Exception {
-        System.out.println("\nNEW ORDERS\n");
+        //System.out.println("\nNEW ORDERS\n");
         String getNewOrdersQuery = RestaurantQueries.getNewOrdersQuery(this.user.getID());
 
         List<Order> orders = getOrdersAsList(getNewOrdersQuery,
                 RestaurantBaseController.buildStaticMenu(Integer.parseInt(this.user.getID())));
 
+        columnNewOrderID.setCellValueFactory(new PropertyValueFactory<>("order_id"));
+        columnNewOrderItems.setCellValueFactory(new PropertyValueFactory<>("order_items"));
         for(Order o : orders) {
-            System.out.println(o.toString());
+            //System.out.println(o.toString());
+            new_order_table.getItems().add(o);
         }
     }
 
     void showReadyOrders() throws Exception {
-        System.out.println("\nORDERS READY FOR PICKUP\n");
+        //System.out.println("\nORDERS READY FOR PICKUP\n");
         String getNewOrdersQuery = RestaurantQueries.getReadyOrdersQuery(this.user.getID());
 
         List<Order> orders = getOrdersAsList(getNewOrdersQuery,
                 RestaurantBaseController.buildStaticMenu(Integer.parseInt(this.user.getID())));
 
+        columnReadyID.setCellValueFactory(new PropertyValueFactory<>("order_id"));
+        columnReadyName.setCellValueFactory(new PropertyValueFactory<>("order_display_name"));
+
         for(Order o : orders) {
-            System.out.println(o.toString());
+            //System.out.println(o.toString());
+            pickup_table.getItems().add(o);
         }
     }
 

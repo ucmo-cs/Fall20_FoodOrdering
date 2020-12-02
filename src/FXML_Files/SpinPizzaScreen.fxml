@@ -12,58 +12,57 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SpinPizzaController">
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" styleClass="centerPane">
          <children>
-            <Button fx:id="buttonCheckout" layoutX="315.0" layoutY="650.0" mnemonicParsing="false" onAction="#OpenCheckout" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Checkout" />
-            <Label layoutX="47.0" layoutY="50.0" prefHeight="42.0" prefWidth="525.0" styleClass="titlelbl" text="Welcome to Taco Bell Menu" textFill="#d3caca">
+            <Button fx:id="buttonCheckout" layoutX="315.0" layoutY="650.0" mnemonicParsing="false" onAction="#openCheckout" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Checkout" />
+            <Label layoutX="47.0" layoutY="50.0" prefHeight="42.0" prefWidth="525.0" styleClass="titlelbl" text="Welcome to Spin Pizza Menu" textFill="#d3caca">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
-            <TabPane layoutX="14.0" layoutY="131.0" prefHeight="552.0" prefWidth="291.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPaneSpinPizza" layoutX="14.0" layoutY="131.0" prefHeight="552.0" prefWidth="291.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
-                  <Tab fx:id="tabMain" text="       Main       ">
+                  <Tab fx:id="tabPizza" text="    Pizza    ">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="527.0" prefWidth="295.0">
+                              <TableView fx:id="tableViewPizza" prefHeight="527.0" prefWidth="295.0">
                                  <columns>
-                                    <TableColumn fx:id="columnMainName" prefWidth="134.0" text="       Name       " />
-                                    <TableColumn fx:id="columnMainPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn fx:id="columnMainAvailable" prefWidth="64.0" text="Available" />
+                                    <TableColumn fx:id="columnPizzaName" prefWidth="134.0" text="       Name       " />
+                                    <TableColumn fx:id="columnPizzaPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
+                                    <TableColumn fx:id="columnPizzaAvailable" prefWidth="64.0" text="Available" />
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="tabDessert" text="       Dessert       ">
+                  <Tab fx:id="tabSalad" text="    Salad    ">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="220.0">
                            <children>
-                              <TableView prefHeight="527.0" prefWidth="295.0">
+                              <TableView fx:id="tableViewSalad" prefHeight="527.0" prefWidth="295.0">
                                  <columns>
-                                    <TableColumn fx:id="columnDessertName" prefWidth="134.0" text="       Name       " />
-                                    <TableColumn fx:id="columnDessertPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn fx:id="columnDessertAvailable" prefWidth="64.0" text="Available" />
+                                    <TableColumn fx:id="columnSaladName" prefWidth="134.0" text="       Name       " />
+                                    <TableColumn fx:id="columnSaladPrice" minWidth="0.0" prefWidth="83.0" text="Price" />
+                                    <TableColumn fx:id="columnSaladAvailable" prefWidth="77.0" text="Available" />
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="tabDrinks" text="       Drinks       ">
+                  <Tab fx:id="tabSide" text="    Side    ">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutY="-2.0" prefHeight="527.0" prefWidth="295.0">
+                              <TableView fx:id="tableViewSide" layoutY="-2.0" prefHeight="527.0" prefWidth="295.0">
                                  <columns>
-                                    <TableColumn fx:id="columnDrinksName" prefWidth="134.0" text="       Name       " />
-                                    <TableColumn fx:id="columnDrinksPrice" minWidth="0.0" prefWidth="79.0" text="Price" />
-                                    <TableColumn fx:id="columnDrinksAvailable" prefWidth="64.0" text="Available" />
+                                    <TableColumn fx:id="columnSideName" prefWidth="134.0" text="       Name       " />
+                                    <TableColumn fx:id="columnSidePrice" minWidth="0.0" prefWidth="79.0" text="Price" />
+                                    <TableColumn fx:id="columnSideAvailable" prefWidth="64.0" text="Available" />
                                  </columns>
                               </TableView>
                            </children>
@@ -72,7 +71,7 @@
                   </Tab>
                </tabs>
             </TabPane>
-            <Button layoutX="315.0" layoutY="610.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Add To Cart" />
+            <Button layoutX="315.0" layoutY="610.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="235.0" onAction="#getItem" styleClass="loginButton" text="Add To Cart" />
             <ImageView fitHeight="230.0" fitWidth="290.0" layoutX="405.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/spinPizza.jpg" />

@@ -69,10 +69,12 @@ public class StarBucksController extends RestaurantBaseController {
         else if(tabPaneStarbucks.getSelectionModel().getSelectedItem().getText().equals("      Bakery      ")){
             foodMenuItem=tableViewBakery.getSelectionModel().getSelectedItem();
         }
-        CartModel.getInstance().appendCart(foodMenuItem);
+        this.cart.setUser(this.user);
+        this.cart.setRestaurant_id(RESTAURANT_ID);
+        this.cart.appendCart(foodMenuItem);
     }
 
     public void openCheckout() throws Exception {
-        orderStageController.openCartStage();
+        orderStageController.openCheckoutPane();
     }
 }

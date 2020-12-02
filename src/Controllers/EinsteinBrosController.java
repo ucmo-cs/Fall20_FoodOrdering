@@ -79,7 +79,7 @@ public class EinsteinBrosController extends RestaurantBaseController{
     }
 
     public void openCheckout() throws Exception {
-        orderStageController.openCartStage();
+        orderStageController.openCheckoutPane();
     }
 
 }
