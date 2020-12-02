@@ -1,3 +1,5 @@
+package Models;
+
 import Models.FoodMenuItem;
 import Models.MenuModel;
 import Models.User;

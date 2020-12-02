@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,13 +43,7 @@ public class MyCartController {
     }
 
     public void openCheckout() throws IOException {
-            Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-            Stage stage = new Stage();
-            Scene scene = new Scene(checkout,1000,700);
-            scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-            stage.setScene(scene);
-            stage.show();
+            orderStageController.openCheckoutPane();
         }
 
     public void fillTable() throws SQLException{
@@ -65,7 +60,8 @@ public class MyCartController {
         for(FoodMenuItem f:cartItems){
             fTotal=fTotal+f.price;
         }
-        sTotal=String.valueOf(fTotal);
+        DecimalFormat format=new DecimalFormat("##0.00");
+        sTotal=format.format(fTotal);
         labelSubtotal.setText("Subtotal: $"+sTotal);
     }
     public void setQuantity(){

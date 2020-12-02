@@ -86,7 +86,7 @@ public class CheckoutScreenController {
         }
         salesTax=fTotal*taxRate;
         fTotal=fTotal+salesTax;
-        DecimalFormat format=new DecimalFormat("###.00");
+        DecimalFormat format=new DecimalFormat("##0.00");
         sTotal=format.format(fTotal);
         labelTotalPrice.setText("Total: $"+sTotal);
     }

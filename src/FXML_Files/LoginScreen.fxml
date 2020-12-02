@@ -22,12 +22,12 @@
             </ImageView>
          </children>
       </Pane>
-      <Label layoutX="297.0" layoutY="210.0" prefHeight="40.0" prefWidth="239.0" styleClass="titlelbl" text="Log in to ______" textFill="#d3caca">
+      <Label alignment="CENTER" layoutX="241.0" layoutY="210.0" prefHeight="40.0" prefWidth="314.0" styleClass="titlelbl" text="UCM Food Ordering" textAlignment="CENTER" textFill="#d3caca">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Label fx:id="labelMessage" layoutX="336.0" layoutY="250.0" text="THIS IS A TEST" textAlignment="CENTER" textFill="#c90b0b" visible="false">
+      <Label fx:id="labelMessage" alignment="CENTER" layoutX="337.0" layoutY="250.0" text="THIS IS A TEST" textAlignment="CENTER" textFill="#c90b0b" visible="false">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

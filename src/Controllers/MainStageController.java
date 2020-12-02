@@ -33,12 +33,13 @@ public class MainStageController {
     {
         this.user = u;
     }
+
     public void openMainStage()throws Exception {
         root = FXMLLoader.load(getClass().getResource("/FXML_Files/MainStage.fxml"));
         Scene scene=new Scene(root,1000,700);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        mainStage.setTitle("UCMO Food Ordering (Mule Trough)");
+        mainStage.setTitle("UCMO Food Ordering");
         mainStage.setScene(scene);
         mainStage.show();
     }
@@ -49,12 +50,7 @@ public class MainStageController {
     }
 
     public void openCartPane() throws Exception {
-        Pane paneTest = FXMLLoader.load(getClass().getResource("/FXML_Files/MyCartScreen.fxml"));
-        buttonHome.setVisible(true);
-        buttonCart.setVisible(true);
-        buttonMap.setVisible(true);
-        paneMenu.getChildren().clear();
-        paneMenu.getChildren().add(paneTest);
+        orderStageController.openCartStage();
     }
 
     public  void openMapView() throws IOException{

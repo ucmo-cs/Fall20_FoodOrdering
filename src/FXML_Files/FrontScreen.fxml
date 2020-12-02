@@ -11,34 +11,34 @@
    <children>
       <Pane styleClass="centerPane">
          <children>
-            <Button layoutX="145.0" layoutY="211.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn" fx:id="buttonTacoBell" onAction="#openTacoBell">
+            <Button fx:id="buttonTacoBell" layoutX="145.0" layoutY="211.0" mnemonicParsing="false" onAction="#openTacoBell" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
                <graphic>
-                  <ImageView  fitHeight="89.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" scaleX="1.15" scaleY="1.65" styleClass="foodBtn">
+                  <ImageView fitHeight="89.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" scaleX="1.15" scaleY="1.65" styleClass="foodBtn">
                      <image>
                         <Image url="@images/tacoBell.jpg" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="foodBtn" layoutX="325.0" layoutY="211.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn" fx:id="buttonEinsteinBros" onAction="#openEinsteinBros">
+            <Button id="foodBtn" fx:id="buttonEinsteinBros" layoutX="325.0" layoutY="211.0" mnemonicParsing="false" onAction="#openEinsteinBros" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
                <graphic>
-                  <ImageView  fitHeight="121.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" scaleX="1.17" scaleY="1.13" styleClass="foodBtn">
+                  <ImageView fitHeight="121.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" scaleX="1.17" scaleY="1.13" styleClass="foodBtn">
                      <image>
                         <Image url="@images/einsteinBros.jpg" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="218.0" layoutY="411.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn" fx:id="buttonChickFillet" onAction="#openChickFillet">
+            <Button fx:id="buttonChickFillet" layoutX="218.0" layoutY="411.0" mnemonicParsing="false" onAction="#openChickFillet" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
                <graphic>
-                  <ImageView  fitHeight="108.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" scaleX="1.15" scaleY="2.4" styleClass="foodBtn">
+                  <ImageView fitHeight="108.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" scaleX="1.15" scaleY="2.4" styleClass="foodBtn">
                      <image>
                         <Image url="@images/chickFilA.jpg" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="507.0" layoutY="211.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn" fx:id="buttonStarbucks" onAction="#openStarbucks">
+            <Button fx:id="buttonStarbucks" layoutX="507.0" layoutY="211.0" mnemonicParsing="false" onAction="#openStarbucks" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
                <graphic>
                   <ImageView fitHeight="79.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true" scaleX="2.35" scaleY="1.7" styleClass="foodBtn">
                      <image>
@@ -47,7 +47,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="434.0" layoutY="411.0" mnemonicParsing="false" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn" fx:id="buttonSpinPizza" onAction="#openSpinPizza">
+            <Button fx:id="buttonSpinPizza" layoutX="434.0" layoutY="411.0" mnemonicParsing="false" onAction="#openSpinPizza" prefHeight="139.0" prefWidth="146.0" styleClass="foodBtn">
                <graphic>
                   <ImageView fitHeight="126.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" scaleX="1.16" scaleY="1.11" styleClass="foodBtn">
                      <image>
@@ -61,7 +61,7 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <Label layoutX="319.0" layoutY="173.0" text="Order Now" textFill="#f80707">
+            <Label layoutX="330.0" layoutY="147.0" text="Order Now" textFill="#f80707">
                <font>
                   <Font size="28.0" />
                </font>
