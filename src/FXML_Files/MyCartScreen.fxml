@@ -35,9 +35,9 @@
             <TableColumn fx:id="columnCartQuantity" minWidth="0.0" prefWidth="0.0" text="Quantity" />
          </columns>
       </TableView>
-      <Label fx:id="labelSubtotal" layoutX="148.0" layoutY="510.0" text="Subtotal Amount" textFill="WHITE">
+      <Label fx:id="labelSubtotal" layoutX="122.0" layoutY="507.0" text="Subtotal Amount" textFill="WHITE">
          <font>
-            <Font name="Serif Bold" size="17.0" />
+            <Font name="Serif Bold" size="24.0" />
          </font>
       </Label>
    </children>

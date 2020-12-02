@@ -1,8 +1,6 @@
 package Controllers;
 
-import Models.CartModel;
-import Models.FoodMenuItem;
-import Models.User;
+import Models.*;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.*;
@@ -19,6 +17,7 @@ public class CheckoutScreenController {
     // Classes
     List<FoodMenuItem> cartItems=CartModel.getInstance().getCart();
     OrderStageController orderStageController=OrderStageController.getInstance();
+    MyCartController cartController=new MyCartController();
     //Elements
     @FXML TableView<FoodMenuItem> tableViewCheckout;
     @FXML TableColumn columnCheckoutName;
@@ -30,14 +29,15 @@ public class CheckoutScreenController {
     public int restaurant_id;
     @FXML Label labelTotalPrice;
     @FXML Label labelCheckoutTitle;
+    @FXML Label labelComplete;
 
     public void initialize() throws SQLException{
         fillTable();
         setLabelCheckoutTitle();
         setLabelTotalPrice();
+        labelComplete.setVisible(false);
     }
     public void close() throws IOException {
-        System.out.println("TEST");
         orderStageController.openCartPane();
     }
     public void fillTable() throws SQLException {
@@ -54,6 +54,11 @@ public class CheckoutScreenController {
         CartModel cart = CartModel.getInstance();
         User user = cart.getUser();
         RestaurantBaseController.processOrder(cart.getCart(), String.valueOf(cart.getRestaurant_id()), user);
+        cart.emptyCart();
+        tableViewCheckout.getItems().clear();
+        labelTotalPrice.setVisible(false);
+        fillTable();
+        showOrderComplete();
         System.out.printf("%s %s has submitted their order\n", user.getFname(), user.getID());
     }
 
@@ -74,6 +79,9 @@ public class CheckoutScreenController {
         DecimalFormat format=new DecimalFormat("##0.00");
         sTotal=format.format(fTotal);
         labelTotalPrice.setText("Total: $"+sTotal);
+    }
+    public void showOrderComplete(){
+        labelComplete.setVisible(true);
     }
 }
 

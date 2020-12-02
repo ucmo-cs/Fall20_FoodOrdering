@@ -36,6 +36,7 @@ public class MyCartController {
     public void initialize() throws SQLException {
         fillTable();
         setTotal();
+        labelSubtotal.setVisible(true);
     }
 
     public void close(){
@@ -70,6 +71,5 @@ public class MyCartController {
 
         }
     }
-
 
 }
