@@ -27,7 +27,6 @@ public class EinsteinBrosController extends RestaurantBaseController{
     @FXML TableColumn columnShmearPrice;
     @FXML TableColumn columnShmearAvailable;
     OrderStageController orderStageController=new OrderStageController();
-    private RestaurantModel einstein = new RestaurantModel();
     private final static int RESTAURANT_ID = 4;
 
     public void initialize() throws Exception {

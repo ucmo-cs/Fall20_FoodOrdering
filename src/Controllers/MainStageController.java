@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ public class MainStageController {
     OrderStageController orderStageController=new OrderStageController();
     Parent root;
     User user;
+    CartModel cart;
     @FXML Pane paneMenu;
     @FXML Button buttonHome;
     @FXML Button buttonCart;
@@ -39,6 +41,7 @@ public class MainStageController {
         Scene scene=new Scene(root,1000,700);
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
+
         mainStage.setTitle("UCMO Food Ordering");
         mainStage.setScene(scene);
         mainStage.show();
@@ -80,6 +83,8 @@ public class MainStageController {
         buttonHome.setVisible(true);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneTest);
+        this.cart = CartModel.getInstance();
+        this.cart.emptyCart();
     }
 
     public void openEinsteinBrosMenu() throws IOException {
@@ -91,6 +96,8 @@ public class MainStageController {
         buttonHome.setVisible(true);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneTest);
+        this.cart = CartModel.getInstance();
+        this.cart.emptyCart();
     }
 
     public void openStarbucksMenu() throws IOException {
@@ -102,6 +109,8 @@ public class MainStageController {
         buttonHome.setVisible(true);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneTest);
+        this.cart = CartModel.getInstance();
+        this.cart.emptyCart();
     }
 
     public void openChickFilletMenu() throws IOException {
@@ -113,6 +122,8 @@ public class MainStageController {
         buttonHome.setVisible(true);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneTest);
+        this.cart = CartModel.getInstance();
+        this.cart.emptyCart();
     }
 
     public void openSpinPizzaMenu() throws IOException {
@@ -124,6 +135,8 @@ public class MainStageController {
         buttonHome.setVisible(true);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneTest);
+        this.cart = CartModel.getInstance();
+        this.cart.emptyCart();
     }
 
     public void openFrontScreen() throws IOException {
@@ -134,6 +147,8 @@ public class MainStageController {
         buttonLogout.setVisible(true);
         paneMenu.getChildren().clear();
         paneMenu.getChildren().add(paneTest);
+        this.cart = CartModel.getInstance();
+        this.cart.emptyCart();
     }
 
     public void openLoginPane() throws IOException {

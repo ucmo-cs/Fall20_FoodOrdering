@@ -24,6 +24,7 @@ public class CartModel {
 
 
     public void appendToCart(FoodMenuItem item) {this.cart.add(item);}
+    public void clearCart() {this.cart.clear();}
 
 
     public ArrayList<FoodMenuItem> getCart() { return this.cart; }
