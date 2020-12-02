@@ -40,6 +40,7 @@ public class StarBucksController extends RestaurantBaseController {
         SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
+        this.cart=CartModel.getInstance();
     }
 
     public void fillTable() throws SQLException {

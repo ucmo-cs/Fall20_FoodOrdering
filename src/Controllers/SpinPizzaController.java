@@ -47,6 +47,7 @@ public class SpinPizzaController extends RestaurantBaseController{
         SQLCommands sqlCommands = new SQLCommands();
         buildMenu(RESTAURANT_ID);
         fillTable();
+        this.cart=CartModel.getInstance();
     }
     public void fillTable() throws SQLException {
         List<FoodMenuItem> spinFood = this.menuModel.getFoods();

@@ -14,38 +14,22 @@ import javafx.stage.Stage;
 
 public class TacoBellController extends RestaurantBaseController {
 
-    @FXML
-    TabPane tabPaneTacoBell;
-    @FXML
-    Tab tabMain;
-    @FXML
-    Tab tabDessert;
-    @FXML
-    Tab tabDrinks;
-    @FXML
-    TableView<FoodMenuItem> tableViewMain;
-    @FXML
-    TableView<FoodMenuItem> tableViewDessert;
-    @FXML
-    TableView<FoodMenuItem> tableViewDrinks;
-    @FXML
-    TableColumn columnMainName;
-    @FXML
-    TableColumn columnMainPrice;
-    @FXML
-    TableColumn columnMainAvailable;
-    @FXML
-    TableColumn columnDessertName;
-    @FXML
-    TableColumn columnDessertPrice;
-    @FXML
-    TableColumn columnDessertAvailable;
-    @FXML
-    TableColumn columnDrinksName;
-    @FXML
-    TableColumn columnDrinksPrice;
-    @FXML
-    TableColumn columnDrinksAvailable;
+    @FXML TabPane tabPaneTacoBell;
+    @FXML Tab tabMain;
+    @FXML Tab tabDessert;
+    @FXML Tab tabDrinks;
+    @FXML TableView<FoodMenuItem> tableViewMain;
+    @FXML TableView<FoodMenuItem> tableViewDessert;
+    @FXML TableView<FoodMenuItem> tableViewDrinks;
+    @FXML TableColumn columnMainName;
+    @FXML TableColumn columnMainPrice;
+    @FXML TableColumn columnMainAvailable;
+    @FXML TableColumn columnDessertName;
+    @FXML TableColumn columnDessertPrice;
+    @FXML TableColumn columnDessertAvailable;
+    @FXML TableColumn columnDrinksName;
+    @FXML TableColumn columnDrinksPrice;
+    @FXML TableColumn columnDrinksAvailable;
     OrderStageController orderStageController = new OrderStageController();
     private final static int RESTAURANT_ID = 2;
 
