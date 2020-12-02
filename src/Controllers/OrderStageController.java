@@ -49,10 +49,12 @@ public class OrderStageController {
 
     public void openCheckoutPane() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-        Pane paneCheckout = loader.load();
-        CheckoutScreenController controller = loader.getController();
-        //controller.setUser(this.user);
-        paneOrder.getChildren().clear();
-        paneOrder.getChildren().add(paneCheckout);
+        root = loader.load();
+        Scene scene=new Scene(root,655,555);
+        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
+        cartStage.setTitle("Checkout");
+        cartStage.setScene(scene);
+        cartStage.show();
     }
 }

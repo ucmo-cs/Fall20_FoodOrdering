@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class CheckoutScreenController {
     @FXML TableColumn columnCheckoutQuantity;
     @FXML TableColumn columnCheckoutPrice;
     @FXML Button buttonSubmitOrder;
-
+    @FXML Button buttonCancel;
     public int restaurant_id;
     @FXML Label labelTotalPrice;
     @FXML Label labelCheckoutTitle;
@@ -35,11 +36,11 @@ public class CheckoutScreenController {
         setLabelCheckoutTitle();
         setLabelTotalPrice();
     }
-
-    public void openCart() throws IOException {
-        orderStageController.openCartPane();
-    }
-
+    @FXML
+    public void close() throws IOException {
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
+         stage.close();
+}
     public void fillTable() throws SQLException {
         List<FoodMenuItem> cartItems = CartModel.getInstance().getCart();
         columnCheckoutName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));

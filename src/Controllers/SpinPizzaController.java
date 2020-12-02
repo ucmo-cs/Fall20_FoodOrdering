@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.CartModel;
 import Models.FoodMenuItem;
 import Models.RestaurantModel;
 import Models.SQLCommands;
@@ -9,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,22 +23,23 @@ import java.util.List;
 
 public class SpinPizzaController extends RestaurantBaseController{
 
-    @FXML Tab tabMain;
-    @FXML Tab tabDessert;
-    @FXML Tab tabDrinks;
-    @FXML TableView<FoodMenuItem>tableViewMain;
-    @FXML TableView<FoodMenuItem>tableViewDesserts;
-    @FXML TableView<FoodMenuItem>tableViewDrinks;
-    @FXML TableColumn columnMainName;
-    @FXML TableColumn columnMainPrice;
-    @FXML TableColumn columnMainAvailable;
-    @FXML TableColumn columnDessertName;
-    @FXML TableColumn columnDessertPrice;
-    @FXML TableColumn columnDessertAvailable;
-    @FXML TableColumn columnDrinksName;
-    @FXML TableColumn columnDrinksPrice;
-    @FXML TableColumn columnDrinksAvailable;
-
+    @FXML TabPane tabPaneSpinPizza;
+    @FXML Tab tabPizza;
+    @FXML Tab tabSalad;
+    @FXML Tab tabSide;
+    @FXML TableView<FoodMenuItem>tableViewPizza;
+    @FXML TableView<FoodMenuItem>tableViewSalad;
+    @FXML TableView<FoodMenuItem>tableViewSide;
+    @FXML TableColumn columnPizzaName;
+    @FXML TableColumn columnPizzaPrice;
+    @FXML TableColumn columnPizzaAvailable;
+    @FXML TableColumn columnSaladName;
+    @FXML TableColumn columnSaladPrice;
+    @FXML TableColumn columnSaladAvailable;
+    @FXML TableColumn columnSideName;
+    @FXML TableColumn columnSidePrice;
+    @FXML TableColumn columnSideAvailable;
+    OrderStageController orderStageController=new OrderStageController();
     private RestaurantModel spin = new RestaurantModel();
     private final static int RESTAURANT_ID = 5;
 
@@ -47,33 +50,44 @@ public class SpinPizzaController extends RestaurantBaseController{
     }
     public void fillTable() throws SQLException {
         List<FoodMenuItem> spinFood = this.menuModel.getFoods();
-        columnMainName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));
-        columnMainPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("price"));
-        columnMainAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("available"));
+        columnPizzaName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));
+        columnPizzaPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("price"));
+        columnPizzaAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("available"));
 
-        columnDessertName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));
-        columnDessertPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("price"));
-        columnDessertAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("available"));
+        columnSaladName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));
+        columnSaladPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("price"));
+        columnSaladAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("available"));
 
-        columnDrinksName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));
-        columnDrinksPrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("price"));
-        columnDrinksAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("available"));
+        columnSideName.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("name"));
+        columnSidePrice.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("price"));
+        columnSideAvailable.setCellValueFactory(new PropertyValueFactory<FoodMenuItem, String>("available"));
 
         for (FoodMenuItem f : spinFood) {
             switch (f.type) {
-                case "main": tableViewMain.getItems().add(f); break;
-                case "dessert": tableViewDesserts.getItems().add(f); break;
-                case "drink": tableViewDrinks.getItems().add(f); break;
+                case "pizza": tableViewPizza.getItems().add(f); break;
+                case "salad": tableViewSalad.getItems().add(f); break;
+                case "side": tableViewSide.getItems().add(f); break;
             }
         }
     }
-    public void OpenCheckout() throws IOException {
-        Parent checkout = FXMLLoader.load(getClass().getResource("/FXML_Files/CheckoutScreen.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(checkout,1000,700);
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/test.css").toExternalForm());
-        scene.getStylesheets().add(getClass().getResource("/FXML_Files/login.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+
+    public void getItem(){
+        FoodMenuItem foodMenuItem=new FoodMenuItem();
+        if(tabPaneSpinPizza.getSelectionModel().getSelectedItem().getText().equals("    Pizza    ")){
+            foodMenuItem=tableViewPizza.getSelectionModel().getSelectedItem();
+        }
+        else if(tabPaneSpinPizza.getSelectionModel().getSelectedItem().getText().equals("    Salad    ")){
+            foodMenuItem=tableViewSalad.getSelectionModel().getSelectedItem();
+        }
+        else if(tabPaneSpinPizza.getSelectionModel().getSelectedItem().getText().equals("    Side    ")){
+            foodMenuItem=tableViewSide.getSelectionModel().getSelectedItem();
+        }
+        this.cart.setUser(this.user);
+        this.cart.setRestaurant_id(RESTAURANT_ID);
+        this.cart.appendCart(foodMenuItem);
+    }
+
+    public void openCheckout() throws Exception {
+        orderStageController.openCheckoutPane();
     }
 }

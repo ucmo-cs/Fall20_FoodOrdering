@@ -74,7 +74,7 @@
             <Button layoutX="315.0" layoutY="610.0" mnemonicParsing="false" onAction="#getItem" prefHeight="33.0" prefWidth="235.0" styleClass="loginButton" text="Add To Cart" />
             <ImageView fitHeight="230.0" fitWidth="290.0" layoutX="405.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/spinPizza.jpg" />
+                  <Image url="@../images/tacoBell.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="517.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
